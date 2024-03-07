@@ -4,7 +4,7 @@
     <ul>
         AKTIVITAS
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('dashboard') }}" class="side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="home" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -14,7 +14,7 @@
             </a>
         </li>
         <li>
-            <a href="enigma-side-menu-file-manager-page.html" class="side-menu side-menu--active">
+            <a href="{{ route('file-manager') }}" class="side-menu side-menu--active">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="hard-drive" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="enigma-side-menu-file-manager-page.html" class="side-menu side-menu">
+            <a href="{{ route('log') }}" class="side-menu side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="file-clock" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -36,7 +36,7 @@
         <li class="side-nav__divider my-6"></li>
         MASTER
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('role') }}" class="side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="scan-face" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -46,7 +46,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('user-group') }}" class="side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="component" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -56,7 +56,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('user') }}" class="side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="users" class="stroke-1.5 w-5 h-5"></i>
                 </div>
@@ -66,7 +66,7 @@
             </a>
         </li>
         <li>
-            <a href="javascript:;" class="side-menu">
+            <a href="{{ route('dynamic-form') }}" class="side-menu">
                 <div class="side-menu__icon">
                     <i data-tw-merge="" data-lucide="sidebar" class="stroke-1.5 w-5 h-5"></i>
                 </div>

@@ -1,6 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FileManagerController;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UsergroupController;
+use App\Http\Controllers\DynamicFormController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('shared/{id}', [FileManagerController::class, 'page_shared'])->name('page.file-manager.shared');
+Route::get('shared/{id}', [FileManagerController::class, 'page_shared'])->name('file-manager.shared');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
@@ -28,24 +33,26 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('pages.dashboard');
     })->name('dashboard');
     
-    Route::get('files', [FileManagerController::class, 'index'])->name('page.file-manager');
-    Route::get('file/add', [FileManagerController::class, 'form_add'])->name('page.file-manager.add');
-    Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('page.file-manager.edit');
+    Route::get('files', [FileManagerController::class, 'index'])->name('file-manager');
+    Route::get('file/add', [FileManagerController::class, 'form_add'])->name('file-manager.add');
+    Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('file-manager.edit');
 
-    Route::get('logs', [LogController::class, 'index'])->name('page.file-manager');
-    Route::get('log/detail/{id}', [LogController::class, 'form_edit'])->name('page.file-manager.edit');
+    Route::get('logs', [LogController::class, 'index'])->name('log');
+    Route::get('log/detail/{id}', [LogController::class, 'form_edit'])->name('log.edit');
     
-    Route::get('roles', [RoleController::class, 'index'])->name('page.role');
-    Route::get('role/add', [RoleController::class, 'form_add'])->name('page.role.add');
-    Route::get('role/edit/{id}', [RoleController::class, 'form_edit'])->name('page.role.edit');
+    Route::get('roles', [RoleController::class, 'index'])->name('role');
+    Route::get('role/add', [RoleController::class, 'form_add'])->name('role.add');
+    Route::get('role/edit/{id}', [RoleController::class, 'form_edit'])->name('role.edit');
 
-    Route::get('user-groups', [UserGroupController::class, 'index'])->name('page.user-group');
-    Route::get('user-group/add', [UserGroupController::class, 'form_add'])->name('page.user-group.add');
-    Route::get('user-group/edit/{id}', [UserGroupController::class, 'form_edit'])->name('page.user-group.edit');
+    Route::get('user-groups', [UserGroupController::class, 'index'])->name('user-group');
+    Route::get('user-group/add', [UserGroupController::class, 'form_add'])->name('user-group.add');
+    Route::get('user-group/edit/{id}', [UserGroupController::class, 'form_edit'])->name('user-group.edit');
 
-    Route::get('dynamic-forms', [DynamicFormController::class, 'index'])->name('page.dynamic-form');
-    Route::get('dynamic-form/add', [DynamicFormController::class, 'form_add'])->name('page.dynamic-form.add');
-    Route::get('dynamic-form/edit/{id}', [DynamicFormController::class, 'form_edit'])->name('page.dynamic-form.edit');
+    Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
+
+    Route::get('dynamic-forms', [DynamicFormController::class, 'index'])->name('dynamic-form');
+    Route::get('dynamic-form/add', [DynamicFormController::class, 'form_add'])->name('dynamic-form.add');
+    Route::get('dynamic-form/edit/{id}', [DynamicFormController::class, 'form_edit'])->name('dynamic-form.edit');
 });
 
 Route::middleware('auth')->group(function () {
