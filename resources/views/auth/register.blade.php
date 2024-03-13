@@ -2,8 +2,32 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- SatKer -->
         <div>
+            <x-input-label for="user_group_id" :value="__('Satuan Kerja')" />
+            <select class="form-control block mt-1 w-full" name="user_group_id" :value="old('user_group_id')" required autofocus autocomplete="user_group_id">
+              <option disabled>------ pilih salah satu ------</option>
+              @foreach(@$user_groups as $item)
+                <option value="{{$item->id}}">{{$item->nickname}} - {{$item->fullname}} </option>
+              @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('user_group_id')" class="mt-2" />
+        </div>
+
+        <!-- Role -->
+        <div class="mt-2">
+            <x-input-label for="role_id" :value="__('Peran')" />
+            <select class="form-control block mt-1 w-full" name="role_id" :value="old('role_id')" required autofocus autocomplete="role_id">
+              <option disabled>------ pilih salah satu ------</option>
+              @foreach(@$roles as $item)
+                <option value="{{$item->id}}">{{$item->name}}</option>
+              @endforeach
+            </select>
+            <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
+        </div>
+
+        <!-- Name -->
+        <div class="mt-2">
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -30,7 +54,7 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label for="password_confirmation" :value="__('Ulang Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
@@ -41,7 +65,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('Sudah pernah daftar?') }}
             </a>
 
             <x-primary-button class="ms-4">

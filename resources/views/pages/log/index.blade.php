@@ -1,5 +1,5 @@
 @extends('layouts.app-enigma')
-@section('title', 'File Manager')
+@section('title', 'Log')
 @section('content')
 <div class="mt-8 grid grid-cols-12 gap-6">
     <div class="col-span-12 lg:col-span-3 2xl:col-span-2">

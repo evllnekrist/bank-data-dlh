@@ -1,5 +1,5 @@
 @extends('layouts.app-enigma')
-@section('title', 'File Manager')
+@section('title', 'Kelola Input')
 @section('content')
 
 @endsection

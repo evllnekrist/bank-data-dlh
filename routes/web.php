@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\LogController;
@@ -19,12 +20,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// -------- API ----- NO/REQ LOGIN
+Route::group(['prefix' => 'api'], function () {
+    // Route::post('/survey/post-add', [StatisticController::class, 'post_add_survey']);
+  
+    Route::middleware('auth')->group(function () {
+        Route::post('/user/get', [RegisteredUserController::class, 'get_list']);
+        Route::post('/user/post-add', [RegisteredUserController::class, 'post_add']);
+        Route::post('/user/post-edit', [RegisteredUserController::class, 'post_edit']);
+        Route::post('/user/post-delete/{id}', [RegisteredUserController::class, 'post_delete']);
+    });
+});
+
+// -------- PAGE ---- NO LOGIN
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('shared/{id}', [FileManagerController::class, 'page_shared'])->name('file-manager.shared');
 
+// -------- PAGE ---- REQ LOGIN
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', function () {
         return view('pages.dashboard');

@@ -11,11 +11,14 @@
         <link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="dist/css/vendors/simplebar.css">
-        <link rel="stylesheet" href="dist/css/components/mobile-menu.css">
         <link rel="stylesheet" href="dist/css/vendors/tippy.css">
+        <link rel="stylesheet" href="dist/css/vendors/font-awesome/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="dist/css/components/mobile-menu.css">
         <link rel="stylesheet" href="dist/css/themes/enigma/side-nav.css">
         <link rel="stylesheet" href="dist/css/app.css"> 
         <!-- END: CSS Assets-->
+        @yield('addition_css')
     </head>
     <body>
         @include('components.enigma.display-change-widget')
@@ -32,7 +35,12 @@
             </div>
         </div>
         <!-- BEGIN: Vendor JS Assets-->
-        <script src="dist/js/vendors/dom.js"></script>
+        <script>
+            const assetUrl = "{{asset('/')}}"
+        </script>
+        <script src="dist/js/vendors/jquery.min.js"></script>
+        <script src="dist/js/vendors/axios.min.js"></script>
+        {{-- <script src="dist/js/vendors/dom.js"></script> --}}
         <script src="dist/js/vendors/tailwind-merge.js"></script>
         <script src="dist/js/vendors/lucide.js"></script>
         <script src="dist/js/vendors/popper.js"></script>
@@ -40,13 +48,17 @@
         <script src="dist/js/vendors/tippy.js"></script>
         <script src="dist/js/vendors/transition.js"></script>
         <script src="dist/js/vendors/simplebar.js"></script>
-        <script src="dist/js/vendors/modal.js"></script>
+        <script src="dist/js/vendors/modal.js"></script> 
+        <script src="dist/js/vendors/sweetalert2.all.min.js"></script>
         <script src="dist/js/components/base/theme-color.js"></script>
         <script src="dist/js/components/base/lucide.js"></script>
         <script src="dist/js/themes/enigma.js"></script>
         <script src="dist/js/components/mobile-menu.js"></script>
-        <script src="dist/js/components/themes/enigma/top-bar.js"></script> <!-- END: Vendor JS Assets-->
+        <script src="dist/js/components/themes/enigma/top-bar.js"></script>
+        <script src="page/js/app.js"></script>
+        <!-- END: Vendor JS Assets-->
         <!-- BEGIN: Pages, layouts, components JS Assets-->
+        @yield('addition_script')
         <!-- END: Pages, layouts, components JS Assets-->
     </body>
 </html>

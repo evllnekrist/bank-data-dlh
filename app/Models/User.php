@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserGroup;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'user_group_id',
+        'img_main',
+        'is_enabled',
     ];
 
     /**
@@ -42,4 +48,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function role_attr(){
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+    
+    public function user_group_attr(){
+        return $this->belongsTo(UserGroup::class, 'user_group_id', 'id');
+    }
 }

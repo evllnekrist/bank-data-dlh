@@ -1,5 +1,5 @@
 @extends('layouts.app-enigma')
-@section('title', 'File Manager')
+@section('title', 'SatKer')
 @section('content')
     <h2 class="intro-y mt-10 text-lg font-medium">Satuan Kerja</h2>
     <div class="mt-5 grid grid-cols-12 gap-6">
