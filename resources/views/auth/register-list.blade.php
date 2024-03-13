@@ -29,7 +29,7 @@
         </div>
         <div class="mt-3 flex w-full items-center xl:mt-0 xl:w-auto">
             <div class="relative w-56 text-slate-500">
-                <input name="_search" data-tw-merge="" type="text" placeholder="Cari..." class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box w-56 pr-10">
+                <input name="_search" data-tw-merge="" type="text" placeholder="Cari..." class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-300/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box w-56 pr-10">
                 <i onclick="getData()" data-tw-merge="" data-lucide="search" class="stroke-1.5 absolute inset-y-0 right-0 my-auto mr-3 h-4 w-4"></i>
             </div>
             <select name="_role_id" onchange="getData()" data-tw-merge="" class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 group-[.form-inline]:flex-1 !box ml-2 w-56 xl:w-auto">
@@ -57,20 +57,46 @@
         <table data-tw-merge="" class="w-full text-left -mt-2 border-separate border-spacing-y-[10px]">
             <thead data-tw-merge="" class="">
                 <tr data-tw-merge="" class="">
-                    <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+                    <th onclick="changeDir('id')" id="th_id" data-dir="" data-tw-merge="" class="_dir font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
                         <input data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50">
+                        <span class="ml-2">
+                            <i class="fas fa-sort text-slate-300"></i>
+                            <i class="fas fa-sort-up text-primary hidden"></i>
+                            <i class="fas fa-sort-down text-primary hidden"></i>
+                        </span>
                     </th>
-                    <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
+                    <th onclick="changeDir('name')" id="th_name" data-dir="" data-tw-merge="" class="_dir font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
                         NAMA
+                        <span class="ml-2">
+                            <i class="fas fa-sort text-slate-300"></i>
+                            <i class="fas fa-sort-up text-primary hidden"></i>
+                            <i class="fas fa-sort-down text-primary hidden"></i>
+                        </span>
                     </th>
-                    <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+                    <th onclick="changeDir('role_id')" id="th_role_id" data-dir="" data-tw-merge="" class="_dir font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
                         PERAN
+                        <span class="ml-2">
+                            <i class="fas fa-sort text-slate-300"></i>
+                            <i class="fas fa-sort-up text-primary hidden"></i>
+                            <i class="fas fa-sort-down text-primary hidden"></i>
+                        </span>
                     </th>
-                    <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
-                        SATKER<br>(User Group)
+                    <th onclick="changeDir('user_group_id')" id="th_user_group_id" data-dir="" data-tw-merge="" class="_dir font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+                        SATKER
+                        <span class="ml-2">
+                            <i class="fas fa-sort text-slate-300"></i>
+                            <i class="fas fa-sort-up text-primary hidden"></i>
+                            <i class="fas fa-sort-down text-primary hidden"></i>
+                        </span>
+                        <br>(User Group)
                     </th>
-                    <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
+                    <th onclick="changeDir('is_enabled')" id="th_is_enabled" data-dir="" data-tw-merge="" class="_dir font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
                         STATUS
+                        <span class="ml-2">
+                            <i class="fas fa-sort text-slate-300"></i>
+                            <i class="fas fa-sort-up text-primary hidden"></i>
+                            <i class="fas fa-sort-down text-primary hidden"></i>
+                        </span>
                     </th>
                     <th data-tw-merge="" class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
                         ACTIONS

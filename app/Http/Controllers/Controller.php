@@ -42,6 +42,15 @@ class Controller extends BaseController
                     $data['products'] = $data['products']->whereRaw($query);
                 }
             }
+            if(!empty($data['filter']['_dir'])){
+              foreach ($data['filter']['_dir'] as $key => $value) {
+                if($value){
+                  $data['products'] = $data['products']->orderBy($key,$value);
+                }
+              }
+            }else{
+              $data['products'] = $data['products']->orderBy('id','desc');
+            }
           }
         
           $data['products_count_total']   = $data['products']->count();

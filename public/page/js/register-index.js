@@ -55,10 +55,17 @@ function getData(move_to_page=null){
   }
   let url = baseUrl+'/api/user/get'
   let payload = {};
-  $("._filter").each(function() {
-    payload[$(this).attr('name')] = ($(this).val());
+  payload['_dir'] = {}
+  $("._dir").each(function() {
+    if($(this).data('dir')){
+      payload['_dir'][$(this).attr('id').replace('th_','')] = $(this).data('dir');
+    }
   });
-  console.log('payload',payload);
+  $("._filter").each(function() {
+    payload[$(this).attr('name')] = $(this).val();
+  });
+  // console.log('payload',payload); 
+  // return;
   axios.post(url, payload, apiHeaders)
   .then(function (response) {
     console.log('[DATA] response..',response.data);
@@ -67,6 +74,13 @@ function getData(move_to_page=null){
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
             (response.data.data.products).forEach((item) => {
+              imgToDisplay = baseUrl+'/img/no-image-clean.png'
+              img = new Image();
+              img.src = item.img_main+"?_="+(new Date().getTime());
+              img.onload = function () {
+                imgToDisplay = item.img_main
+                $('#product_'+item.id+'_img').attr("src",imgToDisplay)
+              }
               template +=
               `<tr data-tw-merge="" class="intro-x">
                 <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-10 whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
@@ -75,7 +89,7 @@ function getData(move_to_page=null){
                 <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 !py-3.5 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                     <div class="flex items-center">
                         <div class="image-fit zoom-in h-9 w-9">
-                            <img data-placement="top" title="Uploaded at 16 January 2022" src="dist/images/fakers/preview-8.jpg" alt="Midone - Tailwind Admin Dashboard Template" class="tooltip cursor-pointer rounded-lg border-white shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]">
+                            <img data-placement="top" title="" src="`+imgToDisplay+`" id="product_`+item.id+`_img" alt="Gambar Pengguna" class="tooltip cursor-pointer rounded-lg border-white shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]">
                         </div>
                         <div class="ml-4">
                             <a class="whitespace-nowrap font-medium" href="">
@@ -215,12 +229,4 @@ function getData(move_to_page=null){
 
 $(function () {
   getData();
-  $('[name="_search"]').keypress(function(e){
-    // If the user presses the "Enter" key on the keyboard
-    if (e.key === "Enter") {
-      // Cancel the default action, if needed
-      e.preventDefault();
-      getData();
-    }
-  });
 });

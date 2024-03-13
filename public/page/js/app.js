@@ -9,6 +9,7 @@ const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
 const baseUrl = window.location.origin;
 const loadingElementImg = `<div class="mx-auto"><img src="../../loading-unscreen.gif"></div>`;
 const loadingElement = `<div class="mx-auto">memuat...</div>`;
+let imgToDisplay = ``, img = ``;
 
 $('.nospace').on('keyup', function(event) {
     if((event.target.value).includes(' ')){
@@ -86,3 +87,36 @@ function hideLoading(appendTo){
     // console.log(appendTo+'Loading','toHide')
     $(appendTo+'_loading').hide()
 }
+
+function changeDir(field){
+    let el = $('#th_'+field);
+    
+    switch (el.data('dir')) {
+      case 'asc': // currently ASC to be DESC
+        el.data('dir','desc');
+        el.find('.fas').addClass('hidden');
+        el.find('.fa-sort-down').removeClass('hidden');
+        break;
+      case 'desc': // currently DESC to be NEUTRAL
+        el.data('dir','');
+        el.find('.fas').addClass('hidden');
+        el.find('.fa-sort').removeClass('hidden');
+        break;
+      default: // curently NEUTRAL to ASC
+        el.data('dir','asc');
+        el.find('.fas').addClass('hidden');
+        el.find('.fa-sort-up').removeClass('hidden');
+        break;
+    }
+    getData();
+}
+
+$(function (){
+    $('[name="_search"]').keypress(function(e){
+        if (e.key === "Enter") { // If the user presses the "Enter" key on the keyboard
+          e.preventDefault(); // Cancel the default action, if needed
+          getData(); 
+        }
+      });
+});
+  
