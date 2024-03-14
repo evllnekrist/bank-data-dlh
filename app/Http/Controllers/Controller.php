@@ -22,14 +22,14 @@ class Controller extends BaseController
           $data['products']     = $model::with($with);
           
           if(!empty($filter)){ // check if there is filter/s
-            if($filter['equal']){ // for the case of equal value
+            if(isset($filter['equal'])){ // for the case of equal value
               foreach ($filter['equal'] as $key => $value) { // loop of the same case
                 if(isset($data['filter']['_'.$value]) && $data['filter']['_'.$value]!="all"){ // check if filter have value
                     $data['products'] = $data['products']->where($value,'=',$data['filter']['_'.$value]);
                 }
               }
             }
-            if($filter['search']){
+            if(isset($filter['search'])){
                 if(isset($data['filter']['_search'])){
                     $query = "(";
                     for ($i=0; $i < sizeof($filter['search']); $i++) { 

@@ -135,7 +135,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-6.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-6.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -292,7 +292,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-6.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-6.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-3.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-3.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -414,7 +414,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-7.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-7.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -446,7 +446,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-10.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-10.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -594,7 +594,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-11.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-11.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>
@@ -655,7 +655,7 @@
                     <div class="mx-auto w-3/5">
                         <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                             <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                <img class="rounded-md" src="dist/images/fakers/preview-9.jpg" alt="Midone - Admin Dashboard Template">
+                                <img class="rounded-md" src="{{asset('dist/images/fakers/preview-9.jpg')}}" alt="Midone - Admin Dashboard Template">
                             </div>
                         </div>
                     </div>

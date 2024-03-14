@@ -10,13 +10,14 @@
         <title>@yield('title') | Bank Data Kab.Katingan</title>
         <link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
         <!-- BEGIN: CSS Assets-->
-        <link rel="stylesheet" href="dist/css/vendors/simplebar.css">
-        <link rel="stylesheet" href="dist/css/vendors/tippy.css">
-        <link rel="stylesheet" href="dist/css/vendors/font-awesome/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css" integrity="sha512-QfDd74mlg8afgSqm3Vq2Q65e9b3xMhJB4GZ9OcHDVy1hZ6pqBJPWWnMsKDXM7NINoKqJANNGBuVRIpIJ5dogfA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="dist/css/components/mobile-menu.css">
-        <link rel="stylesheet" href="dist/css/themes/enigma/side-nav.css">
-        <link rel="stylesheet" href="dist/css/app.css"> 
+        <link rel="stylesheet" href="{{asset('dist/css/vendors/simplebar.css')}}">
+        <link rel="stylesheet" href="{{asset('dist/css/vendors/tippy.css')}}">
+        {{-- <link rel="stylesheet" href="{{asset('dist/css/vendors/font-awesome/all.min.css')}}"> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{{asset('dist/css/components/mobile-menu.css')}}">
+        <link rel="stylesheet" href="{{asset('dist/css/themes/enigma/side-nav.css')}}">
+        <link rel="stylesheet" href="{{asset('dist/css/app.css')}}"> 
+        <link rel="stylesheet" href="{{asset('page/css/app.css')}}"> 
         <!-- END: CSS Assets-->
         @yield('addition_css')
     </head>
@@ -35,27 +36,24 @@
             </div>
         </div>
         <!-- BEGIN: Vendor JS Assets-->
-        <script>
-            const assetUrl = "{{asset('/')}}"
-        </script>
-        <script src="dist/js/vendors/jquery.min.js"></script>
-        <script src="dist/js/vendors/axios.min.js"></script>
-        {{-- <script src="dist/js/vendors/dom.js"></script> --}}
-        <script src="dist/js/vendors/tailwind-merge.js"></script>
-        <script src="dist/js/vendors/lucide.js"></script>
-        <script src="dist/js/vendors/popper.js"></script>
-        <script src="dist/js/vendors/dropdown.js"></script>
-        <script src="dist/js/vendors/tippy.js"></script>
-        <script src="dist/js/vendors/transition.js"></script>
-        <script src="dist/js/vendors/simplebar.js"></script>
-        <script src="dist/js/vendors/modal.js"></script> 
-        <script src="dist/js/vendors/sweetalert2.all.min.js"></script>
-        <script src="dist/js/components/base/theme-color.js"></script>
-        <script src="dist/js/components/base/lucide.js"></script>
-        <script src="dist/js/themes/enigma.js"></script>
-        <script src="dist/js/components/mobile-menu.js"></script>
-        <script src="dist/js/components/themes/enigma/top-bar.js"></script>
-        <script src="page/js/app.js"></script>
+        <script src="{{asset('dist/js/vendors/jquery.min.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/axios.min.js')}}"></script>
+        {{-- <script src="{{asset('dist/js/vendors/dom.js')}}"></script> --}}
+        <script src="{{asset('dist/js/vendors/tailwind-merge.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/lucide.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/popper.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/dropdown.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/tippy.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/transition.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/simplebar.js')}}"></script>
+        <script src="{{asset('dist/js/vendors/modal.js')}}"></script> 
+        <script src="{{asset('dist/js/vendors/sweetalert2.all.min.js')}}"></script>
+        <script src="{{asset('dist/js/components/base/theme-color.js')}}"></script>
+        <script src="{{asset('dist/js/components/base/lucide.js')}}"></script>
+        <script src="{{asset('dist/js/themes/enigma.js')}}"></script>
+        <script src="{{asset('dist/js/components/mobile-menu.js')}}"></script>
+        <script src="{{asset('dist/js/components/themes/enigma/top-bar.js')}}"></script>
+        <script src="{{asset('page/js/app.js')}}"></script>
         <!-- END: Vendor JS Assets-->
         <!-- BEGIN: Pages, layouts, components JS Assets-->
         @yield('addition_script')

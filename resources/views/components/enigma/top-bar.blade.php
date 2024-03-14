@@ -4,7 +4,7 @@
     <div class="flex h-full items-center">
         <!-- BEGIN: Logo -->
         <a href="" class="-intro-x hidden md:flex xl:w-[180px]">
-            <img class="w-6" src="dist/images/logo.svg" alt="Enigma Tailwind HTML Admin Template">
+            <img class="w-6" src="{{asset('dist/images/logo.svg')}}" alt="Enigma Tailwind HTML Admin Template">
             <span class="ml-3 text-lg text-white hidden xl:block">
                 {{ config('app.name', 'BankData') }}
             </span>
@@ -58,7 +58,7 @@
                     <div class="mb-5">
                         <a class="mt-2 flex items-center" href="">
                             <div class="image-fit h-8 w-8">
-                                <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone Tailwind HTML Admin Template">
+                                <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             </div>
                             <div class="ml-3">Johnny Depp</div>
                             <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -67,7 +67,7 @@
                         </a>
                         <a class="mt-2 flex items-center" href="">
                             <div class="image-fit h-8 w-8">
-                                <img class="rounded-full" src="dist/images/fakers/profile-11.jpg" alt="Midone Tailwind HTML Admin Template">
+                                <img class="rounded-full" src="{{asset('dist/images/fakers/profile-11.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             </div>
                             <div class="ml-3">Christian Bale</div>
                             <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -76,7 +76,7 @@
                         </a>
                         <a class="mt-2 flex items-center" href="">
                             <div class="image-fit h-8 w-8">
-                                <img class="rounded-full" src="dist/images/fakers/profile-12.jpg" alt="Midone Tailwind HTML Admin Template">
+                                <img class="rounded-full" src="{{asset('dist/images/fakers/profile-12.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             </div>
                             <div class="ml-3">Kate Winslet</div>
                             <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -85,7 +85,7 @@
                         </a>
                         <a class="mt-2 flex items-center" href="">
                             <div class="image-fit h-8 w-8">
-                                <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone Tailwind HTML Admin Template">
+                                <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             </div>
                             <div class="ml-3">Al Pacino</div>
                             <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -96,7 +96,7 @@
                     <div class="mb-2 font-medium">Products</div>
                     <a class="mt-2 flex items-center" href="">
                         <div class="image-fit h-8 w-8">
-                            <img class="rounded-full" src="dist/images/fakers/preview-13.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/preview-13.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                         </div>
                         <div class="ml-3">Apple MacBook Pro 13</div>
                         <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -105,7 +105,7 @@
                     </a>
                     <a class="mt-2 flex items-center" href="">
                         <div class="image-fit h-8 w-8">
-                            <img class="rounded-full" src="dist/images/fakers/preview-3.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/preview-3.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                         </div>
                         <div class="ml-3">Sony A7 III</div>
                         <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -114,7 +114,7 @@
                     </a>
                     <a class="mt-2 flex items-center" href="">
                         <div class="image-fit h-8 w-8">
-                            <img class="rounded-full" src="dist/images/fakers/preview-9.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/preview-9.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                         </div>
                         <div class="ml-3">Oppo Find X2 Pro</div>
                         <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -123,7 +123,7 @@
                     </a>
                     <a class="mt-2 flex items-center" href="">
                         <div class="image-fit h-8 w-8">
-                            <img class="rounded-full" src="dist/images/fakers/preview-5.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/preview-5.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                         </div>
                         <div class="ml-3">Nike Air Max 270</div>
                         <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
@@ -142,7 +142,7 @@
                     <div class="mb-5 font-medium">Notifications</div>
                     <div class="cursor-pointer relative flex items-center">
                         <div class="image-fit relative mr-1 h-12 w-12 flex-none">
-                            <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             <div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-success dark:border-darkmode-600">
                             </div>
                         </div>
@@ -162,7 +162,7 @@
                     </div>
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="image-fit relative mr-1 h-12 w-12 flex-none">
-                            <img class="rounded-full" src="dist/images/fakers/profile-11.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/profile-11.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             <div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-success dark:border-darkmode-600">
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="image-fit relative mr-1 h-12 w-12 flex-none">
-                            <img class="rounded-full" src="dist/images/fakers/profile-12.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/profile-12.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             <div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-success dark:border-darkmode-600">
                             </div>
                         </div>
@@ -202,7 +202,7 @@
                     </div>
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="image-fit relative mr-1 h-12 w-12 flex-none">
-                            <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             <div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-success dark:border-darkmode-600">
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                     </div>
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="image-fit relative mr-1 h-12 w-12 flex-none">
-                            <img class="rounded-full" src="dist/images/fakers/profile-13.jpg" alt="Midone Tailwind HTML Admin Template">
+                            <img class="rounded-full" src="{{asset('dist/images/fakers/profile-13.jpg')}}" alt="Midone Tailwind HTML Admin Template">
                             <div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-white bg-success dark:border-darkmode-600">
                             </div>
                         </div>
@@ -245,7 +245,7 @@
         </div>
         <!-- END: Notifications -->
         <!-- BEGIN: Account Menu -->
-        <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative"><button data-tw-toggle="dropdown" aria-expanded="false" class="cursor-pointer image-fit zoom-in intro-x block h-8 w-8 scale-110 overflow-hidden rounded-full shadow-lg"><img src="dist/images/fakers/profile-13.jpg" alt="Midone Tailwind HTML Admin Template">
+        <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative"><button data-tw-toggle="dropdown" aria-expanded="false" class="cursor-pointer image-fit zoom-in intro-x block h-8 w-8 scale-110 overflow-hidden rounded-full shadow-lg"><img src="{{asset('dist/images/fakers/profile-13.jpg')}}" alt="Midone Tailwind HTML Admin Template">
             </button>
             <div data-transition="" data-selector=".show" data-enter="transition-all ease-linear duration-150" data-enter-from="absolute !mt-5 invisible opacity-0 translate-y-1" data-enter-to="!mt-1 visible opacity-100 translate-y-0" data-leave="transition-all ease-linear duration-150" data-leave-from="!mt-1 visible opacity-100 translate-y-0" data-leave-to="absolute !mt-5 invisible opacity-0 translate-y-1" class="dropdown-menu absolute z-[9999] hidden">
                 <div data-tw-merge="" class="dropdown-content rounded-md border-transparent p-2 shadow-[0px_3px_10px_#00000017] dark:border-transparent dark:bg-darkmode-600 relative mt-px w-56 bg-theme-1/80 text-white before:absolute before:inset-0 before:z-[-1] before:block before:rounded-md before:bg-black">

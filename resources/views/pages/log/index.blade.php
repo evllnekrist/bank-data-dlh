@@ -176,7 +176,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Robert De Niro
@@ -206,7 +206,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Sylvester Stallone
@@ -236,7 +236,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-11.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-11.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Tom Cruise
@@ -266,7 +266,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-15.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-15.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Sylvester Stallone
@@ -296,7 +296,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-12.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-12.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Bruce Willis
@@ -326,7 +326,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-12.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-12.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Bruce Willis
@@ -356,7 +356,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-5.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-5.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Russell Crowe
@@ -386,7 +386,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-9.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-9.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Nicolas Cage
@@ -416,7 +416,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-8.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-8.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Russell Crowe
@@ -446,7 +446,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-10.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-10.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Charlize Theron
@@ -476,7 +476,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-4.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-4.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Al Pacino
@@ -506,7 +506,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-7.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-7.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Sylvester Stallone
@@ -536,7 +536,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-1.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-1.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Leonardo DiCaprio
@@ -566,7 +566,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-6.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-6.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Keanu Reeves
@@ -596,7 +596,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-9.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-9.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     John Travolta
@@ -626,7 +626,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-4.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-4.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Johnny Depp
@@ -656,7 +656,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Brad Pitt
@@ -686,7 +686,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-4.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-4.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Angelina Jolie
@@ -716,7 +716,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-13.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-13.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate">
                                     Robert De Niro
@@ -746,7 +746,7 @@
                                     <i data-tw-merge="" data-lucide="bookmark" class="stroke-1.5 h-4 w-4"></i>
                                 </a>
                                 <div class="image-fit relative ml-5 h-6 w-6 flex-none">
-                                    <img class="rounded-full" src="dist/images/fakers/profile-11.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                                    <img class="rounded-full" src="{{asset('dist/images/fakers/profile-11.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                                 </div>
                                 <div class="ml-3 truncate font-medium">
                                     Tom Cruise

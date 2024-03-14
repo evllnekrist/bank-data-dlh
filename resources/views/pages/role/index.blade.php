@@ -33,7 +33,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-4.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-4.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -54,7 +54,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-5.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-5.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -75,7 +75,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-9.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-9.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -96,7 +96,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-2.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-2.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -117,7 +117,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-14.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-14.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -138,7 +138,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-14.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-14.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -159,7 +159,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-4.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-4.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -180,7 +180,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-14.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-14.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -201,7 +201,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-1.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-1.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -222,7 +222,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-8.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-8.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -243,7 +243,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-8.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-8.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -264,7 +264,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-3.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-3.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -285,7 +285,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-5.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-5.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -306,7 +306,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-12.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-12.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -327,7 +327,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-14.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-14.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -348,7 +348,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-11.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-11.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -369,7 +369,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-13.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-13.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -390,7 +390,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-2.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-2.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -411,7 +411,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-7.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-7.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">
@@ -432,7 +432,7 @@
             <div class="box">
                 <div class="flex flex-col items-center p-5 lg:flex-row">
                     <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
-                        <img class="rounded-full" src="dist/images/fakers/profile-8.jpg" alt="Midone - Tailwind Admin Dashboard Template">
+                        <img class="rounded-full" src="{{asset('dist/images/fakers/profile-8.jpg')}}" alt="Midone - Tailwind Admin Dashboard Template">
                     </div>
                     <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                         <a class="font-medium" href="">

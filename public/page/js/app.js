@@ -1,12 +1,13 @@
 console.log('____app js');
 
+const assetUrl = "{{asset('/')}}"
+const baseUrl = window.location.origin;
 const apiHeaders = {
     "Accept": "*/*",
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "multipart/form-data",
 };
 const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
-const baseUrl = window.location.origin;
 const loadingElementImg = `<div class="mx-auto"><img src="../../loading-unscreen.gif"></div>`;
 const loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
