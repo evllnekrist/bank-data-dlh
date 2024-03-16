@@ -83,7 +83,7 @@ function getData(move_to_page=null){
               template +=
               `<div class="intro-y col-span-12 md:col-span-6">
                   <div class="box `+(!item.is_enabled?`bg-slate-300`:``)+`">
-                      <div class="flex flex-col items-center p-5 lg:flex-row">
+                      <div class="flex flex-col items-center p-2 lg:flex-row">
                           <div class="image-fit h-24 w-24 lg:mr-1 lg:h-12 lg:w-12">
                               <img title="" src="`+imgToDisplay+`" id="product_`+item.id+`_img" alt="Gambar Satuan Kerja">
                           </div>
@@ -96,10 +96,10 @@ function getData(move_to_page=null){
                               </div>
                           </div>
                           <div class="mt-4 flex lg:mt-0">
-                                <a href="`+baseUrl+'/user-group/edit/'+item.id+`" data-tw-merge="" class="bg-white transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-slate-500 dark:border-darkmode-100/40 dark:text-slate-300 [&:hover:not(:disabled)]:bg-secondary/20 [&:hover:not(:disabled)]:dark:bg-darkmode-100/10 px-2 py-1">
+                                <a href="`+baseUrl+'/user-group/edit/'+item.id+`" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-slate-500 dark:border-darkmode-100/40 dark:text-slate-300 [&:hover:not(:disabled)]:bg-secondary/20 [&:hover:not(:disabled)]:dark:bg-darkmode-100/10 px-2 py-2">
                                     <i class="fa fa-pen"></i>
                                 </a>
-                                <button onclick="doDelete(`+item.id+`,'`+item.nickname+`')" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-danger border-danger text-white dark:border-danger mr-2 px-2 py-1">
+                                <button onclick="doDelete(`+item.id+`,'`+item.nickname+`')" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-danger dark:border-danger mr-2 px-2 py-2">
                                     <i class="fa fa-trash"></i>
                                 </button>
                           </div>

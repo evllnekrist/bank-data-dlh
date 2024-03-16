@@ -1,5 +1,5 @@
 $(function(){
-    $("#btn-submit-add").click(function(e){
+    $("#btn-submit-add").on('click', function(e) {
       const form = document.getElementById('form-add');
       form.reportValidity()
       if (!form.checkValidity()) {
@@ -17,7 +17,7 @@ $(function(){
         const formData = new FormData(form);
         // for (const [key, value] of formData) {
         //   console.log('»', key, value)
-        // }
+        // }; return;
         axios.post(baseUrl+'/api/user-group/post-add', formData, apiHeaders)
         .then(function (response) {
           console.log('response..',response);
@@ -56,7 +56,7 @@ $(function(){
       }
     });
   
-    $("#btn-submit-edit").click(function(e){
+    $("#btn-submit-edit").on('click', function(e) {
       const form = document.getElementById('form-edit');
       form.reportValidity()
       if (!form.checkValidity()) {
@@ -74,7 +74,7 @@ $(function(){
         const formData = new FormData(form);
         // for (const [key, value] of formData) {
         //   console.log('»', key, value)
-        // }
+        // }; return;
         axios.post(baseUrl+'/api/user-group/post-edit', formData, apiHeaders)
         .then(function (response) {
           console.log('response..',response);

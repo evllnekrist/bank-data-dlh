@@ -10,6 +10,9 @@ use DB;
 
 class UserGroupController extends Controller
 {
+    private $default_folder = 'user-group/';
+    private $file_indexes = array('img_main');
+    
     public function index()
     {
       return view('pages.user-group.index');
@@ -26,10 +29,6 @@ class UserGroupController extends Controller
       }else{
         return $this->show_error_admin('Dokumen Hukum');
       }
-    }
-    public function format_filename(Request $request){
-      // $data = $request->all(); 
-      // return $data['year'].$data['legal_product_type'].'6206'.sprintf( '%03d', $data['number']).'.'.$extension;
     }
 
     // -------------------------------------- CALLED BY AJAX ---------------------------- start
@@ -69,23 +68,17 @@ class UserGroupController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all(); 
-            $default_folder = 'user-group/'; 
             $output = UserGroup::create($data);
-            $file_indexes = array('img_main');
-            foreach ($file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
+            foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
               if($request->file($index)){
-                // Get filename with the extension
-                $filename_with_ext = $request->file($index)->getClientOriginalName();
-                //Get just filename
-                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
-                // Get just ext
-                $extension = $request->file($index)->getClientOriginalExtension();
-                // Filename to store
+                $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
+                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
+                $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
                 // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
-                $filename_to_store = $this->format_filename($request); // V2
-                // Upload Image
-                $path = $request->file($index)->storeAs('public/'.$default_folder.($index=='file_main'?'file':'image'),$filename_to_store);
-                $data[$index] = '/storage//'.$default_folder.($index=='file_main'?'file':'image')."//".$filename_to_store;
+                // $filename_to_store = $this->format_filename($request); // V2
+                $filename_to_store = str_replace('/','-',$this->default_folder).$output->id.'.'.$extension;
+                $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
+                $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
               }else{
                 unset($data[$index]);
               }
@@ -100,6 +93,7 @@ class UserGroupController extends Controller
       }
       public function post_edit(Request $request)
       {
+          // dd($request->all());
           $validator = Validator::make($request->all(), [
             'fullname'  => 'required',
             'nickname'  => 'required',
@@ -114,32 +108,32 @@ class UserGroupController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all();
-            $default_folder = 'user-group/'; 
-            $file_indexes = array('img_main');
-            foreach ($file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
+            $id = $data['id'];
+            unset($data['id']);
+            foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
               if($request->file($index)){
-                // Get filename with the extension
-                $filename_with_ext = $request->file($index)->getClientOriginalName();
-                //Get just filename
-                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
-                // Get just ext
+                $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
+                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
+                $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
                 $extension = $request->file($index)->getClientOriginalExtension();
-                // Filename to store
-                $filename_to_store = $index.'_'.time().'.'.$extension;
-                // Upload Image
-                $path = $request->file($index)->storeAs('public/'.$default_folder.($index=='file_main'?'file':'image'),$filename_to_store);
-                $data[$index] = '/storage//'.$default_folder.($index=='file_main'?'file':'image')."//".$filename_to_store;
+                // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
+                // $filename_to_store = $this->format_filename($request); // V2
+                $filename_to_store = str_replace('/','-',$this->default_folder).$id.'.'.$extension;
+                $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                if (file_exists('public/'.$data[$index])){
+                  @unlink('public/'.$data[$index]);
+                }
+                $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
               }else{
                 unset($data[$index]);
               }
             }
-            unset($data['id']);
             if(isset($data['files'])){
               unset($data['files']);
             }
-            $output                         = UserGroup::where('id',$request->get('id'))->update($data);
+            $output = UserGroup::where('id',$id)->update($data);
             DB::commit();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menrubah data', 'data'=>$output));
+            return json_encode(array('status'=>true, 'message'=>'Berhasil menrubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id), 'pathh' =>$path));
           } catch (Exception $e) {
             DB::rollback();
             return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));

@@ -102,9 +102,7 @@ function getData(move_to_page=null){
                     </div>
                 </td>
                 <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                    <a class="flex items-center justify-center underline decoration-dotted" href="#">
                     `+item.role_attr.name+`
-                    </a>
                 </td>
                 <td title="`+item.user_group_attr.fullname+`" data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
                   `+item.user_group_attr.nickname+`

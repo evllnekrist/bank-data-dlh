@@ -1,7 +1,7 @@
-@extends('layouts.app-enigma')
-@section('title', 'Tambah | SatKer')
+@extends('layouts.app-enigma', ['breadcrumbs'=>[['label'=>'Satuan Kerja','url'=>route('user-group')],['label'=>'Tambah']]])
+@section('title', 'Tambah | Satuan Kerja')
 @section('content')
-    <h2 class="intro-y mt-10 text-lg font-medium">Satuan Kerja</h2>
+    {{-- <h2 class="intro-y mt-10 text-lg font-medium">Satuan Kerja</h2> --}}
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12">
             <div class="intro-y box lg:mt-5">
@@ -42,7 +42,7 @@
                                         <label data-tw-merge="" class="of-required inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
                                             Kontak Telepon
                                         </label>
-                                        <input required name="phone" type="text" placeholder="08**********" 
+                                        <input required name="phone" type="text" placeholder="08**********" maxlength="15"
                                         class="nospace numeric disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mx-auto w-65 xl:ml-6 xl:mr-0">
+                        <div class="mx-auto w-2/5 xl:ml-6 xl:mr-0">
                             
                             {{-- https://tailwindcomponents.com/component/tailwind-css-file-upload --}}
                             <label class="text-sm font-bold text-gray-500 tracking-wide">Logo SatKer</label>
@@ -59,12 +59,17 @@
                                 <div class="flex items-center justify-center w-full">
                                     <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
                                         <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-blue-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg xmlns="http://www.w3.org/2000/svg" id="input-img-none-0"
+                                                class="w-10 h-10 text-blue-400 group-hover:text-blue-600 {{@$selected->img_main?'hidden':''}}" 
+                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                             </svg>
+                                            <div class="flex flex-auto max-h-48 w-4/5 mx-auto py-3" id="input-img-preview-0">
+                                            </div>
                                             <p class="pointer-none text-gray-500 "><span class="text-sm">Drag & drop</span> disini <br /> atau <a href="" id="" class="text-blue-600 hover:underline">pilih</a> dari komputer</p>
+                                            <input name="img_main" data-index-input-img="0" type="file" accept="{{implode(',',Config::get('app.accept_mimes')['img'])}}"
+                                                class="input-img mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer">
                                         </div>
-                                        <input name="img_main" type="file" class="hidden">
                                     </label>
                                 </div>
                             </div>

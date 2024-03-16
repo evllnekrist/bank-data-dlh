@@ -46,6 +46,23 @@ $('.lowercase').on('keyup', function(event) {
     event.target.value =  event.target.value.toLowerCase()
 });
 
+$('.input-img').change(function(event) {
+    let iii = $(this).data('index-input-img');
+    console.log('ahahoyyy',iii)
+    const files = event.target.files
+    let url='', template='';
+    console.log(files);
+    for(i = 0; i < files.length; i++){
+        url = URL.createObjectURL(event.target.files[i]);
+        template += '<img src="'+url+'">';
+    }
+    console.log('template',template)
+    $('#input-img-preview-'+iii).html(template);
+    $('#input-img-preview-'+iii).parent().removeClass('hidden');
+    $('#input-img-none-'+iii).addClass('hidden');
+    $('#input-img-btn-'+iii).removeClass('hidden');
+});
+
 const regexExp_slug = /^[a-z][-a-z0-9]*$/;
 function checkSlug(str){
     if(regexExp_slug.test(str)){
