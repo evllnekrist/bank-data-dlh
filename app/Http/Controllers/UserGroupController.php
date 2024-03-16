@@ -27,7 +27,7 @@ class UserGroupController extends Controller
       if($data['selected']){
         return view('pages.user-group.edit', $data);
       }else{
-        return $this->show_error_admin('Dokumen Hukum');
+        return $this->show_error_page('Dokumen Hukum');
       }
     }
 
@@ -85,7 +85,7 @@ class UserGroupController extends Controller
             }
             $output2 = UserGroup::where('id',$output->id)->update($data);
             DB::commit();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2), 'statistics_update'=>$output2));
+            return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2)));
           } catch (Exception $e) {
             DB::rollback();
             return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
@@ -133,7 +133,7 @@ class UserGroupController extends Controller
             }
             $output = UserGroup::where('id',$id)->update($data);
             DB::commit();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menrubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id), 'pathh' =>$path));
+            return json_encode(array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id)));
           } catch (Exception $e) {
             DB::rollback();
             return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));

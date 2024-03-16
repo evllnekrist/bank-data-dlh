@@ -25,6 +25,11 @@ Route::group(['prefix' => 'api'], function () {
     // Route::post('/survey/post-add', [StatisticController::class, 'post_add_survey']);
   
     Route::middleware('auth')->group(function () {
+        Route::post('/role/get', [RoleController::class, 'get_list']);
+        Route::post('/role/post-add', [RoleController::class, 'post_add']);
+        Route::post('/role/post-edit', [RoleController::class, 'post_edit']);
+        Route::post('/role/post-delete/{id}', [RoleController::class, 'post_delete']);
+
         Route::post('/user-group/get', [UserGroupController::class, 'get_list']);
         Route::post('/user-group/post-add', [UserGroupController::class, 'post_add']);
         Route::post('/user-group/post-edit', [UserGroupController::class, 'post_edit']);
