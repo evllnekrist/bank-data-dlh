@@ -2,93 +2,78 @@
 @section('title', 'Tambah | Kelola Akses')
 @section('content')
     {{-- <h2 class="intro-y mt-10 text-lg font-medium">Kelola Akses</h2> --}}
-    <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12">
-            <div class="intro-y box lg:mt-5">
-                <div class="flex items-end border-b border-slate-200/60 p-5 dark:border-darkmode-400">
-                    <h2 class="mr-auto text-slate-300 font-medium">
-                        Informasi Umum
-                    </h2>
-                </div>
-                <form id="form-add" class="p-5">
-                    <div class="flex flex-col xl:flex-row">
-                        <div class="mt-6 flex-1 xl:mt-0">
-                            <div class="grid grid-cols-12 gap-x-5">
-                                <div class="col-span-12 2xl:col-span-6">
-                                    <div>
-                                        <label data-tw-merge="" class="of-required inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
-                                            Nama Lengkap
-                                        </label>
-                                        <input required name="fullname" type="text" placeholder="Badan Keuangan & Aset Daerah Kabupaten Katingan"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">
-                                    </div>
-                                    <div class="mt-3">
-                                        <label data-tw-merge="" class="of-required inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
-                                            Singkatan Nama
-                                        </label>
-                                        <input required name="nickname" type="text" placeholder="BKAD"
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">
-                                    </div>
-                                </div>
-                                <div class="col-span-12 2xl:col-span-6">
-                                    <div class="mt-3 2xl:mt-0">
-                                        <label data-tw-merge="" class="of-required inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
-                                            Email
-                                        </label>
-                                        <input required name="email" type="email" placeholder="singkatannama@katingankab.go.id" 
-                                        class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">
-                                    </div>
-                                    <div class="mt-3">
-                                        <label data-tw-merge="" class="of-required inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right">
-                                            Kontak Telepon
-                                        </label>
-                                        <input required name="phone" type="text" placeholder="08**********" maxlength="15"
-                                        class="nospace numeric disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">
-                                    </div>
-                                </div>
-                                <div class="col-span-12">
-                                    {{--  --}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mx-auto w-2/5 xl:ml-6 xl:mr-0">
-                            
-                            {{-- https://tailwindcomponents.com/component/tailwind-css-file-upload --}}
-                            <label class="text-sm font-bold text-gray-500 tracking-wide">Logo SatKer</label>
-                            <div class="grid grid-cols-1 space-y-2 border-dashed border-2 px-5 my-2 border-indigo-600">
-                                <div class="flex items-center justify-center w-full">
-                                    <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
-                                        <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" id="input-img-none-0"
-                                                class="w-10 h-10 text-blue-400 group-hover:text-blue-600 {{@$selected->img_main?'hidden':''}}" 
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <div class="flex flex-auto max-h-48 w-4/5 mx-auto py-3" id="input-img-preview-0">
-                                            </div>
-                                            <p class="pointer-none text-gray-500 "><span class="text-sm">Drag & drop</span> disini <br /> atau <a href="" id="" class="text-blue-600 hover:underline">pilih</a> dari komputer</p>
-                                            <input name="img_main" data-index-input-img="0" type="file" accept="{{implode(',',Config::get('app.accept_mimes')['img'])}}"
-                                                class="input-img mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer">
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                            <p class="text-sm text-slate-300">
-                                <span>Menerima: tipe gambar, max 2MB</span>
-                            </p>
-                            <div>
-                                <button type="button" id="btn-submit-add" 
-                                class="my-5 w-full flex justify-center bg-primary text-white p-4  rounded-full tracking-wide font-semibold  focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
-                                    Simpan
+    <form id="form-add"> 
+        <div class="max-w-full md:max-w-none rounded-[30px] md:rounded-none px-4 md:px-[22px] min-w-0 min-h-screen bg-slate-100 flex-1 md:pt-20 pb-10 mt-5 md:mt-1 relative dark:bg-darkmode-700 before:content-[''] before:w-full before:h-px before:block">
+            
+            <div>
+                <input type="checkbox" checked 
+                class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white">
+                <label class="cursor-pointer ml-2">Aktif</label>
+            </div>
+            <input name="name" required type="text" placeholder="Nama peran" class="mt-5 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 intro-y !box px-4 py-3 pr-10">
+            <textarea name="description" placeholder="Deskripsi" class="mt-5 disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 intro-y !box px-4 py-3 pr-10"></textarea>
+                               
+            <div class="intro-y grid grid-cols-12 gap-5 mt-5">
+                <!-- BEGIN: Post Content -->
+                <div class="intro-y col-span-12 2xl:col-span-8">
+                    <div class="intro-y box mt-5 overflow-hidden">
+                        <ul data-tw-merge="" role="tablist" class="border-b w-full flex flex-col border-transparent bg-slate-200 dark:border-transparent dark:bg-darkmode-800 sm:flex-row">
+                            <li id="content-tab" data-tw-merge="" role="presentation" class="focus-visible:outline-none -mb-px">
+                                <button data-tw-merge="" data-tw-target="#content" role="tab" class="cursor-pointer appearance-none border border-transparent dark:text-slate-400 [&.active]:dark:text-white rounded-t-md dark:border-transparent [&.active]:bg-white [&.active]:font-medium [&.active]:dark:border-b-darkmode-600 [&:not(.active)]:dark:hover:border-transparent active flex items-center justify-center w-full px-0 py-0 sm:w-40 text-slate-500 [&:not(.active)]:hover:border-transparent [&:not(.active)]:hover:bg-transparent [&:not(.active)]:hover:text-slate-600 [&:not(.active)]:hover:dark:bg-transparent [&:not(.active)]:hover:dark:text-slate-300 [&.active]:text-primary [&.active]:border-transparent [&.active]:dark:bg-darkmode-600 [&.active]:dark:border-x-transparent [&.active]:dark:border-t-transparent">
+                                    <span data-placement="top" title="Fill in the article content" aria-controls="content" aria-selected="true" class="tooltip cursor-pointer flex w-full items-center justify-center py-4">
+                                        <i data-tw-merge="" data-lucide="list-checks" class="stroke-1.5 mr-2 h-4 w-4"></i> Hak Akses
+                                    </span>
                                 </button>
-                            </div>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div 
+                                data-transition="" 
+                                data-selector=".active" 
+                                data-enter="transition-[visibility,opacity] ease-linear duration-150" 
+                                data-enter-from="!p-0 !h-0 overflow-hidden invisible opacity-0" 
+                                data-enter-to="visible opacity-100" 
+                                data-leave="transition-[visibility,opacity] ease-linear duration-150" 
+                                data-leave-from="visible opacity-100" 
+                                data-leave-to="!p-0 !h-0 overflow-hidden invisible opacity-0" 
+                                id="content" role="tabpanel" aria-labelledby="content-tab" class="tab-pane active p-5">
+                                <div class="p-5">
+                                    {{-- @php
+                                        echo "<pre>";
+                                        dump($menu);
+                                        echo "</pre>";
+                                    @endphp --}}
 
+                                    <div class="grid grid-cols-4 gap-4">
+                                        @foreach($menu as $item)
+                                        <div class="rounded-md border border-slate-200/60 p-5 dark:border-darkmode-400">
+                                            <label class="font-bold text-primary">{{$item->name}}</label>
+                                            @foreach($item['menu_action_list'] as $item_child)
+                                            <div data-tw-merge="" class="flex items-center mt-2" title="{{$item_child->description}}">
+                                                <input  data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50"
+                                                        value="{{$item_child->id}}">
+                                                <label  data-tw-merge="" class="cursor-pointer ml-2">{{$item_child->name}}</label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        @endforeach
+                                        <div>
+                                            <button type="button" id="btn-submit-add" 
+                                            class="my-10 w-full flex justify-center bg-primary text-white p-4 rounded-full tracking-wide font-semibold  focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none hover:bg-blue-600 shadow-lg cursor-pointer transition ease-in duration-300">
+                                                Simpan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- END: Post Content -->
             </div>
+
         </div>
-    </div>
+    </form>
 @endsection
 @section('addition_css')
 @endsection

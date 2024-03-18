@@ -15,6 +15,7 @@ class MenuAction extends Model
       'menu_id',
       'name',
       'slug',
+      'description',
       'is_enabled',
       'created_at',
       'created_by',

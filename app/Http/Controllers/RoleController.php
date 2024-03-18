@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Menu;
 use DB;
 
 class RoleController extends Controller
@@ -19,7 +20,8 @@ class RoleController extends Controller
   }
   public function form_add()
   {
-    return view('pages.role.add');
+    $data['menu'] = Menu::with('menu_action_list')->where('is_menu_with_action', '1')->get();
+    return view('pages.role.add', $data);
   }
   public function form_edit($id)
   {
