@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Role;
 use App\Models\MenuAction;
 
-class RoleMap extends Model
+class RolePermission extends Model
 {
     // use HasFactory;
     use SoftDeletes;

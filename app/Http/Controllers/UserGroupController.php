@@ -68,22 +68,24 @@ class UserGroupController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all(); 
-            $output = UserGroup::create($data);
-            foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
-              if($request->file($index)){
-                $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
-                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
-                $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
-                // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
-                // $filename_to_store = $this->format_filename($request); // V2
-                $filename_to_store = str_replace('/','-',$this->default_folder).$output->id.'.'.$extension;
-                $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
-                $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
-              }else{
-                unset($data[$index]);
+            $output = UserGroup::create($data); $output2 = null;
+            if(!empty($this->file_indexes)){
+              foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
+                if($request->file($index)){
+                  $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
+                  $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
+                  $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
+                  // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
+                  // $filename_to_store = $this->format_filename($request); // V2
+                  $filename_to_store = str_replace('/','-',$this->default_folder).$output->id.'.'.$extension;
+                  $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
+                  $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                }else{
+                  unset($data[$index]);
+                }
               }
+              $output2 = UserGroup::where('id',$output->id)->update($data);
             }
-            $output2 = UserGroup::where('id',$output->id)->update($data);
             DB::commit();
             return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2)));
           } catch (Exception $e) {
@@ -108,28 +110,29 @@ class UserGroupController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all();
-            $id = $data['id'];
-            unset($data['id']);
-            foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
-              if($request->file($index)){
-                $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
-                $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
-                $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
-                $extension = $request->file($index)->getClientOriginalExtension();
-                // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
-                // $filename_to_store = $this->format_filename($request); // V2
-                $filename_to_store = str_replace('/','-',$this->default_folder).$id.'.'.$extension;
-                $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
-                if (file_exists('public/'.$data[$index])){
-                  @unlink('public/'.$data[$index]);
+            $id = $data['id']; unset($data['id']);
+            if(!empty($this->file_indexes)){
+              foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
+                if($request->file($index)){
+                  $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
+                  $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
+                  $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
+                  $extension = $request->file($index)->getClientOriginalExtension();
+                  // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
+                  // $filename_to_store = $this->format_filename($request); // V2
+                  $filename_to_store = str_replace('/','-',$this->default_folder).$id.'.'.$extension;
+                  $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                  if (file_exists('public/'.$data[$index])){
+                    @unlink('public/'.$data[$index]);
+                  }
+                  $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
+                }else{
+                  unset($data[$index]);
                 }
-                $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
-              }else{
-                unset($data[$index]);
               }
-            }
-            if(isset($data['files'])){
-              unset($data['files']);
+              if(isset($data['files'])){
+                unset($data['files']);
+              }
             }
             $output = UserGroup::where('id',$id)->update($data);
             DB::commit();

@@ -9,6 +9,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
+use App\Models\Menu;
+use App\Models\MenuAction;
+use App\Models\RolePermission;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -27,8 +31,51 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        /* berdasarkan role dari user yang login, ambil permissionnya */
+        $user                   = User::where('email',$request->get('email'))->first();
+        $permit_role_permission = RolePermission::where('role_id',$user->role_id)->pluck('menu_action_id')->toArray();
+        $permit_menu_action     = MenuAction::whereIn('id',$permit_role_permission)->get()->toArray();
+        $permit_menu            = array();
+        for ($i=0; $i < sizeof($permit_menu_action); $i++) {
+            if(!array_key_exists($permit_menu_action[$i]['menu_id'],$permit_menu)){
+                $permit_menu[$permit_menu_action[$i]['menu_id']] = array();
+            }
+            array_push($permit_menu[$permit_menu_action[$i]['menu_id']], $permit_menu_action[$i]);
+        }
+        ksort($permit_menu);
+        $permit_menu_keys = (array_keys($permit_menu));
+        // dump($permit_menu);
+        /* susun berdasarkan master menu yang rapi, filter (dan isi) dari permission yang sudah diambil sebelumnya */
+        $role_permission_ready = array();
+        $role_permission = Menu::with('menu_action_list')->get();
+        for ($i=0; $i < sizeof($role_permission); $i++) {
+          if($role_permission[$i]['child_of'] == null){ /* untuk menu dengan tipe divider - super parent */
+            if(!array_key_exists($role_permission[$i]['id'],$role_permission_ready)){
+                $role_permission_ready[$role_permission[$i]['id']] = array(
+                    'name'            => $role_permission[$i]['name'],
+                    'display_type'    => $role_permission[$i]['display_type'],
+                    'icon'            => $role_permission[$i]['icon'],
+                    'children'        => array()
+                );
+            }
+          }else{ /* untuk menu di bawah super parent */
+              if($role_permission[$i]['is_menu_with_action'] && in_array($role_permission[$i]['id'],$permit_menu_keys)){
+                    $permit_current_menu_action_read = array_search('read', array_column($permit_menu[$role_permission[$i]['id']],'name')); 
+                    array_push($role_permission_ready[$role_permission[$i]['child_of']]['children'], array(
+                        'name'            => $role_permission[$i]['name'],
+                        'display_type'    => $role_permission[$i]['display_type'],
+                        'icon'            => $role_permission[$i]['icon'],
+                        'slug'            => $permit_menu[$role_permission[$i]['id']][$permit_current_menu_action_read]?$permit_menu[$role_permission[$i]['id']][$permit_current_menu_action_read]['slug']:'#',
+                        'permit'          => $permit_menu[$role_permission[$i]['id']], 
+                        'children'        => array()
+                    ));
+              }
+          }
+        }
+        // dd($role_permission_ready);
 
+        $request->session()->regenerate();
+        $request->session()->put('role_permission', $role_permission_ready);
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

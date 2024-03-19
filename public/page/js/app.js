@@ -129,6 +129,22 @@ function changeDir(field){
     getData();
 }
 
+function shorten(text, maxLength, delimiter, overflow) {
+    if(text){
+        delimiter = delimiter || "&hellip;";
+        overflow = overflow || false;
+        var ret = text;
+        if (ret.length > maxLength) {
+        var breakpoint = overflow ? maxLength + ret.substr(maxLength).indexOf(" ") : ret.substr(0, maxLength).lastIndexOf(" ");
+        ret = ret.substr(0, breakpoint) + delimiter;
+        }
+        return ret;
+    }else{
+        return "";
+    }
+}
+  
+
 $(function (){
     $('[name="_search"]').keypress(function(e){
         if (e.key === "Enter") { // If the user presses the "Enter" key on the keyboard
