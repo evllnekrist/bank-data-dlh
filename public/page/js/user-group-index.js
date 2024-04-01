@@ -1,5 +1,3 @@
-console.log('____page js');
-
 const id_el_list = '#data-list';
 
 function doDelete(id,name){

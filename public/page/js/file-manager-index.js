@@ -1,9 +1,9 @@
 const id_el_list = '#data-list';
-const no_delete_items = [1];
+const no_delete_items = [];
 
 function doDelete(id,name){
-  if(confirm("Apakah Anda yakin menghapus satker '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
-    axios.post(baseUrl+'/api/role/post-delete/'+id, {}, apiHeaders)
+  if(confirm("Apakah Anda yakin menghapus berkas '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
+    axios.post(baseUrl+'/api/file/post-delete/'+id, {}, apiHeaders)
     .then(function (response) {
       console.log('response..',response);
       if(response.status == 200 && response.data.status) {
@@ -14,7 +14,7 @@ function doDelete(id,name){
           // html: "...",
           confirmButtonText: 'Ya, terima kasih',
         });
-        window.location = baseUrl+'/roles';
+        window.location = baseUrl+'/files';
       }else{
         Swal.fire({
           icon: 'warning',
@@ -51,7 +51,7 @@ function getData(move_to_page=null){
   if(move_to_page){
     $('[name="_page"]').val(move_to_page);
   }
-  let url = baseUrl+'/api/role/get'
+  let url = baseUrl+'/api/file/get'
   let payload = {};
   payload['_dir'] = {}
   $("._dir").each(function() {
@@ -72,34 +72,67 @@ function getData(move_to_page=null){
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
             (response.data.data.products).forEach((item) => {
+              imgToDisplay = baseUrl+'/img/no-image-clean.png'
+              img = new Image();
+              img.src = item.img_main+"?_="+(new Date().getTime());
+              img.onload = function () {
+                imgToDisplay = item.img_main
+                $('#product_'+item.id+'_img').attr("src",imgToDisplay)
+              }
               template +=
-              `<div class="intro-y col-span-12 md:col-span-6">
-                  <div class="box `+(!item.is_enabled?`bg-slate-300`:``)+`">
-                      <div class="flex flex-col items-center p-2 lg:flex-row">
-                          <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
-                              <a class="font-medium" href="">
-                                    `+item.name+`
-                              </a>
-                              <div class="mt-0.5 text-xs text-slate-500">
-                                    `+shorten(item.description, 50, "...", false)+`
-                              </div>
-                          </div>
-                          <div class="mt-4 flex lg:mt-0">`;
-              if(no_delete_items.includes(item.id)){
+              `<tr data-tw-merge="" class="intro-x">
+                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-10 whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                    <input data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50">
+                </td>
+                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 !py-3.5 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                    <div class="flex items-center">
+                        <div class="image-fit zoom-in h-9 w-9">
+                            <img data-placement="top" title="" src="`+imgToDisplay+`" id="product_`+item.id+`_img" alt="Gambar Pengguna" class="tooltip cursor-pointer rounded-lg border-white shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]">
+                        </div>
+                        <div class="ml-4">
+                            <a class="whitespace-nowrap font-medium" href="">
+                              `+item.name+`
+                            </a>
+                            <div class="mt-0.5 whitespace-nowrap text-xs text-slate-500">
+                              `+item.email+`
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                    `+item.role_attr.name+`
+                </td>
+                <td title="`+item.user_group_attr.fullname+`" data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                  `+item.user_group_attr.nickname+`
+                </td>
+                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-40 whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                    `+(item.is_enabled?
+                    `<div class="flex items-center justify-center text-success">
+                        Aktif
+                    </div>`:
+                    `<div class="flex items-center justify-center text-danger">
+                        Tidak Aktif
+                    </div>`)
+                    +`
+                </td>
+                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
+                    <div class="flex items-center justify-center">`;
+              if(no_delete_items.includes(item.email)){
                 template += 
                         `<i>tidak dapat dihapus</i>`;
               }else{
-                template +=    `<a href="`+baseUrl+'/role/edit/'+item.id+`" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-slate-500 dark:border-darkmode-100/40 dark:text-slate-300 [&:hover:not(:disabled)]:bg-secondary/20 [&:hover:not(:disabled)]:dark:bg-darkmode-100/10 px-2 py-2">
-                                    <i class="fa fa-pen"></i>
-                                </a>
-                                <button onclick="doDelete(`+item.id+`,'`+item.name+`')" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-danger dark:border-danger mr-2 px-2 py-2">
-                                    <i class="fa fa-trash"></i>
-                                </button>`;
+                template +=
+                        `<a class="mr-3 flex items-center" href="#">
+                        <i class="fa fa-pen"></i>
+                        </a>
+                        <a onclick="doDelete(`+item.id+`,'`+item.name+`')" class="flex items-center text-danger">
+                        <i class="fa fa-trash"></i>
+                        </a>`;
               }
-              template += `</div>
-                      </div>
-                  </div>
-              </div>`;
+              template +=
+                    `</div>
+                </td>
+              </tr>`;
             });
             $(id_el_list).html(template);
           // i::data display---------------------------------------------------------------------------------END

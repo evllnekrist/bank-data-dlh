@@ -3,12 +3,9 @@
 @section('content')
 <div class="mt-8 grid grid-cols-12 gap-6">
     <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
-        <h2 class="intro-y mr-auto mt-2 text-lg font-medium">Log Aktivitas</h2>
         <!-- BEGIN: Inbox Menu -->
-        <div class="intro-y box mt-6 bg-primary p-5">
-            <button data-tw-merge="" type="button" class="transition duration-200 border shadow-sm inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed mt-1 w-full bg-white text-slate-600 dark:border-darkmode-300 dark:bg-darkmode-300 dark:text-slate-300"><i data-tw-merge="" data-lucide="edit" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                Compose</button>
-            <div class="mt-6 border-t border-white/10 pt-6 text-white dark:border-darkmode-400">
+        <div class="intro-y box bg-primary p-5">
+            <div class="mt-6 text-white">
                 <a class="flex items-center rounded-md bg-white/10 px-3 py-2 font-medium dark:bg-darkmode-700" href="">
                     <i data-tw-merge="" data-lucide="mail" class="stroke-1.5 mr-2 h-4 w-4"></i>
                     Inbox

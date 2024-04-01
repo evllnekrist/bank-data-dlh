@@ -3,57 +3,49 @@
 @section('content')
 <div class="mt-8 grid grid-cols-12 gap-6">
     <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
-        <h2 class="intro-y mr-auto mt-2 text-lg font-medium">
-            Kelola Berkas
-        </h2>
+        {{-- <h2 class="intro-y mr-auto mt-2 text-lg font-medium"></h2> --}}
         <!-- BEGIN: File Manager Menu -->
-        <div class="intro-y box mt-6 p-5">
+        <div class="intro-y box p-5">
             <div class="mt-1">
-                <a class="flex items-center rounded-md bg-primary px-3 py-2 font-medium text-white" href="">
-                    <i data-tw-merge="" data-lucide="image" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Images
+                <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
+                    <i class="fas fa-file-pdf"></i>
+                    <span class="ml-5">PDF</span>
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
-                    <i data-tw-merge="" data-lucide="video" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Videos
+                    <i class="fas fa-file-powerpoint"></i>
+                    <span class="ml-5">PPT</span>
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
-                    <i data-tw-merge="" data-lucide="file" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Documents
+                    <i class="fas fa-file-word"></i>
+                    <span class="ml-5">Docs</span>
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
-                    <i data-tw-merge="" data-lucide="users" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Shared
+                    <i class="fas fa-file-excel"></i>
+                    <span class="ml-5">Excel</span>
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
-                    <i data-tw-merge="" data-lucide="trash" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Trash
+                    <i class="fas fa-file-image"></i>
+                    <span class="ml-5">Gambar</span>
                 </a>
             </div>
             <div class="mt-4 border-t border-slate-200 pt-4 dark:border-darkmode-400">
-                <a class="flex items-center rounded-md px-3 py-2" href="">
-                    <div class="mr-3 h-2 w-2 rounded-full bg-pending"></div>
-                    Custom Work
-                </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
                     <div class="mr-3 h-2 w-2 rounded-full bg-success"></div>
-                    Important Meetings
+                    Publik
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
                     <div class="mr-3 h-2 w-2 rounded-full bg-warning"></div>
-                    Work
+                    Satuan Kerja
                 </a>
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
                     <div class="mr-3 h-2 w-2 rounded-full bg-pending"></div>
-                    Design
+                    Privat
                 </a>
-                <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
-                    <div class="mr-3 h-2 w-2 rounded-full bg-danger"></div>
-                    Next Week
-                </a>
+            </div>
+            <div class="mt-4 border-t border-slate-200 pt-4 dark:border-darkmode-400">
                 <a class="mt-2 flex items-center rounded-md px-3 py-2" href="">
                     <i data-tw-merge="" data-lucide="plus" class="stroke-1.5 mr-2 h-4 w-4"></i>
-                    Add New Label
+                    Tambah Kata Kunci
                 </a>
             </div>
         </div>
@@ -64,7 +56,7 @@
         <div class="intro-y flex flex-col-reverse items-center sm:flex-row">
             <div class="relative mr-auto mt-3 w-full sm:mt-0 sm:w-auto">
                 <i data-tw-merge="" data-lucide="search" class="stroke-1.5 absolute inset-y-0 left-0 z-10 my-auto ml-3 h-4 w-4 text-slate-500"></i>
-                <input data-tw-merge="" type="text" placeholder="Search files" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box px-10 sm:w-64">
+                <input data-tw-merge="" type="text" placeholder="Cari..." class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box px-10 sm:w-64">
                 <div data-tw-merge="" data-tw-placement="bottom-start" class="dropdown absolute inset-y-0 right-0 mr-3 flex items-center"><a data-tw-toggle="dropdown" aria-expanded="false" href="javascript:;" class="cursor-pointer block h-4 w-4" role="button"><i data-tw-merge="" data-lucide="chevron-down" class="stroke-1.5 h-4 w-4 cursor-pointer text-slate-500"></i>
                     </a>
                     <div data-transition="" data-selector=".show" data-enter="transition-all ease-linear duration-150" data-enter-from="absolute !mt-5 invisible opacity-0 translate-y-1" data-enter-to="!mt-1 visible opacity-100 translate-y-0" data-leave="transition-all ease-linear duration-150" data-leave-from="!mt-1 visible opacity-100 translate-y-0" data-leave-to="absolute !mt-5 invisible opacity-0 translate-y-1" class="dropdown-menu absolute z-[9999] hidden">
@@ -72,19 +64,19 @@
                             <div class="grid grid-cols-12 gap-4 gap-y-3 p-3">
                                 <div class="col-span-6">
                                     <label data-tw-merge="" for="input-filter-1" class="inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right text-xs">
-                                        File Name
+                                        Nama Berkas
                                     </label>
                                     <input data-tw-merge="" id="input-filter-1" type="text" placeholder="Type the file name" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 flex-1">
                                 </div>
                                 <div class="col-span-6">
                                     <label data-tw-merge="" for="input-filter-2" class="inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right text-xs">
-                                        Shared With
+                                        Dibagikan
                                     </label>
                                     <input data-tw-merge="" id="input-filter-2" type="text" placeholder="example@gmail.com" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 flex-1">
                                 </div>
                                 <div class="col-span-6">
                                     <label data-tw-merge="" for="input-filter-3" class="inline-block mb-2 group-[.form-inline]:mb-2 group-[.form-inline]:sm:mb-0 group-[.form-inline]:sm:mr-5 group-[.form-inline]:sm:text-right text-xs">
-                                        Created At
+                                        Tanggal Ditambahkan
                                     </label>
                                     <input data-tw-merge="" id="input-filter-3" type="text" placeholder="Important Meeting" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 flex-1">
                                 </div>
@@ -789,4 +781,5 @@
 @section('addition_css')
 @endsection
 @section('addition_script')
+    <script src="{{ asset('page/js/file-manager-index.js').'?v='.date('YmdH').'1' }}"></script>
 @endsection

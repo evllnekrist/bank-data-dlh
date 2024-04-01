@@ -1,5 +1,3 @@
-console.log('____page js');
-
 const id_el_list = '#data-list';
 const no_delete_items = ['ev.attoff@gmail.com','superuser@mail.com'];
 

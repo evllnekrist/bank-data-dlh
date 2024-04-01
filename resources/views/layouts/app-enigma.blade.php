@@ -8,7 +8,7 @@
         <meta name="keywords" content="katingan,bank data,bkad">
         <meta name="author" content="Evelline Krist.">
         <title>@yield('title') | Bank Data Kab.Katingan</title>
-        <link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
+        <link rel="icon" type="image/x-icon" href="{{asset('dist/images/logo-black.svg')}}">
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/vendors/simplebar.css')}}">
         <link rel="stylesheet" href="{{asset('dist/css/vendors/tippy.css')}}">

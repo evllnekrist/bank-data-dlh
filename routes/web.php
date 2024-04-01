@@ -7,6 +7,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsergroupController;
 use App\Http\Controllers\DynamicFormController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,11 @@ Route::group(['prefix' => 'api'], function () {
     // Route::post('/survey/post-add', [StatisticController::class, 'post_add_survey']);
   
     Route::middleware('auth')->group(function () {
+        Route::post('/file/get', [FileManagerController::class, 'get_list']);
+        Route::post('/file/post-add', [FileManagerController::class, 'post_add']);
+        Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
+        Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
+
         Route::post('/role/get', [RoleController::class, 'get_list']);
         Route::post('/role/post-add', [RoleController::class, 'post_add']);
         Route::post('/role/post-edit', [RoleController::class, 'post_edit']);
@@ -73,10 +79,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user-group/edit/{id}', [UserGroupController::class, 'form_edit'])->name('user-group.edit');
 
     Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
+    Route::get('user/edit', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
 
     Route::get('dynamic-forms', [DynamicFormController::class, 'index'])->name('dynamic-form');
     Route::get('dynamic-form/add', [DynamicFormController::class, 'form_add'])->name('dynamic-form.add');
     Route::get('dynamic-form/edit/{id}', [DynamicFormController::class, 'form_edit'])->name('dynamic-form.edit');
+
+    Route::get('faq', [HomeController::class, 'index_faq'])->name('faq');
 });
 
 Route::middleware('auth')->group(function () {

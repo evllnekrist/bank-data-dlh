@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         /* berdasarkan role dari user yang login, ambil permissionnya */
-        $user                   = User::where('email',$request->get('email'))->first();
+        $user                   = User::where('email',$request->get('email'))->with(['role_attr','user_group_attr'])->first();
         $permit_role_permission = RolePermission::where('role_id',$user->role_id)->pluck('menu_action_id')->toArray();
         $permit_menu_action     = MenuAction::whereIn('id',$permit_role_permission)->get()->toArray();
         $permit_menu            = array();
