@@ -186,7 +186,7 @@ return [
     ])->toArray(),
 
     'accept_mimes' => array(
-        'img' => array('image/png','image/jpg','image/webp'),
+        'img' => array('image/png','image/jpg','image/webp','image/heic','image/heif'),
         'doc' => array(
             'application/pdf',
             'application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document',

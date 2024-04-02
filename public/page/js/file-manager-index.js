@@ -73,66 +73,62 @@ function getData(move_to_page=null){
             let template = ``;
             (response.data.data.products).forEach((item) => {
               imgToDisplay = baseUrl+'/img/no-image-clean.png'
-              img = new Image();
-              img.src = item.img_main+"?_="+(new Date().getTime());
-              img.onload = function () {
-                imgToDisplay = item.img_main
-                $('#product_'+item.id+'_img').attr("src",imgToDisplay)
+              if(extensions['img'].includes(item.type_of_extension)){  
+                imgToDisplay = item.file_link?item.file_link:item.file_main
+                img = new Image();
+                img.src = imgToDisplay+"?_="+(new Date().getTime());
+                img.onload = function () {
+                    $('#product_'+item.id+'_img').attr("src",imgToDisplay)
+                }
               }
-              template +=
-              `<tr data-tw-merge="" class="intro-x">
-                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-10 whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                    <input data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50">
-                </td>
-                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 !py-3.5 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                    <div class="flex items-center">
-                        <div class="image-fit zoom-in h-9 w-9">
-                            <img data-placement="top" title="" src="`+imgToDisplay+`" id="product_`+item.id+`_img" alt="Gambar Pengguna" class="tooltip cursor-pointer rounded-lg border-white shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]">
-                        </div>
-                        <div class="ml-4">
-                            <a class="whitespace-nowrap font-medium" href="">
-                              `+item.name+`
-                            </a>
-                            <div class="mt-0.5 whitespace-nowrap text-xs text-slate-500">
-                              `+item.email+`
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                    `+item.role_attr.name+`
-                </td>
-                <td title="`+item.user_group_attr.fullname+`" data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box whitespace-nowrap rounded-l-none rounded-r-none border-x-0 text-center shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                  `+item.user_group_attr.nickname+`
-                </td>
-                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-40 whitespace-nowrap rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                    `+(item.is_enabled?
-                    `<div class="flex items-center justify-center text-success">
-                        Aktif
-                    </div>`:
-                    `<div class="flex items-center justify-center text-danger">
-                        Tidak Aktif
-                    </div>`)
-                    +`
-                </td>
-                <td data-tw-merge="" class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
-                    <div class="flex items-center justify-center">`;
-              if(no_delete_items.includes(item.email)){
-                template += 
-                        `<i>tidak dapat dihapus</i>`;
-              }else{
-                template +=
-                        `<a class="mr-3 flex items-center" href="#">
-                        <i class="fa fa-pen"></i>
-                        </a>
-                        <a onclick="doDelete(`+item.id+`,'`+item.name+`')" class="flex items-center text-danger">
-                        <i class="fa fa-trash"></i>
-                        </a>`;
-              }
-              template +=
-                    `</div>
-                </td>
-              </tr>`;
+
+            template +=
+              `<div class="intro-y col-span-6 sm:col-span-4 md:col-span-3">
+                  <div class="file box zoom-in relative rounded-md px-3 pb-5 pt-8 sm:px-5">
+                      <div class="absolute left-0 top-0 ml-3 mt-3">
+                          <input data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 border">
+                      </div>
+                      <div class="mx-auto w-3/5">`;
+                    if(extensions['img'].includes(item.type_of_extension)){
+                        template += `
+                            <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
+                                <div class="image-fit absolute left-0 top-0 h-full w-full">
+                                    <img class="rounded-md" src="`+imgToDisplay+`" alt="this file is an image" id="product_`+item.id+`_img">
+                                </div>
+                            </div>`;
+                    }else if(extensions['doc'].includes(item.type_of_extension)){
+                        template += `
+                            <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
+                                <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
+                                    `+item.type_of_extension.replace(/\./g, "").toUpperCase()+`
+                                </div>
+                            </div>`;
+                    }else{
+                        template += `    
+                            <div class="mx-auto w-3/5">
+                                <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-directory">
+                                </div>
+                            </div>`;
+                    }
+                    // `+item.owner_user_group.nickname+`
+            template += `
+                      </div>
+                      <a class="mt-4 block truncate text-center font-medium" title="`+item.title+`" href="">`+item.title+`</a>
+                      <div class="mt-0.5 text-center text-xs text-slate-500">`+(item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)+`</div>
+                      <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown absolute right-0 top-0 ml-auto mr-2 mt-3"><a data-tw-toggle="dropdown" aria-expanded="false" href="javascript:;" class="cursor-pointer block h-5 w-5"><i data-tw-merge="" data-lucide="more-vertical" class="stroke-1.5 w-5 h-5 text-slate-500"></i>
+                          </a>
+                          <div data-transition="" data-selector=".show" data-enter="transition-all ease-linear duration-150" data-enter-from="absolute !mt-5 invisible opacity-0 translate-y-1" data-enter-to="!mt-1 visible opacity-100 translate-y-0" data-leave="transition-all ease-linear duration-150" data-leave-from="!mt-1 visible opacity-100 translate-y-0" data-leave-to="absolute !mt-5 invisible opacity-0 translate-y-1" class="dropdown-menu absolute z-[9999] hidden">
+                              <div data-tw-merge="" class="dropdown-content rounded-md border-transparent bg-white p-2 shadow-[0px_3px_10px_#00000017] dark:border-transparent dark:bg-darkmode-600 w-40">
+                                  <a class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item"><i data-tw-merge="" data-lucide="users" class="stroke-1.5 mr-2 h-4 w-4"></i>
+                                      Share
+                                      File</a>
+                                  <a class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item"><i data-tw-merge="" data-lucide="trash" class="stroke-1.5 mr-2 h-4 w-4"></i>
+                                      Delete</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>`;
             });
             $(id_el_list).html(template);
           // i::data display---------------------------------------------------------------------------------END

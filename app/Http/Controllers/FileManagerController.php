@@ -35,7 +35,7 @@ class FileManagerController extends Controller
       {
         // $filter['equal']  = [];
         $filter['search'] = ['title'];
-        return $this->get_list_common($request, 'File', $filter, []);
+        return $this->get_list_common($request, 'File', $filter, ['owner_user_group']);
       }
       public function post_delete($id)
       {

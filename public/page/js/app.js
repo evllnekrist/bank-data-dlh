@@ -11,6 +11,10 @@ const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
 const loadingElementImg = `<div class="mx-auto"><img src="../../loading-unscreen.gif"></div>`;
 const loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
+const extensions = {
+    'img' : ['.png','.jpg','.webp','.heic','.heif'],
+    'doc' : ['.pdf','.doc','.docx','.xls','.xlsx','.csv','.ppt','.pptx'] 
+}; // ,'.'
 
 $('.nospace').on('keyup', function(event) {
     if((event.target.value).includes(' ')){
