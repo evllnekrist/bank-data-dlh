@@ -93,7 +93,7 @@ function getData(move_to_page=null){
                         template += `
                             <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                                 <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                    <img class="rounded-md" src="`+imgToDisplay+`" alt="this file is an image" id="product_`+item.id+`_img">
+                                    <img data-action="zoom" class="rounded-md" src="`+imgToDisplay+`" alt="this file is an image" id="product_`+item.id+`_img">
                                 </div>
                             </div>`;
                     }else if(extensions['doc'].includes(item.type_of_extension)){

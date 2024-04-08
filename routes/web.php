@@ -6,7 +6,7 @@ use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsergroupController;
-use App\Http\Controllers\DynamicFormController;
+use App\Http\Controllers\DynamicInputController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +30,11 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/file/post-add', [FileManagerController::class, 'post_add']);
         Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
         Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
+
+        Route::post('/dynamic-input/get', [DynamicInputController::class, 'get_list']);
+        Route::post('/dynamic-input/post-add', [DynamicInputController::class, 'post_add']);
+        Route::post('/dynamic-input/post-edit', [DynamicInputController::class, 'post_edit']);
+        Route::post('/dynamic-input/post-delete/{id}', [DynamicInputController::class, 'post_delete']);
 
         Route::post('/role/get', [RoleController::class, 'get_list']);
         Route::post('/role/post-add', [RoleController::class, 'post_add']);
@@ -81,9 +86,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
     Route::get('user/edit', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
 
-    Route::get('dynamic-forms', [DynamicFormController::class, 'index'])->name('dynamic-form');
-    Route::get('dynamic-form/add', [DynamicFormController::class, 'form_add'])->name('dynamic-form.add');
-    Route::get('dynamic-form/edit/{id}', [DynamicFormController::class, 'form_edit'])->name('dynamic-form.edit');
+    Route::get('dynamic-forms', [DynamicInputController::class, 'index'])->name('dynamic-form');
+    Route::get('dynamic-form/add', [DynamicInputController::class, 'form_add'])->name('dynamic-form.add');
+    Route::get('dynamic-form/edit/{id}', [DynamicInputController::class, 'form_edit'])->name('dynamic-form.edit');
 
     Route::get('faq', [HomeController::class, 'index_faq'])->name('faq');
 });

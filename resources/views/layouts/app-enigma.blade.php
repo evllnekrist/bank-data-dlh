@@ -35,6 +35,10 @@
                 <!-- END: Content -->
             </div>
         </div>
+        <script>
+            const accept_mimes = JSON.parse(`{!! json_encode(Config::get('app.accept_mimes')) !!}`);
+            // console.log('accept_mimes',accept_mimes);
+        </script>
         <!-- BEGIN: Vendor JS Assets-->
         <script src="{{asset('dist/js/vendors/jquery.min.js')}}"></script>
         <script src="{{asset('dist/js/vendors/axios.min.js')}}"></script>

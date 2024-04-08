@@ -52,15 +52,25 @@ $('.lowercase').on('keyup', function(event) {
 
 $('.input-img').change(function(event) {
     let iii = $(this).data('index-input-img');
-    console.log('ahahoyyy',iii)
     const files = event.target.files
     let url='', template='';
-    console.log(files);
+    console.log(files,accept_mimes['img']);
     for(i = 0; i < files.length; i++){
         url = URL.createObjectURL(event.target.files[i]);
-        template += '<img src="'+url+'">';
+        if($.inArray(event.target.files[i]['type'], accept_mimes['img']) >= 0){
+            template += `<img src="'+url+'">`;
+        }else{
+            template += `
+            <div class="mx-auto w-3/5">
+                <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
+                    <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
+                        `+(event.target.files[i]['name']).split('.').pop().toUpperCase()+`
+                    </div>
+                </div>
+            </div>`;
+        }
     }
-    console.log('template',template)
+    // console.log('template',template)
     $('#input-img-preview-'+iii).html(template);
     $('#input-img-preview-'+iii).parent().removeClass('hidden');
     $('#input-img-none-'+iii).addClass('hidden');

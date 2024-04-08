@@ -47,7 +47,7 @@ class RoleController extends Controller
     {
         try {
           // check if there user related to the particular group
-          $exist =  User::where('role_id',$id)->get();
+          $exist =  User::where('role_id',$id)->get()->toArray();
           if($exist){
             return json_encode(array('status'=>false, 'message'=>'Ada user yang berhubungan dengan peran ini. Ubah dahulu peran akun yang terkait ke peran lain untuk dapat menghapus, atau cukup nonaktifkan peran lewat menu edit', 'data'=>$exist));
           }

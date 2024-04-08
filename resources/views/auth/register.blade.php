@@ -8,7 +8,7 @@
             <select class="form-control block mt-1 w-full" name="user_group_id" :value="old('user_group_id')" required autofocus autocomplete="user_group_id">
               <option disabled>------ pilih salah satu ------</option>
               @foreach(@$user_groups as $item)
-                <option value="{{$item->id}}">{{$item->nickname}} - {{$item->fullname}} </option>
+                <option value="{{$item->id}}">{{$item->nickname}} - {{$item->fullname}}</option>
               @endforeach
             </select>
             <x-input-error :messages="$errors->get('user_group_id')" class="mt-2" />

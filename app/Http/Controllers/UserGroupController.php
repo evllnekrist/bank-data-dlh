@@ -40,11 +40,13 @@ class UserGroupController extends Controller
       }
       public function post_delete($id)
       {
+          // $items =  User::where('user_group_id',$id)->get()->toArray();
+          // dd(!empty($items));
           try {
             // check if there user related to the particular group
-            $exist =  User::where('user_group_id',$id)->get();
-            if($exist){
-              return json_encode(array('status'=>false, 'message'=>'Ada user yang berhubungan dengan satuan kerja ini. Hapus dahulu akun yang terkait jika ingin menghilangkan satker, atau cukup nonaktifkan satker lewat menu edit', 'data'=>$exist));
+            $items =  User::where('user_group_id',$id)->get()->toArray();
+            if(!empty($items)){
+              return json_encode(array('status'=>false, 'message'=>'Ada user yang berhubungan dengan satuan kerja ini. Hapus dahulu akun yang terkait jika ingin menghilangkan satker, atau cukup nonaktifkan satker lewat menu edit', 'data'=>$items));
             }
             $output = UserGroup::where('id', $id)->delete();
             return json_encode(array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output));
