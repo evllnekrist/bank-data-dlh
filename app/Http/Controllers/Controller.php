@@ -16,8 +16,8 @@ class Controller extends BaseController
         try {
           $data['filter']       = $request->all();
           $model                = 'App\Models\\'.$model;
-          $page                 = $data['filter']['_page']  = intval($data['filter']['_page']);
-          $limit                = $data['filter']['_limit'] = intval($data['filter']['_limit']);
+          $page                 = $data['filter']['_page']  = (@$data['filter']['_page'] ? intval($data['filter']['_page']) : 1);
+          $limit                = $data['filter']['_limit'] = (@$data['filter']['_limit'] ? intval($data['filter']['_limit']) : 1000);
           $offset               = ($page?($page-1)*$limit:0);
           $data['products']     = $model::with($with);
           

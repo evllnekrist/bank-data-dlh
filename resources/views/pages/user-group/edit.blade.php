@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <p class="text-sm text-slate-300">
-                                <span>Menerima: tipe gambar, max 2MB</span>
+                                <i>* tipe gambar, max 2MB</i>
                             </p>
                             <div>
                                 <button type="button" id="btn-submit-edit" 

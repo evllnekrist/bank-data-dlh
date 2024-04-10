@@ -8,7 +8,7 @@ const apiHeaders = {
     "Content-Type": "multipart/form-data",
 };
 const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
-const loadingElementImg = `<div class="mx-auto"><img src="../../loading-unscreen.gif"></div>`;
+const loadingElementImg = `<div class="col-span-12"><img src="../../img/loading.gif" class="mx-auto"></div>`;
 const loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
 const extensions = {
@@ -16,49 +16,66 @@ const extensions = {
     'doc' : ['.pdf','.doc','.docx','.xls','.xlsx','.csv','.ppt','.pptx'] 
 }; // ,'.'
 
-$('.nospace').on('keyup', function(event) {
+function nospace(event){
     if((event.target.value).includes(' ')){
-    Swal.fire({
-        position: 'top-end',
-        icon: 'warning',
-        html: 'Input ini tidak menerima spasi',
-        showConfirmButton: false,
-        timer: 2000
-    });
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            html: 'Input ini tidak menerima spasi',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
     event.target.value =  event.target.value.replaceAll(" ","")
+}
+
+$('.nospace').on('keyup', function(event) {
+    nospace(event);
 });
 
-$('.numeric').on('keyup', function(event) {
+function numeric(event){
     if ((event.target.value).match(/[^$,.\d]/)){
-    Swal.fire({
-        position: 'top-end',
-        icon: 'warning',
-        html: 'Input ini hanya boleh angka',
-        showConfirmButton: false,
-        timer: 2000
-    });
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            html: 'Input ini hanya boleh angka',
+            showConfirmButton: false,
+            timer: 2000
+        });
     }
     event.target.value =  event.target.value.replace(/[^\d]+/g,'')
+}
+
+$('.numeric').on('keyup', function(event) {
+    numeric(event);
 });
+
+function uppercase(event){
+    event.target.value =  event.target.value.toUpperCase()
+}
 
 $('.uppercase').on('keyup', function(event) {
-    event.target.value =  event.target.value.toUpperCase()
+    uppercase(event);
 });
+
+function lowercase(event){
+    event.target.value =  event.target.value.toLowerCase()
+}
 
 $('.lowercase').on('keyup', function(event) {
-    event.target.value =  event.target.value.toLowerCase()
+    lowercase(event);
 });
 
-$('.input-img').change(function(event) {
-    let iii = $(this).data('index-input-img');
+function inputImg(event){
+    let iii = event.target.getAttribute('data-index-input-img');
     const files = event.target.files
     let url='', template='';
-    console.log(files,accept_mimes['img']);
+    // console.log('change input image');
+    // console.log(iii,event);
     for(i = 0; i < files.length; i++){
         url = URL.createObjectURL(event.target.files[i]);
         if($.inArray(event.target.files[i]['type'], accept_mimes['img']) >= 0){
-            template += `<img src="'+url+'">`;
+            template += `<img src="`+url+`">`;
         }else{
             template += `
             <div class="mx-auto w-3/5">
@@ -70,11 +87,15 @@ $('.input-img').change(function(event) {
             </div>`;
         }
     }
-    // console.log('template',template)
+    console.log('template',template)
     $('#input-img-preview-'+iii).html(template);
-    $('#input-img-preview-'+iii).parent().removeClass('hidden');
+    $('#input-img-preview-'+iii).removeClass('hidden');
     $('#input-img-none-'+iii).addClass('hidden');
     $('#input-img-btn-'+iii).removeClass('hidden');
+}
+
+$('.input-img').on('change', function(event) {
+    inputImg(event);
 });
 
 const regexExp_slug = /^[a-z][-a-z0-9]*$/;

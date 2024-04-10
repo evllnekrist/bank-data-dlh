@@ -125,7 +125,7 @@
         </div>
         <!-- BEGIN: Directory & Files -->
         <div class="intro-y mt-5 grid grid-cols-12 gap-3 sm:gap-6" id="data-list">
-            
+            <div class="col-span-12"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></div>
         </div>
         <!-- END: Directory & Files -->
         <!-- BEGIN: Pagination -->

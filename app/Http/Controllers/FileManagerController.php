@@ -14,7 +14,7 @@ use DB;
 class FileManagerController extends Controller
 {
     private $default_folder = 'file-manager/';
-    private $file_indexes = array('img_main', 'file_main');
+    private $file_indexes = array('file_main');
     
     public function index()
     {
@@ -31,11 +31,20 @@ class FileManagerController extends Controller
     }
     public function form_edit($id)
     {
+      // $request = new Request;
+      // $dynamic_inputs = json_decode(app('App\Http\Controllers\DynamicInputController')->get_list($request));
+      // $data['dynamic_inputs'] = $dynamic_inputs->data->products;
+      // dump($data); die();
       $data['selected'] = File::find($id);
       if($data['selected']){
+        $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
+        $data['keywords'] = Keyword::orderBy('subject','asc')->get();
+        $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
+        $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
+        $data['publicity_types'] = Option::where('type','TYPE_OF_PUBLICITY')->get();
         return view('pages.file-manager.edit', $data);
       }else{
-        return $this->show_error_page('Dokumen Hukum');
+        return $this->show_error_page('Berkas');
       }
     }
 
@@ -58,11 +67,14 @@ class FileManagerController extends Controller
       }
       public function post_add(Request $request)
       {
+          // dump($request->all());
           $validator = Validator::make($request->all(), [
-            'fullname'  => 'required',
-            'nickname'  => 'required',
-            'email'     => 'required',
-            'phone'     => 'required',
+            'title'  => 'required',
+            'user_group_id'  => 'required',
+            'type_of_file'  => 'required',
+            'type_of_publicity'  => 'required',
+            // 'type_of_extension'  => 'required', // setup by system
+            'editorial_permission'  => 'required',
           ]); 
           if ($validator->fails()) {
             // return redirect()->back()->withInput();
@@ -72,22 +84,39 @@ class FileManagerController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all(); 
-            $output = File::create($data); $output2 = null;
+            $output = File::create(array_diff_key($data, array_flip(['dynamic_inputs','keywords']))); $output2 = null;
+            array_push($this->file_indexes,$data['file_indexes2']); unset($data['file_indexes2']);
             if(!empty($this->file_indexes)){
               foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
                 if($request->file($index)){
-                  $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
-                  $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
+                  // $filename_with_ext = $request->file($index)->getClientOriginalName(); // Get filename with the extension
+                  // $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME); // Get just filename
                   $extension = $request->file($index)->getClientOriginalExtension(); // Get just ext
-                  // $filename_to_store = $index.'_'.time().'.'.$extension; // V1
-                  // $filename_to_store = $this->format_filename($request); // V2
-                  $filename_to_store = str_replace('/','-',$this->default_folder).$output->id.'.'.$extension;
+                  if($index == 'file_main'){
+                    $data['type_of_extension'] = $extension;
+                  }
+                  $filename_to_store = str_replace('/','-',$this->default_folder).$output->id.'-'.$index.'.'.$extension;
                   $path = $request->file($index)->storeAs('public/'.$this->default_folder,$filename_to_store); // Upload Image
-                  $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                  if(str_contains($index,'.')){
+                      $indexes = explode('.',$index);
+                      $data[$indexes[0]][$indexes[1]] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                  }else{
+                      $data[$index] = '/storage//'.$this->default_folder.'/'.$filename_to_store;
+                  }
                 }else{
-                  unset($data[$index]);
+                  if(str_contains($index,'.')){
+                      $indexes = explode('.',$index);
+                      unset($data[$indexes[0]][$indexes[1]]);
+                  }else{
+                      unset($data[$index]);
+                  }
                 }
               }
+              foreach ($data['keywords'] as $key => $value) {               
+                $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
+              }
+              $data['keywords'] = implode(',',$data['keywords']);
+              $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
               $output2 = File::where('id',$output->id)->update($data);
             }
             DB::commit();

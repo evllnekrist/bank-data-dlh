@@ -48,6 +48,7 @@ function doDelete(id,name){
   }
 }
 function getData(move_to_page=null){
+  $(id_el_list).html(loadingElementImg);
   if(move_to_page){
     $('[name="_page"]').val(move_to_page);
   }
@@ -113,7 +114,7 @@ function getData(move_to_page=null){
                     // `+item.owner_user_group.nickname+`
             template += `
                       </div>
-                      <a class="mt-4 block truncate text-center font-medium" title="`+item.title+`" href="">`+item.title+`</a>
+                      <a class="mt-4 block truncate text-center font-medium" title="`+item.title+`" href="`+baseUrl+'/file/edit/'+item.id+`">`+item.title+`</a>
                       <div class="mt-0.5 text-center text-xs text-slate-500">`+(item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)+`</div>
                       <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown absolute right-0 top-0 ml-auto mr-2 mt-3"><a data-tw-toggle="dropdown" aria-expanded="false" href="javascript:;" class="cursor-pointer block h-5 w-5"><i data-tw-merge="" data-lucide="more-vertical" class="stroke-1.5 w-5 h-5 text-slate-500"></i>
                           </a>

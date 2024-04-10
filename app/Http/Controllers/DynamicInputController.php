@@ -27,8 +27,9 @@ class DynamicInputController extends Controller
     // -------------------------------------- CALLED BY AJAX ---------------------------- start
       public function get_list(Request $request)
       {
-        // $filter['equal']  = [];
-        $filter['search'] = ['nickname','fullname'];
+        $filter['equal']  = ['type_of_file'];
+        // $filter['search'] = [];
+        $request->request->add(['_dir' => array('id'=>'ASC')]); 
         return $this->get_list_common($request, 'DynamicInput', $filter, []);
       }
       public function post_delete($id)
@@ -59,7 +60,7 @@ class DynamicInputController extends Controller
             // return redirect()->back()->withInput();
             return json_encode(array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null));
           }
-    
+
           DB::beginTransaction();
           try {
             $data = $request->all(); 
