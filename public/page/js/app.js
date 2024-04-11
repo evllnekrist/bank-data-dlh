@@ -28,7 +28,6 @@ function nospace(event){
     }
     event.target.value =  event.target.value.replaceAll(" ","")
 }
-
 $('.nospace').on('keyup', function(event) {
     nospace(event);
 });
@@ -45,7 +44,6 @@ function numeric(event){
     }
     event.target.value =  event.target.value.replace(/[^\d]+/g,'')
 }
-
 $('.numeric').on('keyup', function(event) {
     numeric(event);
 });
@@ -53,7 +51,6 @@ $('.numeric').on('keyup', function(event) {
 function uppercase(event){
     event.target.value =  event.target.value.toUpperCase()
 }
-
 $('.uppercase').on('keyup', function(event) {
     uppercase(event);
 });
@@ -61,13 +58,12 @@ $('.uppercase').on('keyup', function(event) {
 function lowercase(event){
     event.target.value =  event.target.value.toLowerCase()
 }
-
 $('.lowercase').on('keyup', function(event) {
     lowercase(event);
 });
 
-function inputImg(event){
-    let iii = event.target.getAttribute('data-index-input-img');
+function inputFile(event){
+    let iii = event.target.getAttribute('data-index-input-file');
     const files = event.target.files
     let url='', template='';
     // console.log('change input image');
@@ -87,16 +83,38 @@ function inputImg(event){
             </div>`;
         }
     }
-    console.log('template',template)
-    $('#input-img-preview-'+iii).html(template);
-    $('#input-img-preview-'+iii).removeClass('hidden');
-    $('#input-img-none-'+iii).addClass('hidden');
-    $('#input-img-btn-'+iii).removeClass('hidden');
+    // console.log('template',template)
+    $('#input-file-preview-'+iii).html(template);
+    $('#input-file-preview-'+iii).removeClass('hidden');
+    $('#input-file-none-'+iii).addClass('hidden');
+    $('#input-file-btn-'+iii).removeClass('hidden');
 }
-
-$('.input-img').on('change', function(event) {
-    inputImg(event);
+$('.input-file').on('change', function(event) {
+    inputFile(event);
 });
+function initiateFileFromInput(){
+    let iii = 0, template = '', type_of_extension = '';
+    $('[type="file"]').each(function(index) {
+        // console.log('_____', typeof $(this).data('value') !== 'undefined', $(this).data('value'));
+        iii = $(this).data('index-input-file');
+        if(typeof $(this).data('value') !== 'undefined' && $(this).data('value')){
+            type_of_extension = $(this).data('value').split('.').pop();
+            if(extensions['img'].includes('.'+type_of_extension)){
+                template = `<img src="`+$(this).data('value')+`">`;
+            }else{
+                template = `
+                <div class="mx-auto w-3/5">
+                    <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
+                        <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
+                            `+type_of_extension.toUpperCase()+`
+                        </div>
+                    </div>
+                </div>`;
+            }        
+            $('#input-file-preview-'+iii).html(template);
+        }
+    });
+}
 
 const regexExp_slug = /^[a-z][-a-z0-9]*$/;
 function checkSlug(str){

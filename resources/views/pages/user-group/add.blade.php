@@ -59,16 +59,16 @@
                                 <div class="flex items-center justify-center w-full">
                                     <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
                                         <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
-                                            <svg xmlns="http://www.w3.org/2000/svg" id="input-img-none-0"
+                                            <svg xmlns="http://www.w3.org/2000/svg" id="input-file-none-0"
                                                 class="w-10 h-10 text-blue-400 group-hover:text-blue-600 {{@$selected->img_main?'hidden':''}}" 
                                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                             </svg>
-                                            <div class="flex flex-auto max-h-48 w-4/5 mx-auto py-3" id="input-img-preview-0">
+                                            <div class="flex flex-auto max-h-48 w-4/5 mx-auto py-3" id="input-file-preview-0">
                                             </div>
                                             <p class="pointer-none text-gray-500 "><span class="text-sm">Drag & drop</span> disini <br /> atau <a href="" id="" class="text-blue-600 hover:underline">pilih</a> dari komputer</p>
-                                            <input name="img_main" data-index-input-img="0" type="file" accept="{{implode(',',Config::get('app.accept_mimes')['img'])}}"
-                                                class="input-img mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer">
+                                            <input name="img_main" data-index-input-file="0" type="file" accept="{{implode(',',Config::get('app.accept_mimes')['img'])}}"
+                                                class="input-file mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer">
                                         </div>
                                     </label>
                                 </div>
