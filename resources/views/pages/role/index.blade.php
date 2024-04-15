@@ -38,7 +38,7 @@
     </div>
     <!-- BEGIN: Users Layout -->            
     <div class="mt-5 grid grid-cols-12 gap-6" id="data-list">
-
+        <div class="col-span-12"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></div>
     </div>
     <!-- BEGIN: Users Layout -->
     <!-- BEGIN: Pagination -->            

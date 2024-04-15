@@ -48,6 +48,7 @@ function doDelete(id,name){
   }
 }
 function getData(move_to_page=null){
+  $(id_el_list).html(loadingElementImg);
   if(move_to_page){
     $('[name="_page"]').val(move_to_page);
   }

@@ -8,8 +8,8 @@ const apiHeaders = {
     "Content-Type": "multipart/form-data",
 };
 const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
-const loadingElementImg = `<div class="col-span-12"><img src="../../img/loading.gif" class="mx-auto"></div>`;
-const loadingElement = `<div class="mx-auto">memuat...</div>`;
+let loadingElementImg = `<div class="col-span-12"><img src="../../img/loading.gif" class="mx-auto"></div>`;
+let loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
 const extensions = {
     'img' : ['.png','.jpg','.webp','.heic','.heif'],
@@ -131,6 +131,12 @@ $('.slug').on('keyup', function(event) {
     checkSlug(event.target.value)
 });
 
+$('[name="_search"]').on("keyup",function search(e) {
+    if(e.which == 13) {
+        getData();
+    }
+});
+
 function display(id,id2){
     // console.log(id,id2);
     let action = $('#'+id).data('display')
@@ -196,14 +202,8 @@ function shorten(text, maxLength, delimiter, overflow) {
         return "";
     }
 }
-  
 
 $(function (){
-    $('[name="_search"]').keypress(function(e){
-        if (e.key === "Enter") { // If the user presses the "Enter" key on the keyboard
-          e.preventDefault(); // Cancel the default action, if needed
-          getData(); 
-        }
-      });
+    
 });
   

@@ -1,5 +1,8 @@
 const id_el_list = '#data-list';
 const no_delete_items = ['ev.attoff@gmail.com','superuser@mail.com'];
+loadingElementImg = `<tr>
+                      <td colspan="6"><img src="../../img/loading.gif" class="mx-auto"></td>
+                    </tr>`; // rewrite
 
 function doDelete(id,name){
   if(confirm("Apakah Anda yakin menghapus user '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
@@ -48,6 +51,7 @@ function doDelete(id,name){
   }
 }
 function getData(move_to_page=null){
+  $(id_el_list).html(loadingElementImg);
   if(move_to_page){
     $('[name="_page"]').val(move_to_page);
   }

@@ -5,21 +5,22 @@
 
 <div class="mt-5 box bg-primary p-2">
     <div class="intro-y col-span-12 mt-2 mb-5 flex flex-wrap items-center xl:flex-nowrap">
-        <div class="mx-auto hidden text-slate-500 xl:block">
+        <div class="mx-auto hidden text-white xl:block">
             Menampilkan <span id="tof-products_count_start"></span> - <span id="tof-products_count_end"></span> dari <span id="tof-products_count_total"></span> data<br>
             <input name="_tof_page" value="1" class="_tof_filter" hidden>
         </div>
         <div class="mt-3 flex w-full items-center xl:mt-0 xl:w-auto">
             <div class="relative w-56 text-slate-500">
-                <input name="_tof_search" data-tw-merge="" type="text" placeholder="Cari..." title="isi kemudian enter untuk melakukan pencarian"  class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-300/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box w-56 pr-10">
+                <input name="_tof_search" data-tw-merge="" type="text" placeholder="Cari..." title="isi kemudian enter untuk melakukan pencarian"  class="_tof_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-300/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box w-56 pr-10">
                 <i onclick="getDataTypeOfFile()" data-tw-merge="" data-lucide="search" class="stroke-1.5 absolute inset-y-0 right-0 my-auto mr-3 h-4 w-4"></i>
             </div>
         </div>
     </div>
     <div class="grid grid-cols-12 gap-5" id="data-list-tof">
+        <div class="col-span-12"><img src="{{asset('img/loading-white.gif')}}" class="mx-auto my-10 w-32"></div>
     </div>
 </div>
-<div class="mt-5 grid grid-cols-12 gap-6" id="data-list-wrap">
+<div class="mt-5 grid grid-cols-12 gap-6" id="data-list-wrap" style="display: none">
     <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center xl:flex-nowrap">
         <div class="mx-auto hidden text-slate-500 xl:block">
             Menampilkan <span id="products_count_total"></span> data<br>

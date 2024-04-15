@@ -1,6 +1,7 @@
 const id_el_list = '#data-list';
 const no_delete_items = [];
 let di_data_list = [];
+loadingElementImg = `<div class="col-span-12"><img src=".../.../img/loading-white.gif" class="mx-auto my-10 w-32">`; // rewrite
 
 function doDelete(id,name){
   if(confirm("Apakah Anda yakin menghapus input '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
@@ -53,7 +54,9 @@ function getData(selected_id){
   $(id_el_list+'-info').html('');
   let template = ``;
   // console.log('__product',di_data_list[selected_id]);
-  if(di_data_list[selected_id].length > 0){
+  if(!selected_id){
+    $(id_el_list+'-info').html('<center class="mt-5"><i>* pilih salah satu tipe berkas</i></center>');
+  }else if(di_data_list[selected_id].length > 0){
     (di_data_list[selected_id]).forEach((item) => {
       template +=
       `<tr data-tw-merge="" class="intro-x">
@@ -135,7 +138,7 @@ function getData(selected_id){
   }
 }
 function getDataTypeOfFile(move_to_page=null){
-  let id_el_list2 = 'tof'; di_data_list = [];
+  let id_el_list2 = 'tof'; di_data_list = []; getData(null);
   if(move_to_page){
     $('[name="_'+id_el_list2+'_page"]').val(move_to_page);
   }
@@ -151,7 +154,7 @@ function getDataTypeOfFile(move_to_page=null){
     }
   });
   $('._'+id_el_list2+'_filter').each(function() {
-    payload[$(this).attr('name')] = $(this).val();
+    payload[$(this).attr('name').replace('_'+id_el_list2,'')] = $(this).val();
   });
   // console.log('payload',payload); 
   // return;
@@ -258,6 +261,12 @@ function getDataTypeOfFile(move_to_page=null){
     console.log(error);
   });
 }
+
+$('[name="_tof_search"]').on("keyup",function search(e) {
+  if(e.which == 13) {
+    getDataTypeOfFile();
+  }
+});
 
 $(function () {
   getDataTypeOfFile();

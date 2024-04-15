@@ -105,6 +105,9 @@
                 </tr>
             </thead>
             <tbody id="data-list">
+                <tr>
+                    <td colspan="6"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></td>
+                </tr>
             </tbody>
         </table>
     </div>
