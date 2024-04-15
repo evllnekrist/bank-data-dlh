@@ -24,4 +24,7 @@ class Option extends Model
       'updated_by',
     ];
 
+    public function dynamic_input_list(){
+      return $this->hasMany(DynamicInput::class, 'type_of_file', 'value');
+    }
 }

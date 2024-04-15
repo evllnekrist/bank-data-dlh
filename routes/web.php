@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DynamicInputController;
 use App\Http\Controllers\FileManagerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsergroupController;
-use App\Http\Controllers\DynamicInputController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
         Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
 
+        Route::post('/option/get', [OptionController::class, 'get_list']);
+        
         Route::post('/dynamic-input/get', [DynamicInputController::class, 'get_list']);
         Route::post('/dynamic-input/post-add', [DynamicInputController::class, 'post_add']);
         Route::post('/dynamic-input/post-edit', [DynamicInputController::class, 'post_edit']);

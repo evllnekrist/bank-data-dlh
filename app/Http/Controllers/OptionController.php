@@ -4,51 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\UserGroup;
+use App\Models\Option;
 use DB;
 
-class UserGroupController extends Controller
+class OptionController extends Controller
 {
-    private $default_folder = 'user-group/';
-    private $file_indexes = array('img_main');
+    private $default_folder = 'option/';
+    private $file_indexes = array('');
     
     public function index()
     {
-      return view('pages.user-group.index');
+      return view('pages.option.index');
     }
     public function form_add()
     {
-      return view('pages.user-group.add');
+      return view('pages.option.add',$data);
     }
     public function form_edit($id)
     {
-      $data['selected'] = UserGroup::find($id);
+      $data['selected'] = Option::find($id);
       if($data['selected']){
-        return view('pages.user-group.edit', $data);
+        return view('pages.option.edit', $data);
       }else{
-        return $this->show_error_page('Satuan Kerja');
+        return $this->show_error_page('Opsi');
       }
     }
 
     // -------------------------------------- CALLED BY AJAX ---------------------------- start
       public function get_list(Request $request)
       {
-        // $filter['equal']  = [];
-        $filter['search'] = ['nickname','fullname'];
-        return $this->get_list_common($request, 'UserGroup', $filter, []);
+        $filter['equal']  = ['type'];
+        $filter['search'] = ['label'];
+        return $this->get_list_common($request, 'Option', $filter, $request->get('_model_with')?$request->get('_model_with'):[]);
       }
       public function post_delete($id)
       {
-          // $items =  User::where('user_group_id',$id)->get()->toArray();
-          // dd(!empty($items));
           try {
-            // check if there user related to the particular group
-            $items =  User::where('user_group_id',$id)->get()->toArray();
-            if(!empty($items)){
-              return json_encode(array('status'=>false, 'message'=>'Ada user yang berhubungan dengan satuan kerja ini. Hapus dahulu akun yang terkait jika ingin menghilangkan satker, atau cukup nonaktifkan satker lewat menu edit', 'data'=>$items));
-            }
-            $output = UserGroup::where('id', $id)->delete();
+            // check if ...
+            $output = Option::where('id', $id)->delete();
             return json_encode(array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output));
           } catch (Exception $e) {
             return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
@@ -56,11 +49,11 @@ class UserGroupController extends Controller
       }
       public function post_add(Request $request)
       {
+          // dump($request->all());
           $validator = Validator::make($request->all(), [
-            'fullname'  => 'required',
-            'nickname'  => 'required',
-            'email'     => 'required',
-            'phone'     => 'required',
+            'type'  => 'required',
+            'value'  => 'required',
+            'label'  => 'required',
           ]); 
           if ($validator->fails()) {
             // return redirect()->back()->withInput();
@@ -70,7 +63,7 @@ class UserGroupController extends Controller
           DB::beginTransaction();
           try {
             $data = $request->all(); 
-            $output = UserGroup::create($data); $output2 = null;
+            $output = Option::create($data); $output2 = null;
             if(!empty($this->file_indexes)){
               foreach($this->file_indexes as $index){ // https://laracasts.com/discuss/channels/laravel/how-direct-upload-file-in-storage-folder
                 if($request->file($index)){
@@ -86,7 +79,7 @@ class UserGroupController extends Controller
                   unset($data[$index]);
                 }
               }
-              $output2 = UserGroup::where('id',$output->id)->update($data);
+              $output2 = Option::where('id',$output->id)->update($data);
             }
             DB::commit();
             return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2)));
@@ -97,12 +90,11 @@ class UserGroupController extends Controller
       }
       public function post_edit(Request $request)
       {
-          // dd($request->all());
+          // dump($request->all());die();
           $validator = Validator::make($request->all(), [
-            'fullname'  => 'required',
-            'nickname'  => 'required',
-            'email'     => 'required',
-            'phone'     => 'required',
+            'type'  => 'required',
+            'value'  => 'required',
+            'label'  => 'required',
           ]); 
           if ($validator->fails()) {
             // return redirect()->back()->withInput();
@@ -136,7 +128,7 @@ class UserGroupController extends Controller
                 unset($data['files']);
               }
             }
-            $output = UserGroup::where('id',$id)->update($data);
+            $output = Option::where('id',$id)->update($data);
             DB::commit();
             return json_encode(array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id)));
           } catch (Exception $e) {

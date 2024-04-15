@@ -32,7 +32,7 @@ class RoleController extends Controller
     if($data['selected']){
       return view('pages.role.edit', $data);
     }else{
-      return $this->show_error_page('Dokumen Hukum');
+      return $this->show_error_page('Peran');
     }
   }
 

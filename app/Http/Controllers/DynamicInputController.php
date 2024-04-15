@@ -20,7 +20,7 @@ class DynamicInputController extends Controller
       if($data['selected']){
         return view('pages.dynamic-input.edit', $data);
       }else{
-        return $this->show_error_page('Dokumen Hukum');
+        return $this->show_error_page('input Dinamis');
       }
     }
 
