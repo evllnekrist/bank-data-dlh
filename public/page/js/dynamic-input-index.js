@@ -16,7 +16,7 @@ function doDelete(id,name){
           // html: "...",
           confirmButtonText: 'Ya, terima kasih',
         });
-        window.location = baseUrl+'/users';
+        window.location = baseUrl+'/dynamic-inputs';
       }else{
         Swal.fire({
           icon: 'warning',
@@ -49,14 +49,28 @@ function doDelete(id,name){
     });
   }
 }
+function goTo(act){
+  switch (act) {
+    case 'add':
+      window.location = baseUrl+'/dynamic-input/add/'+$('.active-tof').data('tof-value');
+      break;
+    default:
+      break;
+  }
+}
 function getData(selected_id){
-  $(id_el_list+'-wrap').hide();
-  $(id_el_list+'-info').html('');
+  $(id_el_list).html('');
+  $(id_el_list+'-wrap').show();
+  $(id_el_list+'-info').hide();
+  $('.item-tof').removeClass('active-tof');
   let template = ``;
   // console.log('__product',di_data_list[selected_id]);
   if(!selected_id){
-    $(id_el_list+'-info').html('<center class="mt-5"><i>* pilih salah satu tipe berkas</i></center>');
+    $(id_el_list+'-info').html('<center><i class="text-lg">* pilih salah satu tipe berkas</i></center>');
+    $(id_el_list+'-info').show();
+    $(id_el_list+'-wrap').hide();
   }else if(di_data_list[selected_id].length > 0){
+    $('#item-tof-'+selected_id).addClass('active-tof');
     (di_data_list[selected_id]).forEach((item) => {
       template +=
       `<tr data-tw-merge="" class="intro-x">
@@ -130,11 +144,12 @@ function getData(selected_id){
         </td>
       </tr>`;
     });
-    $(id_el_list+'-wrap').show();
     $(id_el_list).html(template);
     $('#products_count_total').html(di_data_list[selected_id].length);
   }else{
-    $(id_el_list+'-info').html('<center class="mt-5">Tidak ada data</center>');
+    $('#item-tof-'+selected_id).addClass('active-tof');
+    $(id_el_list).html('<tr><td colspan="8" class="text-warning"><center>Tidak ada data</center></td></tr>');
+    $('#products_count_total').html(0);
   }
 }
 function getDataTypeOfFile(move_to_page=null){
@@ -168,10 +183,10 @@ function getDataTypeOfFile(move_to_page=null){
             (response.data.data.products).forEach((item) => {
               di_data_list[item.id] = item.dynamic_input_list;
               template += `
-                <div class="box zoom-in col-span-12 cursor-pointer p-2 sm:col-span-3 md:col-span-2" `+(item.description?`title="`+item.description+`"`:``)+` onclick="getData(`+item.id+`)">
+                <button class="item-tof box zoom-in col-span-12 cursor-pointer p-2 sm:col-span-3 md:col-span-2" data-tof-value="`+item.value+`" id="item-tof-`+item.id+`" `+(item.description?`title="`+item.description+`"`:``)+` onclick="getData(`+item.id+`)">
                     <div class="text-base font-medium">`+item.label+`</div>
                     <div class="text-slate-500">`+(item.dynamic_input_list.length?`+ `+item.dynamic_input_list.length+` input dinamis`:``)+`</div>
-                </div>`;
+                </button>`;
             });
             $(id_el_list+'-'+id_el_list2).html(template);
           // i::data display---------------------------------------------------------------------------------END

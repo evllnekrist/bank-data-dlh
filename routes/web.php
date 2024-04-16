@@ -89,9 +89,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
     Route::get('user/edit', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
 
-    Route::get('dynamic-forms', [DynamicInputController::class, 'index'])->name('dynamic-form');
-    Route::get('dynamic-form/add', [DynamicInputController::class, 'form_add'])->name('dynamic-form.add');
-    Route::get('dynamic-form/edit/{id}', [DynamicInputController::class, 'form_edit'])->name('dynamic-form.edit');
+    Route::get('dynamic-inputs', [DynamicInputController::class, 'index'])->name('dynamic-input');
+    Route::get('dynamic-input/add/{type}', [DynamicInputController::class, 'form_add'])->name('dynamic-input.add');
+    Route::get('dynamic-input/edit/{id}', [DynamicInputController::class, 'form_edit'])->name('dynamic-input.edit');
 
     Route::get('faq', [HomeController::class, 'index_faq'])->name('faq');
 });

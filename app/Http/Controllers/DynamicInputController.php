@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DynamicInput;
+use App\Models\Option;
 
 class DynamicInputController extends Controller
 {
@@ -10,9 +12,19 @@ class DynamicInputController extends Controller
     {
       return view('pages.dynamic-input.index');
     }
-    public function form_add()
+    public function form_add($type)
     {
-      return view('pages.dynamic-input.add');
+      $data['selected_tof'] = $type;
+      $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
+      $data['input_types'] = Option::where('type','TYPE_OF_INPUT')->get();
+      $data['input_behavior'] = array();
+      foreach ($data['input_types'] as $key => $value) {
+        // echo 'BEHAVIOR_OF_INPUT_'.strtoupper($value->value).'<br>';
+        $data['input_behavior'][$value->value] = Option::where('type','BEHAVIOR_OF_INPUT_'.strtoupper($value->value))->get();
+      }
+      // dump($data);
+      // die();
+      return view('pages.dynamic-input.add',$data);
     }
     public function form_edit($id)
     {

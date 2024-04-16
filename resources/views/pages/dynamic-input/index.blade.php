@@ -2,7 +2,12 @@
 @section('title', 'Kelola Input')
 @section('content')
 {{-- <h2 class="intro-y mt-10 text-lg font-medium">Kelola Input</h2> --}}
-
+<style>
+    .active-tof, .dark .active-tof{
+        background-color: rgb(250, 204, 21);
+        color: black;
+    }
+</style>
 <div class="mt-5 box bg-primary p-2">
     <div class="intro-y col-span-12 mt-2 mb-5 flex flex-wrap items-center xl:flex-nowrap">
         <div class="mx-auto hidden text-white xl:block">
@@ -20,13 +25,14 @@
         <div class="col-span-12"><img src="{{asset('img/loading-white.gif')}}" class="mx-auto my-10 w-32"></div>
     </div>
 </div>
+<div class="mt-5" id="data-list-info"></div>
 <div class="mt-5 grid grid-cols-12 gap-6" id="data-list-wrap" style="display: none">
     <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center xl:flex-nowrap">
         <div class="mx-auto hidden text-slate-500 xl:block">
-            Menampilkan <span id="products_count_total"></span> data<br>
+            Menampilkan <span id="products_count_total">0</span> data<br>
             <input name="_page" value="1" class="_filter" hidden>
         </div>
-        <a href="{{route('register')}}" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-warning border-warning text-slate-900 dark:border-warning my-2 mr-1 w-40">Tambah Input</a>
+        <a onclick="goTo('add')" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-warning border-warning text-slate-900 dark:border-warning my-2 mr-1 w-40">Tambah Input</a>
         <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative">
             <button data-tw-merge="" data-tw-toggle="dropdown" aria-expanded="false" class="transition duration-200 border shadow-sm inline-flex items-center justify-center py-2 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed !box px-2">
                 <span class="flex h-5 w-5 items-center justify-center">
