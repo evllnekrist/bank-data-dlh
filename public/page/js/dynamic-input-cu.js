@@ -1,10 +1,55 @@
 function createBehaviorList(){
-    let template = '';
+    let template = `<select name="behavior[]" data-placeholder="Pilih salah satu..." class="w-full" multiple>`;
     let toi = $('[name="type_of_input"]').val();
+    let i = 0;
     behavior_list[toi].forEach(item => {
+        ++i;
         template += `<option value="`+item.value+`">`+item.label+`</option>`;
     });
-    $('[name="behavior"]').html(template);
+    template += `</select>`;
+    $('#select-behavior-data-info').html(`(tersedia `+i+` opsi)`);
+    $('#select-behavior').html(template);
+    $('[name="behavior[]"]').each(function() {
+        let options = {
+          plugins: {
+            dropdown_input: {}
+          }
+        };
+        if ($(this).data("placeholder")) {
+          options.placeholder = $(this).data("placeholder");
+        }
+        if ($(this).attr("multiple") !== void 0) {
+          options = {
+            ...options,
+            plugins: {
+              ...options.plugins,
+              remove_button: {
+                title: "Remove this item"
+              }
+            },
+            persist: false,
+            create: true,
+            onDelete: function(values) {
+              return confirm(
+                values.length > 1 ? "Are you sure you want to remove these " + values.length + " items?" : 'Are you sure you want to remove "' + values[0] + '"?'
+              );
+            }
+          };
+        }
+        if ($(this).data("header")) {
+          options = {
+            ...options,
+            plugins: {
+              ...options.plugins,
+              dropdown_header: {
+                title: $(this).data("header")
+              }
+            }
+          };
+        }
+        new TomSelect(this, options);
+    });
+
 }
 
 $(function(){
@@ -38,7 +83,7 @@ $(function(){
               // html: "...",
               confirmButtonText: 'Ya, terima kasih',
             });
-            window.location = baseUrl+'/dynamic-inputs';
+            // window.location = baseUrl+'/dynamic-inputs';
           }else{
             Swal.fire({
               icon: 'warning',

@@ -126,7 +126,7 @@ function getData(move_to_page=null){
                         `<i>tidak dapat dihapus</i>`;
               }else{
                 template +=
-                        `<a class="mr-3 flex items-center" href="#">
+                        `<a class="mr-3 flex items-center" href="`+baseUrl+'/user/edit/'+item.id+`">
                         <i class="fa fa-pen"></i>
                         </a>
                         <a onclick="doDelete(`+item.id+`,'`+item.name+`')" class="flex items-center text-danger">

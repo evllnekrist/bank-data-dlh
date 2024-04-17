@@ -5,7 +5,7 @@ loadingElementImg = `<div class="col-span-12"><img src=".../.../img/loading-whit
 
 function doDelete(id,name){
   if(confirm("Apakah Anda yakin menghapus input '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
-    axios.post(baseUrl+'/api/user/post-delete/'+id, {}, apiHeaders)
+    axios.post(baseUrl+'/api/dynamic-input/post-delete/'+id, {}, apiHeaders)
     .then(function (response) {
       console.log('response..',response);
       if(response.status == 200 && response.data.status) {
@@ -132,7 +132,7 @@ function getData(selected_id){
                 `<i>tidak dapat dihapus</i>`;
       }else{
         template +=
-                `<a class="mr-3 flex items-center" href="#">
+                `<a class="mr-3 flex items-center" href="`+baseUrl+'/dynamic-input/edit/'+item.id+`">
                 <i class="fa fa-pen"></i>
                 </a>
                 <a onclick="doDelete(`+item.id+`,'`+item.label+`')" class="flex items-center text-danger">

@@ -1,7 +1,7 @@
 (() => {
   // src/js/components/base/tom-select.js
-  (function() {
-    "use strict";
+  function initiateTomSelect(){
+    
     $(".tom-select").each(function() {
       let options = {
         plugins: {
@@ -42,5 +42,9 @@
       }
       new TomSelect(this, options);
     });
+  }
+  (function() {
+    "use strict";
+    initiateTomSelect();
   })();
 })();

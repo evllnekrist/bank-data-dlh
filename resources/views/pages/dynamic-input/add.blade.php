@@ -1,4 +1,4 @@
-@extends('layouts.app-enigma', ['breadcrumbs'=>[['label'=>'Input Dinamis','url'=>route('dynamic-input')],['label'=>'Tambah']]])
+@extends('layouts.app-enigma', ['breadcrumbs'=>[['label'=>'Kelola Input Dinamis','url'=>route('dynamic-input')],['label'=>'Tambah']]])
 @section('title', 'Tambah | Input Dinamis')
 @section('content')
     {{-- <h2 class="intro-y mt-10 text-lg font-medium">Input Dinamis</h2> --}}
@@ -48,10 +48,10 @@
                                         <input required name="label" class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">                                      
                                     </div>
                                     <div class="mt-3">
-                                        <label class="of-required text-slate-400">
-                                            Nama Asli 
+                                        <label class="of-required">
+                                            <span class="text-danger font-bold">Nama Asli</span> <small>(berikutnya tidak dapat diganti)</small>
                                         </label>
-                                        <input required name="name" class="lowercase nospace disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">                                        
+                                        <input required name="name" class="lowercase nospace_rw_underscore disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10">                                        
                                     </div>
                                     <div class="mt-3">
                                         <label class="text-slate-400">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mx-auto w-2/5 xl:ml-6 xl:mr-0 bg-mute">
+                        <div class="mx-auto w-3/5 xl:ml-6 xl:mr-0 bg-mute">
                             <div>
                                 <label class="text-slate-400">
                                     Terapkan
@@ -78,32 +78,32 @@
                                 <label class="text-slate-400">
                                     Apakah <b><u>wajib</u></b> diisi?
                                 </label>
-                                <div class="my-3">
+                                <div class="my-2">
                                     <div data-tw-merge class="flex items-center">
                                         <input data-tw-merge name="is_required" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white"/>
                                         <label data-tw-merge class="cursor-pointer ml-2">Ya</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-4">
+                            <div class="mt-3">
                                 <label class="text-slate-400">
-                                    Apakah dapat menerima <b><u>jawaban lebih dari satu</u></b>?
+                                    Apakah dapat menerima <b><u>jawaban lebih dari satu</u></b>?<br><small>(hanya berlaku untuk input seperti file dll yang memiliki mode jawaban ganda)</small>
                                 </label>
-                                <div class="my-3">
+                                <div class="my-2">
                                     <div data-tw-merge class="flex items-center">
                                         <input data-tw-merge name="is_multiple" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white w-[38px] h-[24px] p-px rounded-full relative before:w-[20px] before:h-[20px] before:shadow-[1px_1px_3px_rgba(0,0,0,0.25)] before:transition-[margin-left] before:duration-200 before:ease-in-out before:absolute before:inset-y-0 before:my-auto before:rounded-full before:dark:bg-darkmode-600 checked:bg-primary checked:border-primary checked:bg-none before:checked:ml-[14px] before:checked:bg-white"/>
                                         <label data-tw-merge class="cursor-pointer ml-2">Ya</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-3">
+                            <div class="mt-2">
                                 <label class="text-slate-400">
-                                    Perilaku Khusus
-                                    <div class="mt-2">
-                                        <select name="behavior" data-placeholder="Pilih salah satu..." class="tom-select w-full" multiple>
-                                        </select>
-                                    </div>
+                                    Perilaku Khusus <small id="select-behavior-data-info"></small>
                                 </label>
+                                <div class="mt-2" id="select-behavior">
+                                    <select name="behavior[]" data-placeholder="Pilih TIPE INPUT terlebih dahulu" class="tom-select w-full" multiple>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

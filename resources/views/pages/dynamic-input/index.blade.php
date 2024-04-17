@@ -1,5 +1,5 @@
-@extends('layouts.app-enigma', ['breadcrumbs'=>[['label'=>'Kelola Input'],['label'=>'Data']]])
-@section('title', 'Kelola Input')
+@extends('layouts.app-enigma', ['breadcrumbs'=>[['label'=>'Kelola Input Dinamis'],['label'=>'Data']]])
+@section('title', 'Input Dinamis')
 @section('content')
 {{-- <h2 class="intro-y mt-10 text-lg font-medium">Kelola Input</h2> --}}
 <style>
