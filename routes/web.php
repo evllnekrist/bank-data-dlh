@@ -53,6 +53,8 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/user/post-add', [RegisteredUserController::class, 'post_add']);
         Route::post('/user/post-edit', [RegisteredUserController::class, 'post_edit']);
         Route::post('/user/post-delete/{id}', [RegisteredUserController::class, 'post_delete']);
+
+        Route::post('/log/get', [LogController::class, 'get_list']);
     });
 });
 
@@ -75,8 +77,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('file/add', [FileManagerController::class, 'form_add'])->name('file-manager.add');
     Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('file-manager.edit');
 
-    Route::get('logs', [LogController::class, 'index'])->name('log');
-    Route::get('log/detail/{id}', [LogController::class, 'form_edit'])->name('log.edit');
+    Route::get('dynamic-inputs', [DynamicInputController::class, 'index'])->name('dynamic-input');
+    Route::get('dynamic-input/add/{type}', [DynamicInputController::class, 'form_add'])->name('dynamic-input.add');
+    Route::get('dynamic-input/edit/{id}', [DynamicInputController::class, 'form_edit'])->name('dynamic-input.edit');
     
     Route::get('roles', [RoleController::class, 'index'])->name('role');
     Route::get('role/add', [RoleController::class, 'form_add'])->name('role.add');
@@ -89,10 +92,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
     Route::get('user/edit', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
 
-    Route::get('dynamic-inputs', [DynamicInputController::class, 'index'])->name('dynamic-input');
-    Route::get('dynamic-input/add/{type}', [DynamicInputController::class, 'form_add'])->name('dynamic-input.add');
-    Route::get('dynamic-input/edit/{id}', [DynamicInputController::class, 'form_edit'])->name('dynamic-input.edit');
-
+    Route::get('logs', [LogController::class, 'index'])->name('log');
     Route::get('faq', [HomeController::class, 'index_faq'])->name('faq');
 });
 
