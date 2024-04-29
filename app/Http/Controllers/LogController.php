@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Models\Log;
+// use App\Models\Log;
 // use DB;
 
 class LogController extends Controller
@@ -19,7 +19,7 @@ class LogController extends Controller
       {
         // $filter['equal']  = [];
         $filter['search'] = [];
-        return $this->get_list_common($request, 'Log', $filter, []);
+        return $this->get_list_common($request, 'Log', $filter, ['creator']);
       }
     // -------------------------------------- CALLED BY AJAX ---------------------------- end
 }

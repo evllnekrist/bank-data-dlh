@@ -202,7 +202,7 @@ $(function(){
                 // html: "...",
                 confirmButtonText: 'Ya, terima kasih',
               });
-              //window.location = baseUrl+'/files';
+              window.location = baseUrl+'/files';
             }else{
               Swal.fire({
                 icon: 'warning',
@@ -282,7 +282,7 @@ $(function(){
                 // html: "...",
                 confirmButtonText: 'Ya, terima kasih',
               });
-              //window.location = baseUrl+'/files';
+              window.location = baseUrl+'/files';
             }else{
               Swal.fire({
                 icon: 'warning',

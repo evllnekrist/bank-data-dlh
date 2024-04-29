@@ -10,6 +10,7 @@ class Log extends Model
 {
     // use HasFactory;
     // use SoftDeletes;
+    public $timestamps = false;
     protected $table = 'logs';
     protected $fillable = [
         'subject',
@@ -19,4 +20,8 @@ class Log extends Model
         'created_at',
         'created_by',
     ];
+    
+    public function creator(){
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }

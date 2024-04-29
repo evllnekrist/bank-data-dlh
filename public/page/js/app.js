@@ -65,6 +65,25 @@ $('.lowercase').on('keyup', function(event) {
     lowercase(event);
 });
 
+function expandable(el){
+    let is_truncated = true;
+    $($(el).data('target')).each(function() {
+        if($(this).hasClass('truncate')){
+            $(this).removeClass('truncate');
+            is_truncated = false;
+        }else{
+            $(this).addClass('truncate');
+        }
+    });
+    if(!is_truncated){
+        $(el).addClass('bg-warning/20');
+        $(el).removeClass('bg-white dark:bg-darkmode-600');
+    }else{
+        $(el).removeClass('bg-warning/20');
+        $(el).addClass('bg-white dark:bg-darkmode-600');
+    }
+}
+
 function inputFile(event){
     let iii = event.target.getAttribute('data-index-input-file');
     const files = event.target.files

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Traits\PushLog;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\RolePermission;
@@ -12,6 +13,8 @@ use DB;
 
 class RoleController extends Controller
 {
+  use PushLog;
+  private $readable_name    = 'Peran'; 
   private $default_folder = 'role/';
   private $file_indexes = array('');
   
@@ -49,13 +52,16 @@ class RoleController extends Controller
           // check if there user related to the particular group
           $exist =  User::where('role_id',$id)->get()->toArray();
           if($exist){
-            return json_encode(array('status'=>false, 'message'=>'Ada user yang berhubungan dengan peran ini. Ubah dahulu peran akun yang terkait ke peran lain untuk dapat menghapus, atau cukup nonaktifkan peran lewat menu edit', 'data'=>$exist));
+            $output_final = array('status'=>false, 'message'=>'Ada user yang berhubungan dengan peran ini. 
+            Ubah dahulu peran akun yang terkait ke peran lain untuk dapat menghapus, atau cukup nonaktifkan peran lewat menu edit', 'data'=>$exist);
           }
           $output = Role::where('id', $id)->delete();
-          return json_encode(array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output));
+          $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
         } catch (Exception $e) {
-          return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+          $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
         }
+        $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
+        return json_encode($output_final);
     }
     public function post_add(Request $request)
     {
@@ -65,7 +71,7 @@ class RoleController extends Controller
         ]); 
         if ($validator->fails()) {
           // return redirect()->back()->withInput();
-          return json_encode(array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null));
+          $output_final = array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null);
         }
   
         DB::beginTransaction();
@@ -99,11 +105,13 @@ class RoleController extends Controller
             ]);
           }
           DB::commit();
-          return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2, 'output_permission'=>$output3)));
+          $output_final = array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2, 'output_permission'=>$output3));
         } catch (Exception $e) {
           DB::rollback();
-          return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+          $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
         }
+        $this->LogRequest('Tambah '.$this->readable_name,$request,$output_final);
+        return $output_final;
     }
     public function post_edit(Request $request)
     {
@@ -112,8 +120,7 @@ class RoleController extends Controller
           'menu_action'  => 'required',
         ]); 
         if ($validator->fails()) {
-          // return redirect()->back()->withInput();
-          return json_encode(array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null));
+          $output_final = array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null);
         }
         
         DB::beginTransaction();
@@ -154,11 +161,13 @@ class RoleController extends Controller
             ]);
           }
           DB::commit();
-          return json_encode(array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id)));
+          $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));
         } catch (Exception $e) {
           DB::rollback();
-          return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+          $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
         }
+        $this->LogRequest('Edit '.$this->readable_name,$request,$output_final);
+        return json_encode($output_final);
     }
   // -------------------------------------- CALLED BY AJAX ---------------------------- end
 }
