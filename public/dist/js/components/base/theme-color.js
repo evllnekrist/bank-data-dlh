@@ -39,5 +39,7 @@
     $(
       `[data-appearance-mode='${localStorage.getItem("appearance-mode")}']`
     ).addClass("active");
+    isDark = ($(this).attr("data-appearance-mode") == 'dark')? true:false;
+    influencedColorScheme();
   });
 })();

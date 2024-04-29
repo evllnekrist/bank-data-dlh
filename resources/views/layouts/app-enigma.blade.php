@@ -36,6 +36,7 @@
             </div>
         </div>
         <script>
+            const assetUrl = "{{asset('/')}}"
             const accept_mimes = JSON.parse(`{!! json_encode(Config::get('app.accept_mimes')) !!}`);
             // console.log('accept_mimes',accept_mimes);
         </script>

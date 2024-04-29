@@ -1,6 +1,5 @@
 console.log('____app js');
 
-const assetUrl = "{{asset('/')}}"
 const baseUrl = window.location.origin;
 const apiHeaders = {
     "Accept": "*/*",
@@ -8,6 +7,7 @@ const apiHeaders = {
     "Content-Type": "multipart/form-data",
 };
 const formatterMonth = new Intl.DateTimeFormat('en-US', { month: 'short' });
+let isDark = $('html.dark').length;
 let loadingElementImg = `<div class="col-span-12"><img src="../../img/loading.gif" class="mx-auto"></div>`;
 let loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
@@ -223,6 +223,14 @@ function shorten(text, maxLength, delimiter, overflow) {
     }else{
         return "";
     }
+}
+
+function influencedColorScheme(){
+    let template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-mini.gif">`
+    if(isDark){
+      template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-dark-mini.gif">`
+    }
+    $('#gif-influenced-color-sceme').html(template)
 }
 
 $(function (){
