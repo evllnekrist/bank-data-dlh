@@ -63,6 +63,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('shared/{id}', [FileManagerController::class, 'page_shared'])->name('file-manager.shared');
+Route::get('phpmyinfo', function () {
+    phpinfo(); 
+})->name('phpmyinfo');
 
 // -------- PAGE ---- REQ LOGIN
 Route::middleware(['auth', 'verified'])->group(function () {
