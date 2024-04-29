@@ -83,7 +83,7 @@ $(function(){
               // html: "...",
               confirmButtonText: 'Ya, terima kasih',
             });
-            // window.location = baseUrl+'/dynamic-inputs';
+            window.location = baseUrl+'/dynamic-inputs';
           }else{
             Swal.fire({
               icon: 'warning',

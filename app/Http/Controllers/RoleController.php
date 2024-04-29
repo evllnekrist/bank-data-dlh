@@ -15,8 +15,8 @@ class RoleController extends Controller
 {
   use PushLog;
   private $readable_name    = 'Peran'; 
-  private $default_folder = 'role/';
-  private $file_indexes = array('');
+  private $default_folder   = 'role/';
+  private $file_indexes     = array('');
   
   public function index()
   {

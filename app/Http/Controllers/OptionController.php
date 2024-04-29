@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Traits\PushLog;
 use App\Models\Option;
 use DB;
 
 class OptionController extends Controller
 {
-    private $default_folder = 'option/';
-    private $file_indexes = array('');
+    use PushLog;
+    private $readable_name    = 'Opsi'; 
+    private $default_folder   = 'option/';
+    private $file_indexes     = array('');
     
     public function index()
     {
@@ -42,10 +45,12 @@ class OptionController extends Controller
           try {
             // check if ...
             $output = Option::where('id', $id)->delete();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output));
+            $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
           } catch (Exception $e) {
-            return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
           }
+          $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
+          return json_encode($output_final);
       }
       public function post_add(Request $request)
       {
@@ -57,7 +62,7 @@ class OptionController extends Controller
           ]); 
           if ($validator->fails()) {
             // return redirect()->back()->withInput();
-            return json_encode(array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null);
           }
     
           DB::beginTransaction();
@@ -82,11 +87,13 @@ class OptionController extends Controller
               $output2 = Option::where('id',$output->id)->update($data);
             }
             DB::commit();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2)));
+            $output_final = array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output,'output_img'=>$output2));
           } catch (Exception $e) {
             DB::rollback();
-            return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
           }
+          $this->LogRequest('Tambah '.$this->readable_name,$request,$output_final);
+          return $output_final;
       }
       public function post_edit(Request $request)
       {
@@ -98,7 +105,7 @@ class OptionController extends Controller
           ]); 
           if ($validator->fails()) {
             // return redirect()->back()->withInput();
-            return json_encode(array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null);
           }
           
           DB::beginTransaction();
@@ -130,11 +137,13 @@ class OptionController extends Controller
             }
             $output = Option::where('id',$id)->update($data);
             DB::commit();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id)));
+            $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));
           } catch (Exception $e) {
             DB::rollback();
-            return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
           }
+          $this->LogRequest('Edit '.$this->readable_name,$request,$output_final);
+          return json_encode($output_final);
       }
     // -------------------------------------- CALLED BY AJAX ---------------------------- end
 }

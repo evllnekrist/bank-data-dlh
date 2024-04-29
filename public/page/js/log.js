@@ -40,18 +40,20 @@ function getData(move_to_page=null){
                   <div data-target=".expandable-`+item.id+`-collapse" onclick="expandable(this)"
                       class="transition duration-200 ease-in-out transform cursor-pointer inline-block sm:block border-b border-slate-200/60 dark:border-darkmode-400 hover:scale-[1.02] hover:relative hover:z-20 hover:shadow-md hover:border-0 hover:rounded bg-white text-slate-800 dark:text-slate-300 dark:bg-darkmode-600">
                       <div class="flex px-5 py-3">
-                          <div class="mr-5 w-1/4 truncate expandable-`+item.id+`-collapse">`+item.subject+`</div>
-                          <div class="mr-5 w-1/2 truncate expandable-`+item.id+`-collapse">`+item.request+`</div>
-                          <div class="mr-5 w-1/2 truncate expandable-`+item.id+`-collapse">`+item.response+`</div>
+                          <div class="mr-5 w-1/4 truncate expandable-`+item.id+`-collapse">`+(item.subject?item.subject:`-`)+`</div>
+                          <div class="mr-5 w-1/2 truncate expandable-`+item.id+`-collapse">`+(item.request?item.request:`-`)+`</div>
+                          <div class="mr-5 w-1/2 truncate expandable-`+item.id+`-collapse">`+(item.response?item.response:`-`)+`</div>
                           <div class="w-1/4 whitespace-nowrap">
-                              <div class="text-right">`+item.created_at+`</div>
-                              <div class="flex justify-end">
-                                  <div class="image-fit relative h-6 w-6 flex-none">
-                                      <img class="rounded-full" src="../../dist/images/fakers/profile-3.jpg" alt="Profile Pic">
-                                  </div>
-                                  <div class="ml-3 truncate font-medium">`+item.creator.name+`</div>
-                              </div>
-                          </div>
+                              <div class="text-right">`+item.created_at+`</div>`+
+                              (item.creator?
+                                `<div class="flex justify-end">
+                                    <div class="image-fit relative h-6 w-6 flex-none">
+                                        <img class="rounded-full" src="../../dist/images/fakers/profile-3.jpg" alt="Profile Pic">
+                                    </div>
+                                    <div class="ml-3 truncate font-medium">`+item.creator.name+`</div>
+                                </div>`:
+                                `<div class="flex justify-end">`+item.description+`</div>`)
+                          +`</div>
                       </div>
                   </div>
               </div>`;

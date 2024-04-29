@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Traits\PushLog;
 use App\Models\User;
 use App\Models\Usergroup;
 use App\Models\Role;
@@ -18,6 +19,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    use PushLog;
+    private $readable_name    = 'Pengguna'; 
+
     public function index()
     {
         $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
@@ -36,10 +40,12 @@ class RegisteredUserController extends Controller
       {
           try {
             $output = User::where('id', $id)->delete();
-            return json_encode(array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output));
+            $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);;
           } catch (Exception $e) {
-            return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+            $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
           }
+          $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
+          return json_encode($output_final);
       }
     // -------------------------------------- CALLED BY AJAX ---------------------------- end
     
@@ -78,8 +84,14 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
+        $request->request->remove('password');
+        $request->request->remove('password_confirmation');
+        $this->LogRequest('Tambah '.$this->readable_name,$request,$user);
+
+        // // AUTO LOGIN:
+        // Auth::login($user); 
         // return redirect(RouteServiceProvider::HOME);
+        // // BACK TO USER LIST:
         return redirect(route('user'));
     }
 }
