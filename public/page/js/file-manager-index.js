@@ -47,7 +47,8 @@ function doDelete(id,name){
     });
   }
 }
-function getData(move_to_page=null){
+function getData(move_to_page=null,keywords=''){
+  let template_search = ``;
   $(id_el_list).html(loadingElementImg);
   if(move_to_page){
     $('[name="_page"]').val(move_to_page);
@@ -63,6 +64,14 @@ function getData(move_to_page=null){
   $("._filter").each(function() {
     payload[$(this).attr('name')] = $(this).val();
   });
+  console.log('keywords',keywords);
+  if(keywords){
+    template_search += ` kata kunci <b>`+keywords+`</b>`;
+    payload['_keywords'] = keywords;
+  }
+  if($('[name="_search"]').val()){
+    template_search += ` pencarian <b>`+$('[name="_search"]').val()+`</b>`;
+  }
   // console.log('payload',payload); 
   // return;
   axios.post(url, payload, apiHeaders)
@@ -137,6 +146,7 @@ function getData(move_to_page=null){
             $('#products_count_start').html(response.data.data.products_count_start);
             $('#products_count_end').html(response.data.data.products_count_end);
             $('#products_count_total').html(response.data.data.products_count_total);
+            $('#products_search_info').html(template_search);
           // i::data statistics------------------------------------------------------------------------------END
           // i::data pagination----------------------------------------------------------------------------START
             template = '';

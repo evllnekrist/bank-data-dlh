@@ -17,8 +17,9 @@ class LogController extends Controller
     // -------------------------------------- CALLED BY AJAX ---------------------------- start
       public function get_list(Request $request)
       {
-        // $filter['equal']  = [];
-        $filter['search'] = [];
+        // $filter['equal']        = [];
+        $filter['search']       = ['subject'];
+        $filter['search_jsonb'] = ['request'=>'message','response'=>'message'];
         return $this->get_list_common($request, 'Log', $filter, ['creator']);
       }
     // -------------------------------------- CALLED BY AJAX ---------------------------- end

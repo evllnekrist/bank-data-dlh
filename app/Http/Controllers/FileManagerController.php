@@ -21,7 +21,8 @@ class FileManagerController extends Controller
     
     public function index()
     {
-      return view('pages.file-manager.index');
+      $data['keywords'] = Keyword::orderBy('subject','asc')->get();
+      return view('pages.file-manager.index',$data);
     }
     public function form_add()
     {
@@ -54,8 +55,14 @@ class FileManagerController extends Controller
     // -------------------------------------- CALLED BY AJAX ---------------------------- start
       public function get_list(Request $request)
       {
-        // $filter['equal']  = [];
+        $filter['equal_comma']  = ['keywords'];
         $filter['search'] = ['title'];
+        return $this->get_list_common($request, 'File', $filter, ['owner_user_group']);
+      }
+      public function get_list_minimal(Request $request)
+      {
+        $filter['search'] = ['title'];
+        $request->request->add(['_dir' => array('id'=>'ASC'),'_limit' => 10]); 
         return $this->get_list_common($request, 'File', $filter, ['owner_user_group']);
       }
       public function post_delete($id)

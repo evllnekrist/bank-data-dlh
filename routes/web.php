@@ -28,6 +28,7 @@ Route::group(['prefix' => 'api'], function () {
   
     Route::middleware('auth')->group(function () {
         Route::post('/file/get', [FileManagerController::class, 'get_list']);
+        Route::post('/file/get-min', [FileManagerController::class, 'get_list_minimal']);
         Route::post('/file/post-add', [FileManagerController::class, 'post_add']);
         Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
         Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
@@ -51,7 +52,7 @@ Route::group(['prefix' => 'api'], function () {
 
         Route::post('/user/get', [RegisteredUserController::class, 'get_list']);
         Route::post('/user/post-add', [RegisteredUserController::class, 'post_add']);
-        Route::post('/user/post-edit', [RegisteredUserController::class, 'post_edit']);
+        // Route::post('/user/post-edit', [RegisteredUserController::class, 'post_edit']);
         Route::post('/user/post-delete/{id}', [RegisteredUserController::class, 'post_delete']);
 
         Route::post('/log/get', [LogController::class, 'get_list']);
@@ -93,7 +94,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user-group/edit/{id}', [UserGroupController::class, 'form_edit'])->name('user-group.edit');
 
     Route::get('users', [RegisteredUserController::class, 'index'])->name('user');
-    Route::get('user/edit', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
+    Route::get('user/edit/{id}', [RegisteredUserController::class, 'form_edit'])->name('user.edit');
+    Route::post('user/post-edit', [RegisteredUserController::class, 'update'])->name('user.update');
 
     Route::get('logs', [LogController::class, 'index'])->name('log');
     Route::get('faq', [HomeController::class, 'index_faq'])->name('faq');

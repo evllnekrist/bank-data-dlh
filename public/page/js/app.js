@@ -233,6 +233,64 @@ function influencedColorScheme(){
     $('#gif-influenced-color-sceme').html(template)
 }
 
+$('#global-file-search').on('keyup', function(event) {
+    const id_search_list    = '#global-file-search-result';
+    const class_search_info = '.global-file-search-result-more';
+    let str = event.target.value;
+    
+    $(class_search_info).hide();
+    if(str.length < 3){
+        $(id_search_list).html('<center><i>Pencarian minimal dari 3 karakter</i></center>');
+    }else{
+        $(id_search_list).html(loadingElementImg);
+        let url = baseUrl+'/api/file/get-min'
+        axios.post(url, {'_search':str}, apiHeaders)
+        .then(function (response) {
+          if(response.data.status) {
+              $(id_search_list+'-total').html(response.data.data.products_count_total);
+              $(id_search_list+'-open-link').attr('href','/files?iso='+str);
+              if(response.data.data.products && response.data.data.products.length > 0) {
+                // i::data display-------------------------------------------------------------------------------START
+                  let template = ``;
+                  (response.data.data.products).forEach((item) => {
+                   template += `
+                   <a class="mt-2 flex items-center" href="/file/edit/`+item.id+`" target="_blank">
+                        <div class="ml-3"><i>`+item.title+`</i></div>
+                        <div class="ml-auto w-48 truncate text-right text-xs text-slate-500">
+                            <b>`+(item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)+`</b>
+                        </div>
+                    </a>`;
+                  });
+                  $(id_search_list).html(template);
+                  $(class_search_info).show();
+                // i::data display---------------------------------------------------------------------------------END
+              }else{
+                $(id_search_list).html('<h3 class="mt-5">Tidak ada data yang sesuai</h3>');
+              }
+                
+          }else{
+            Swal.fire({
+              icon: 'warning',
+              width: 600,
+              title: "Gagal",
+              html: response.data.message,
+              confirmButtonText: 'Ya',
+            });
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            icon: 'error',
+            width: 600,
+            title: "Error",
+            html: error,
+            confirmButtonText: 'Ya',
+          });
+          console.log(error);
+        });
+    }
+});
+
 $(function (){
     
 });

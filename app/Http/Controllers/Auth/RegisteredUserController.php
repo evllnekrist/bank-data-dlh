@@ -58,6 +58,14 @@ class RegisteredUserController extends Controller
         $data['roles'] = Role::orderBy('id','desc')->get();
         return view('auth.register',$data);
     }
+    public function form_edit($id): View
+    {
+        $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
+        $data['roles'] = Role::orderBy('id','desc')->get();
+        $data['selected'] = User::where('id',$id)->first();
+        return view('auth.register-edit',$data);
+    }
+
 
     /**
      * Handle an incoming registration request.
@@ -87,6 +95,43 @@ class RegisteredUserController extends Controller
         $request->request->remove('password');
         $request->request->remove('password_confirmation');
         $this->LogRequest('Tambah '.$this->readable_name,$request,$user);
+
+        // // AUTO LOGIN:
+        // Auth::login($user); 
+        // return redirect(RouteServiceProvider::HOME);
+        // // BACK TO USER LIST:
+        return redirect(route('user'));
+    }
+
+    public function update(Request $request): RedirectResponse
+    {
+        // dd($request->all());
+        $id = $request->get('id'); $request->request->remove('id');
+        $selected = User::where('id',$id)->first();
+        $validation_rule = [
+          'role_id' => ['required'],
+          'user_group_id' => ['required'],
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+        ];
+        if($selected->email != $request->get('email')){
+          array_push($validation_rule['email'],'unique:'.User::class);
+        }
+        if($request->get('password')){
+          $validation_rule['password'] = ['required', 'confirmed', Rules\Password::defaults()];
+        }
+        $request->validate($validation_rule);
+
+        $user = User::where('id',$id)->update([
+            'role_id'       => $request->role_id,
+            'user_group_id' => $request->user_group_id,
+            'name'          => $request->name,
+            'email'         => $request->email,
+        ]);
+
+        $request->request->remove('password');
+        $request->request->remove('password_confirmation');
+        $this->LogRequest('Edit '.$this->readable_name,$request,$user);
 
         // // AUTO LOGIN:
         // Auth::login($user); 

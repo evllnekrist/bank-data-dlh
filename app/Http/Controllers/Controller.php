@@ -29,6 +29,13 @@ class Controller extends BaseController
                 }
               }
             }
+            if(isset($filter['equal_comma'])){ 
+              foreach ($filter['equal_comma'] as $key => $value) {
+                if(isset($data['filter']['_'.$value])){ 
+                    $data['products'] = $data['products']->whereRaw($value." LIKE '%".$data['filter']['_'.$value]."%'");
+                }
+              }
+            }
             if(isset($filter['search'])){
                 if(isset($data['filter']['_search'])){
                     $query = "(";
@@ -40,6 +47,19 @@ class Controller extends BaseController
                     }
                     $query .= ')';
                     $data['products'] = $data['products']->whereRaw($query);
+                }
+            }
+            if(isset($filter['search_jsonb'])){
+                if(isset($data['filter']['_search'])){
+                    $query = "("; $i = 0;
+                    foreach ($filter['search_jsonb'] as $key => $value) {
+                        $query .= "LOWER(".$key."->>'".$value."') LIKE '%".strtolower($data['filter']['_search'])."%'";
+                        if($i+1 < sizeof($filter['search_jsonb'])){
+                            $query .= " or ";
+                        }$i++;
+                    }
+                    $query .= ')';
+                    $data['products'] = $data['products']->orWhereRaw($query);
                 }
             }
             if(!empty($data['filter']['_dir'])){
