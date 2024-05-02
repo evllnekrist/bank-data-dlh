@@ -20,7 +20,7 @@ class LogController extends Controller
         // $filter['equal']        = [];
         $filter['search']       = ['subject'];
         $filter['search_jsonb'] = ['request'=>'message','response'=>'message'];
-        return $this->get_list_common($request, 'Log', $filter, ['creator']);
+        return $this->get_list_common($request, 'Log', $filter, ['creator.user_group_attr']);
       }
     // -------------------------------------- CALLED BY AJAX ---------------------------- end
 }

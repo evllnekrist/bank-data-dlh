@@ -88,7 +88,7 @@ class FileManagerController extends Controller
           } catch (Exception $e) {
             $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
           }
-          $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
+          $this->LogRequest('Hapus '.$this->readable_name,$request,$output_final);
           return json_encode($output_final);
       }
       public function post_add(Request $request)

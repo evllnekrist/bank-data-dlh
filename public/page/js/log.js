@@ -57,6 +57,9 @@ function getData(move_to_page=null){
                               <div class="text-right">`+item.created_at+`</div>`+
                               (item.creator?
                                 `<div class="flex justify-end">
+                                    <div class="image-fit relative h-6 w-6 flex-none">
+                                      <img class="rounded-full" src="`+cleanUrl(assetUrl+item.creator.user_group_attr.img_main)+`" alt="SatKer Pic">
+                                    </div>
                                     <div class="ml-3 truncate font-medium">`+item.creator.name+`</div>
                                 </div>`:
                                 `<div class="flex justify-end">`+item.description+`</div>`)
@@ -64,9 +67,7 @@ function getData(move_to_page=null){
                       </div>
                   </div>
               </div>`;
-              // <div class="image-fit relative h-6 w-6 flex-none">
-              //     <img class="rounded-full" src="" alt="Profile Pic">
-              // </div>
+              
               $(id_el_list).append(template);
             });
           // i::data display---------------------------------------------------------------------------------END

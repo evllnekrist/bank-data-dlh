@@ -291,6 +291,10 @@ $('#global-file-search').on('keyup', function(event) {
     }
 });
 
+function cleanUrl(str){
+    return str.replace(/([^:])(\/\/+)/g, '$1/');
+}
+
 $(function (){
     
 });
