@@ -87,15 +87,17 @@
                         <span id="products_count_start">0</span> - <span id="products_count_end">0</span> 
                         dari <span id="products_count_total">0</span> data
                     </div>
-                    <a class="ml-5 flex h-5 w-5 items-center justify-center" href="#">
+                    <a class="ml-5 flex h-5 w-5 items-center justify-center" onclick="getDataByOp(-1)">
                         <i data-tw-merge="" data-lucide="chevron-left" class="stroke-1.5 h-4 w-4"></i>
-                    </a>
-                    <a class="ml-5 flex h-5 w-5 items-center justify-center" href="#">
+                    </a>                    
+                    <input name="_page" value="1" class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 
+                    [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out 
+                    text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary 
+                    focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 group-[.form-inline]:flex-1 
+                    !box mt-3 w-20 sm:mt-0" type="number" onchange="getData()">
+                    <a class="ml-5 flex h-5 w-5 items-center justify-center" onclick="getDataByOp(+1)">
                         <i data-tw-merge="" data-lucide="chevron-right" class="stroke-1.5 h-4 w-4"></i>
                     </a>
-                    {{-- <a class="ml-5 flex h-5 w-5 items-center justify-center" href="#">
-                        <i data-tw-merge="" data-lucide="settings" class="stroke-1.5 h-4 w-4"></i>
-                    </a> --}}
                 </div>
             </div>
             <div data-tw-merge class="overflow-x-auto sm:overflow-x-visible accordion" id="data-list">

@@ -8,6 +8,7 @@ loadingElementImg = `<div class="intro-y `+class_el_list+`">
                     </div>`; // rewrite
 
 function getData(move_to_page=null){
+  console.log($('#products_count_end').val()/$('[name="_limit"]').val());
   $('.'+class_el_list).remove();
   $(id_el_list).append(loadingElementImg);
   if(move_to_page){
@@ -31,7 +32,17 @@ function getData(move_to_page=null){
     console.log('[DATA] response..',response.data);
     if(response.data.status) {
         $('.'+class_el_list).remove();
-        if(response.data.data.products && response.data.data.products.length > 0) {
+        if(response.data.data.products_count_start > response.data.data.products_count_total){
+          Swal.fire({
+            icon: 'warning',
+            width: 600,
+            title: "Oops...",
+            html: "Halaman di atas batas. Dikembalikan ke halaman 1",
+            confirmButtonText: 'Ya',
+          });
+          getData(1);
+          return;
+        }else if(response.data.data.products && response.data.data.products.length > 0) {
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
             (response.data.data.products).forEach((item) => {
@@ -94,6 +105,22 @@ function getData(move_to_page=null){
     });
     console.log(error);
   });
+}
+
+function getDataByOp(op){
+  let page = Number($('[name="_page"]').val());
+  let move_to_page = page+op;
+  if(move_to_page > 0){
+    getData(move_to_page);
+  }else{
+    Swal.fire({
+      icon: 'warning',
+      width: 600,
+      title: "Oops...",
+      html: "Sudah di halaman 1",
+      confirmButtonText: 'Ya',
+    });
+  }
 }
 
 $(function () {
