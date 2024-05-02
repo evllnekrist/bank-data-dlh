@@ -32,6 +32,7 @@ Route::group(['prefix' => 'api'], function () {
         Route::post('/file/post-add', [FileManagerController::class, 'post_add']);
         Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
         Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
+        Route::post('/file/post-delete-bulk', [FileManagerController::class, 'post_delete_bulk']);
 
         Route::post('/option/get', [OptionController::class, 'get_list']);
         

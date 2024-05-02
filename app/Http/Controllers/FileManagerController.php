@@ -77,6 +77,20 @@ class FileManagerController extends Controller
           $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
           return json_encode($output_final);
       }
+      public function post_delete_bulk(Request $request)
+      {
+          try {
+            $data = $request->all();
+            foreach ($data['data'] as $id => $value) {       
+              $output[$id] = File::where('id', $id)->delete();
+            }
+            $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
+          } catch (Exception $e) {
+            $output_final = array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null);
+          }
+          $this->LogRequest('Hapus '.$this->readable_name,$id,$output_final);
+          return json_encode($output_final);
+      }
       public function post_add(Request $request)
       {
           // dump($request->all());
@@ -130,7 +144,9 @@ class FileManagerController extends Controller
                 $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
               }
               $data['keywords'] = implode(',',$data['keywords']);
-              $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
+              if(isset($data['dynamic_inputs'])){
+                $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
+              }
               // dd($data);
               $output2 = File::where('id',$output->id)->update($data);
             }
@@ -194,7 +210,9 @@ class FileManagerController extends Controller
               $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
             }
             $data['keywords'] = implode(',',$data['keywords']);
-            $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
+            if(isset($data['dynamic_inputs'])){
+              $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
+            }
             $output = File::where('id',$id)->update($data);
             DB::commit();
             $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));

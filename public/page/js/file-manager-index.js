@@ -1,9 +1,15 @@
 const id_el_list = '#data-list';
 const no_delete_items = [];
 
-function doDelete(id,name){
-  if(confirm("Apakah Anda yakin menghapus berkas '"+name+"'? Aksi ini tidak dapat dibatalkan.")){
-    axios.post(baseUrl+'/api/file/post-delete/'+id, {}, apiHeaders)
+function doDeleteBulk(){
+  var selected = {};
+  $('.product-item:checkbox:checked').each(function() {
+      selected[$(this).data('id')] = $(this).data('title');
+  });
+  let str = $.map(selected, function(obj){return `'`+obj+`'`}).join(', ');
+  // console.log('selected',selected,str)
+  if(confirm("Apakah Anda yakin menghapus berkas "+str+"? Aksi ini tidak dapat dibatalkan.")){
+    axios.post(baseUrl+'/api/file/post-delete-bulk', {'data':selected}, apiHeaders)
     .then(function (response) {
       console.log('response..',response);
       if(response.status == 200 && response.data.status) {
@@ -91,12 +97,16 @@ function getData(move_to_page=null,keywords=''){
                     $('#product_'+item.id+'_img').attr("src",imgToDisplay)
                 }
               }
-
+              
             template +=
-              `<div class="intro-y col-span-6 sm:col-span-4 md:col-span-3">
+              `<div class="intro-y col-span-2">
                   <div class="file box zoom-in relative rounded-md px-3 pb-5 pt-8 sm:px-5">
                       <div class="absolute left-0 top-0 ml-3 mt-3">
-                          <input data-tw-merge="" type="checkbox" class="transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 border">
+                          <input data-tw-merge="" type="checkbox" data-id="`+item.id+`" data-title="`+item.title+`" class="product-item transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded 
+                          focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 
+                          [&[type='radio']]:checked:bg-primary [&[type='radio']]:checked:border-primary [&[type='radio']]:checked:border-opacity-10 [&[type='checkbox']]:checked:bg-primary 
+                          [&[type='checkbox']]:checked:border-primary [&[type='checkbox']]:checked:border-opacity-10 [&:disabled:not(:checked)]:bg-slate-100 [&:disabled:not(:checked)]:cursor-not-allowed 
+                          [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 border">
                       </div>
                       <div class="mx-auto w-3/5">`;
                     if(extensions['img'].includes(item.type_of_extension)){

@@ -124,6 +124,8 @@ function getDynamicInputs(dofill=false){
               $(id_el_list+'-loading').hide();
             // i::data display---------------------------------------------------------------------------------END
           }else{
+            $(id_el_list+'-img').html(``);
+            $(id_el_list+'-noimg').html(``);
             $(id_el_list+'-info').html('<i class="mx-auto text-slate-300">* tidak ada form tambahan</i>');
             $(id_el_list+'-loading').hide();
           }
@@ -187,9 +189,9 @@ $(function(){
             }
           }; 
           formData.append('file_indexes2',fileIndexes2);
-          for (const [key, value] of formData) {
-            console.log('»', key, value, typeof(value))
-          }; 
+          // for (const [key, value] of formData) {
+          //   console.log('»', key, value, typeof(value))
+          // }; 
           // return
           axios.post(baseUrl+'/api/file/post-add', formData, apiHeaders)
           .then(function (response) {
