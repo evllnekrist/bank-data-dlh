@@ -6,9 +6,12 @@
       $(this).on("focus", function() {
         $(".search-result").addClass("show");
       });
-      $(this).on("focusout", function() {
-        $(".search-result").removeClass("show");
-      });
+      // $(this).on("focusout", function() {
+      //   $(".search-result").removeClass("show");
+      // });
+    });
+    $(".search-close").click(function(){
+      $(".search-result").removeClass("show");
     });
   })();
 })();

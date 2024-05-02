@@ -42,11 +42,16 @@
                     <div  id="global-file-search-result">
                         Pencarian minimal dari 3 karakter ...
                     </div>
-                    <div href="#" class="mt-5 global-file-search-result-more font-medium text-slate-400 text-right" style="display: none">
-                        <a href="#" id="global-file-search-result-open-link">
-                            lihat list (<b>total <span id="global-file-search-result-total"></span> data</b>)
-                            <i class="fas fa-angle-right ml-5"></i><i class="fas fa-angle-right"></i>
-                        </a>
+                    <div href="#" class="mt-5 global-file-search-result-more font-medium text-slate-400 flex justify-between" style="display: none">
+                        <div class="flex-1 text-warning">
+                            <a class="search-close"><i class="fas fa-minus-square mr-5"></i>tutup bar</a>
+                        </div>
+                        <div class="flex-1 text-right">
+                            <a href="#" id="global-file-search-result-open-link">
+                                lihat list (<b>total <span id="global-file-search-result-total"></span> data</b>)
+                                <i class="fas fa-angle-right ml-5"></i><i class="fas fa-angle-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

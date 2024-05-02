@@ -8,7 +8,6 @@ loadingElementImg = `<div class="intro-y `+class_el_list+`">
                     </div>`; // rewrite
 
 function getData(move_to_page=null){
-  console.log($('#products_count_end').val()/$('[name="_limit"]').val());
   $('.'+class_el_list).remove();
   $(id_el_list).append(loadingElementImg);
   if(move_to_page){
