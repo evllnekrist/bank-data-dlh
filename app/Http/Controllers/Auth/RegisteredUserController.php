@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Traits\PushLog;
 use App\Models\User;
-use App\Models\Usergroup;
+use App\Models\UserGroup;
 use App\Models\Role;
 use App\Models\Option;
 use App\Providers\RouteServiceProvider;

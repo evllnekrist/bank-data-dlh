@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Traits\PushLog;
 use App\Models\File;
 // use App\Models\DynamicInput;
-use App\Models\Usergroup;
+use App\Models\UserGroup;
 use App\Models\Option;
 use App\Models\Keyword;
 use DB;
