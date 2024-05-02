@@ -27,7 +27,7 @@
                         {{$item->subject}}
                     </button>
                 @endforeach
-                <a class="mt-5 flex items-center rounded-md px-3 py-2" href="">
+                <a class="mt-5 flex items-center rounded-md px-3 py-2" href="#" title="lakukan penambahan/perubahan berkas dengan kata kunci baru">
                     <i data-tw-merge="" data-lucide="plus" class="stroke-1.5 mr-2 h-4 w-4"></i>
                     Tambah Kata Kunci
                 </a>

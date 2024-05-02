@@ -87,14 +87,16 @@ function getData(move_to_page=null,keywords=''){
         if(response.data.data.products && response.data.data.products.length > 0) {
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
+            let imgToDisplay = [];
             (response.data.data.products).forEach((item) => {
-              imgToDisplay = baseUrl+'/img/no-image-clean.png'
-              if(extensions['img'].includes(item.type_of_extension)){  
-                imgToDisplay = item.file_link?item.file_link:item.file_main
+              imgToDisplay[item.id] = baseUrl+'/img/no-image-clean.png'
+              if(extensions['img'].includes('.'+item.type_of_extension)){  
+                imgToDisplay[item.id] = item.file_main?cleanUrl(assetUrl+item.file_main):item.file_link
                 img = new Image();
-                img.src = imgToDisplay+"?_="+(new Date().getTime());
+                img.src = imgToDisplay[item.id]+"?_="+(new Date().getTime());
                 img.onload = function () {
-                    $('#product_'+item.id+'_img').attr("src",imgToDisplay)
+                    $('#product_'+item.id+'_img').attr("src",imgToDisplay[item.id])
+                    // console.log('item id '+item.id,imgToDisplay[item.id]);
                 }
               }
               
@@ -109,14 +111,14 @@ function getData(move_to_page=null,keywords=''){
                           [&:disabled:not(:checked)]:dark:bg-darkmode-800/50 [&:disabled:checked]:opacity-70 [&:disabled:checked]:cursor-not-allowed [&:disabled:checked]:dark:bg-darkmode-800/50 border">
                       </div>
                       <div class="mx-auto w-3/5">`;
-                    if(extensions['img'].includes(item.type_of_extension)){
+                    if(extensions['img'].includes('.'+item.type_of_extension)){
                         template += `
                             <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block">
                                 <div class="image-fit absolute left-0 top-0 h-full w-full">
-                                    <img data-action="zoom" class="rounded-md" src="`+imgToDisplay+`" alt="this file is an image" id="product_`+item.id+`_img">
+                                    <img data-action="zoom" class="rounded-md" src="`+imgToDisplay[item.id]+`" alt="this file is an image" id="product_`+item.id+`_img">
                                 </div>
                             </div>`;
-                    }else if(extensions['doc'].includes(item.type_of_extension)){
+                    }else if(extensions['doc'].includes('.'+item.type_of_extension)){
                         template += `
                             <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
                                 <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
