@@ -46,7 +46,7 @@ class DynamicInputController extends Controller
         }
         return view('pages.dynamic-input.edit', $data);
       }else{
-        return $this->show_error_page('input Dinamis');
+        return $this->show_error_404('input Dinamis');
       }
     }
 

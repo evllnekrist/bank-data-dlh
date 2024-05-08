@@ -41,14 +41,18 @@ class FileManagerController extends Controller
       // dump($data); die();
       $data['selected'] = File::find($id);
       if($data['selected']){
-        $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
-        $data['keywords'] = Keyword::orderBy('subject','asc')->get();
-        $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
-        $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
-        $data['publicity_types'] = Option::where('type','TYPE_OF_PUBLICITY')->get();
-        return view('pages.file-manager.edit', $data);
+        if($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id){
+          $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
+          $data['keywords'] = Keyword::orderBy('subject','asc')->get();
+          $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
+          $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
+          $data['publicity_types'] = Option::where('type','TYPE_OF_PUBLICITY')->get();
+          return view('pages.file-manager.edit', $data);
+        }else{
+          return $this->show_error_401('Berkas');
+        }
       }else{
-        return $this->show_error_page('Berkas');
+        return $this->show_error_404('Berkas');
       }
     }
 
@@ -57,6 +61,7 @@ class FileManagerController extends Controller
       {
         $filter['equal_comma']  = ['keywords'];
         $filter['search'] = ['title'];
+        $filter['permission'] = ['type_of_publicity'];
         return $this->get_list_common($request, 'File', $filter, ['owner_user_group']);
       }
       public function get_list_minimal(Request $request)

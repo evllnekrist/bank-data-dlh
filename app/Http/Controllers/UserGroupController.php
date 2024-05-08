@@ -30,7 +30,7 @@ class UserGroupController extends Controller
       if($data['selected']){
         return view('pages.user-group.edit', $data);
       }else{
-        return $this->show_error_page('Satuan Kerja');
+        return $this->show_error_404('Satuan Kerja');
       }
     }
 

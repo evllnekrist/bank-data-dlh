@@ -35,7 +35,7 @@ class RoleController extends Controller
     if($data['selected']){
       return view('pages.role.edit', $data);
     }else{
-      return $this->show_error_page('Peran');
+      return $this->show_error_404('Peran');
     }
   }
 

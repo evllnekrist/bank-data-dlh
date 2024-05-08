@@ -10,9 +10,28 @@ use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-
     
+    public function show_error_404($object_name = 'Berkas')
+    {
+      $error_details = array(
+        'title' => 'Yaah...',
+        'desc' => $object_name . ' yang Anda cari tidak ditemukan.'
+      );
+      return view('errors.404', $error_details);
+    }
+
+    public function show_error_401($object_name = 'Berkas')
+    {
+      $error_details = array(
+        'title' => 'Oops,',
+        'desc' => $object_name . ' ini tidak termasuk hak akses Anda.'
+      );
+      return view('errors.401', $error_details);
+    }
+
+
     public function get_list_common(Request $request, $model, $filter, $with){
+        // return json_encode(\Auth::user());
         try {
           $data['filter']       = $request->all();
           $model                = 'App\Models\\'.$model;
@@ -61,6 +80,14 @@ class Controller extends BaseController
                     $query .= ')';
                     $data['products'] = $data['products']->orWhereRaw($query);
                 }
+            }
+            if(isset($filter['permission']) && \Auth::user()->role_id != 1){
+              for ($i=0; $i < sizeof($filter['permission']); $i++) { 
+                $data['products'] = $data['products']->whereRaw("(".$filter['permission'][$i]." = 'public' OR (".$filter['permission'][$i]." = 'user_group' AND user_group_id = ".\Auth::user()->user_group_id."))");
+                if($i+1 < sizeof($filter['permission'])){
+                    $query .= " or ";
+                }
+              }
             }
             if(!empty($data['filter']['_dir'])){
               foreach ($data['filter']['_dir'] as $key => $value) {

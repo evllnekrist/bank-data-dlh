@@ -29,7 +29,7 @@ class OptionController extends Controller
       if($data['selected']){
         return view('pages.option.edit', $data);
       }else{
-        return $this->show_error_page('Opsi');
+        return $this->show_error_404('Opsi');
       }
     }
 
