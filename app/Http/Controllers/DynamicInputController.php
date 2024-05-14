@@ -61,6 +61,7 @@ class DynamicInputController extends Controller
       public function post_delete($id)
       {
           try {
+            $output2 = DynamicInput::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);
             $output = DynamicInput::where('id', $id)->delete();
             $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
           } catch (Exception $e) {
@@ -88,6 +89,7 @@ class DynamicInputController extends Controller
             if(isset($data['behavior'])){
               $data['behavior'] = implode(',',$data['behavior']);
             }
+            $data['created_by'] = \Auth::check()?\Auth::user()->id:null;
             $output = DynamicInput::create($data);
             DB::commit();
             $output_final = array('status'=>true, 'message'=>'Berhasil menyimpan data', 'data'=>array('output'=>$output));
@@ -119,6 +121,7 @@ class DynamicInputController extends Controller
             if(isset($data['behavior'])){
               $data['behavior'] = implode(',',$data['behavior']);
             }
+            $data['updated_by'] = \Auth::check()?\Auth::user()->id:null;
             $output = DynamicInput::where('id',$id)->update($data);
             DB::commit();
             $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));

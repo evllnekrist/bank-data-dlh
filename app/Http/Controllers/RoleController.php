@@ -55,6 +55,7 @@ class RoleController extends Controller
             $output_final = array('status'=>false, 'message'=>'Ada user yang berhubungan dengan peran ini. 
             Ubah dahulu peran akun yang terkait ke peran lain untuk dapat menghapus, atau cukup nonaktifkan peran lewat menu edit', 'data'=>$exist);
           }
+          $output2 = Role::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);
           $output = Role::where('id', $id)->delete();
           $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
         } catch (Exception $e) {
@@ -95,6 +96,7 @@ class RoleController extends Controller
                 unset($data[$index]);
               }
             }
+            $data['created_by'] = \Auth::check()?\Auth::user()->id:null;
             $output2 = Role::where('id',$output->id)->update($data);
           }
           foreach ($menu_actions as $menu_action_id) {
@@ -151,6 +153,7 @@ class RoleController extends Controller
               unset($data['files']);
             }
           }
+          $data['updated_by'] = \Auth::check()?\Auth::user()->id:null;
           $output = Role::where('id',$id)->update($data);
           RolePermission::where('role_id',$id)->delete();
           foreach ($menu_actions as $menu_action_id) {

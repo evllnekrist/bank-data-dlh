@@ -74,6 +74,7 @@ class FileManagerController extends Controller
       {
           try {
             // check if ...
+            $output2 = File::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);
             $output = File::where('id', $id)->delete();
             $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
           } catch (Exception $e) {
@@ -86,7 +87,8 @@ class FileManagerController extends Controller
       {
           try {
             $data = $request->all();
-            foreach ($data['data'] as $id => $value) {       
+            foreach ($data['data'] as $id => $value) {   
+              $output2[$id] = File::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);    
               $output[$id] = File::where('id', $id)->delete();
             }
             $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
@@ -145,14 +147,17 @@ class FileManagerController extends Controller
                   }
                 }
               }
-              foreach ($data['keywords'] as $key => $value) {               
-                $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
+              if(isset($data['keywords'])){
+                foreach ($data['keywords'] as $key => $value) {               
+                  $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
+                }
+                $data['keywords'] = implode(',',$data['keywords']);
               }
-              $data['keywords'] = implode(',',$data['keywords']);
               if(isset($data['dynamic_inputs'])){
                 $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
               }
               // dd($data);
+              $data['created_by'] = \Auth::check()?\Auth::user()->id:null;
               $output2 = File::where('id',$output->id)->update($data);
             }
             DB::commit();
@@ -211,13 +216,16 @@ class FileManagerController extends Controller
                 }
               }
             }
-            foreach ($data['keywords'] as $key => $value) {               
-              $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
+            if(isset($data['keywords'])){
+              foreach ($data['keywords'] as $key => $value) {               
+                $output3[$key] = Keyword::firstOrCreate(['subject'=>$value]);
+              }
+              $data['keywords'] = implode(',',$data['keywords']);
             }
-            $data['keywords'] = implode(',',$data['keywords']);
             if(isset($data['dynamic_inputs'])){
               $data['dynamic_inputs'] = json_encode($data['dynamic_inputs']);
             }
+            $data['updated_by'] = \Auth::check()?\Auth::user()->id:null;
             $output = File::where('id',$id)->update($data);
             DB::commit();
             $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));

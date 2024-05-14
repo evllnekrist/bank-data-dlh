@@ -39,6 +39,7 @@ class RegisteredUserController extends Controller
       public function post_delete($id)
       {
           try {
+            $output2 = User::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);
             $output = User::where('id', $id)->delete();
             $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);;
           } catch (Exception $e) {
@@ -88,6 +89,7 @@ class RegisteredUserController extends Controller
             'name'          => $request->name,
             'email'         => $request->email,
             'password'      => Hash::make($request->password),
+            'created_by'    => \Auth::check()?\Auth::user()->id:null
         ]);
 
         event(new Registered($user));
@@ -127,6 +129,7 @@ class RegisteredUserController extends Controller
             'user_group_id' => $request->user_group_id,
             'name'          => $request->name,
             'email'         => $request->email,
+            'updated_by'    => \Auth::check()?\Auth::user()->id:null
         ]);
 
         $request->request->remove('password');

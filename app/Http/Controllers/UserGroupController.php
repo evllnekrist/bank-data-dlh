@@ -53,6 +53,7 @@ class UserGroupController extends Controller
               $output_final = array('status'=>false, 'message'=>'Ada user yang berhubungan dengan satuan kerja ini. 
               Hapus dahulu akun yang terkait jika ingin menghilangkan satker, atau cukup nonaktifkan satker lewat menu edit', 'data'=>$items);
             }else{
+              $output2 = UserGroup::where('id', $id)->update(['deleted_by'    => \Auth::check()?\Auth::user()->id:null]);
               $output = UserGroup::where('id', $id)->delete();
               $output_final = array('status'=>true, 'message'=>'Berhasil menghapus data', 'data'=>$output);
             }
@@ -94,6 +95,7 @@ class UserGroupController extends Controller
                   unset($data[$index]);
                 }
               }
+              $data['created_by'] = \Auth::check()?\Auth::user()->id:null;
               $output2 = UserGroup::where('id',$output->id)->update($data);
             }
             DB::commit();
@@ -144,6 +146,7 @@ class UserGroupController extends Controller
                   unset($data['files']);
                 }
               }
+              $data['updated_by'] = \Auth::check()?\Auth::user()->id:null;
               $output = UserGroup::where('id',$id)->update($data);
               DB::commit();
               $output_final = array('status'=>true, 'message'=>'Berhasil mengubah data', 'data'=>array('output'=>$output,'data'=>$data,'id'=>$id));
