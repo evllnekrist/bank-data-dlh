@@ -41,7 +41,7 @@ class FileManagerController extends Controller
       // dump($data); die();
       $data['selected'] = File::find($id);
       if($data['selected']){
-        if($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id){
+        if($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1){
           $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
           $data['keywords'] = Keyword::orderBy('subject','asc')->get();
           $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
