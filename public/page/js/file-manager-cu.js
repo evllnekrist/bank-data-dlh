@@ -43,7 +43,7 @@ function getDynamicInputs(dofill=false){
                         <label class="text-sm text-slate-400 tracking-wide `+(item.is_required?`of-required`:``)+`">`+item.label+`</label>
                         <div class="grid grid-cols-1 space-y-2 border-dashed border-2 px-5 my-2 border-indigo-600">
                             <div class="flex items-center justify-center w-full">
-                                <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                                <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 py-5 px-2 group text-center">
                                     <div class="h-full w-full text-center flex flex-col items-center justify-center items-center  ">
                                         `+(dofill && selected[item.name]?``:`<svg xmlns="http://www.w3.org/2000/svg" id="input-file-none-`+(file_i)+`"
                                             class="w-10 h-10 text-blue-400 group-hover:text-blue-600" 

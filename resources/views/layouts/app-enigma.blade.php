@@ -58,7 +58,7 @@
         <script src="{{asset('dist/js/themes/enigma.js')}}"></script>
         <script src="{{asset('dist/js/components/mobile-menu.js')}}"></script>
         <script src="{{asset('dist/js/components/themes/enigma/top-bar.js')}}"></script>
-        <script src="{{asset('page/js/app.js')}}"></script>
+        <script src="{{asset('page/js/app.js')}}?v=240529"></script>
         <!-- END: Vendor JS Assets-->
         <!-- BEGIN: Pages, layouts, components JS Assets-->
         @yield('addition_script')

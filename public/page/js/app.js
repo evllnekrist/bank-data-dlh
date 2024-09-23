@@ -91,12 +91,23 @@ function inputFile(event){
     // console.log('change input image');
     // console.log(iii,event);
     for(i = 0; i < files.length; i++){
+        // console.log(iii,event.target.files[i]);
         url = URL.createObjectURL(event.target.files[i]);
         if($.inArray(event.target.files[i]['type'], accept_mimes['img']) >= 0){
-            template += `<img src="`+url+`">`;
-        }else{
+            $('#input-file-preview-'+iii).removeClass('w-4/5');
+            template += `<img class="mx-auto" width="50%" src="`+url+`">`;
+        }else if(event.target.files[i]['type'] == 'application/pdf'){
+            $('#input-file-preview-'+iii).removeClass('w-4/5');
             template += `
-            <div class="mx-auto w-3/5">
+            <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+url+`" 
+                frameborder="1" 
+                scrolling="auto" 
+                height="400px">
+            </iframe>`;
+        }else{
+            $('#input-file-preview-'+iii).addClass('w-4/5');
+            template += `
+            <div class="mx-auto w-2/5">
                 <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
                     <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
                         `+(event.target.files[i]['name']).split('.').pop().toUpperCase()+`
@@ -122,10 +133,20 @@ function initiateFileFromInput(){
         if(typeof $(this).data('value') !== 'undefined' && $(this).data('value')){
             type_of_extension = $(this).data('value').split('.').pop();
             if(extensions['img'].includes('.'+type_of_extension)){
-                template = `<img src="`+$(this).data('value')+`">`;
+                $('#input-file-preview-'+iii).removeClass('w-4/5');
+                template += `<img class="mx-auto" width="50%" src="`+$(this).data('value')+`">`;
+            }else if(type_of_extension == 'pdf'){
+                $('#input-file-preview-'+iii).removeClass('w-4/5');
+                template += `
+                <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+$(this).data('value')+`" 
+                    frameborder="1" 
+                    scrolling="auto" 
+                    height="400px">
+                </iframe>`;
             }else{
-                template = `
-                <div class="mx-auto w-3/5">
+                $('#input-file-preview-'+iii).addClass('w-4/5');
+                template += `
+                <div class="mx-auto w-2/5">
                     <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
                         <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
                             `+type_of_extension.toUpperCase()+`

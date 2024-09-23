@@ -38,7 +38,8 @@ class FileManagerController extends Controller
       // $request = new Request;
       // $dynamic_inputs = json_decode(app('App\Http\Controllers\DynamicInputController')->get_list($request));
       // $data['dynamic_inputs'] = $dynamic_inputs->data->products;
-      // dump($data); die();
+      // dump($data);
+      // die();
       $data['selected'] = File::find($id);
       if($data['selected']){
         if($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1){
