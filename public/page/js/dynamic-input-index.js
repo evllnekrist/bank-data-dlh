@@ -64,6 +64,10 @@ function getData(selected_id){
   $(id_el_list+'-info').hide();
   $('.item-tof').removeClass('active-tof');
   let template = ``;
+  let deletable = 0;
+  if($('[name="is_deletable"]').length && $('[name="is_deletable"]').val()){
+    deletable = 1;
+  }
   // console.log('__product',di_data_list[selected_id]);
   if(!selected_id){
     $(id_el_list+'-info').html('<center><i class="text-lg">* pilih salah satu tipe berkas</i></center>');
@@ -134,10 +138,13 @@ function getData(selected_id){
         template +=
                 `<a class="mr-3 flex items-center" href="`+baseUrl+'/dynamic-input/edit/'+item.id+`">
                 <i class="fa fa-pen"></i>
-                </a>
+                </a>`;
+        if(deletable){
+        template +=    `
                 <a onclick="doDelete(`+item.id+`,'`+item.label+`')" class="flex items-center text-danger">
                 <i class="fa fa-trash"></i>
                 </a>`;
+        }
       }
       template +=
             `</div>

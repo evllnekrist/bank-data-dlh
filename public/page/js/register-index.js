@@ -72,6 +72,10 @@ function getData(move_to_page=null){
   .then(function (response) {
     console.log('[DATA] response..',response.data);
     if(response.data.status) {
+        let deletable = 0;
+        if($('[name="is_deletable"]').length && $('[name="is_deletable"]').val()){
+          deletable = 1;
+        }
         if(response.data.data.products && response.data.data.products.length > 0) {
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
@@ -128,10 +132,13 @@ function getData(move_to_page=null){
                 template +=
                         `<a class="mr-3 flex items-center" href="`+baseUrl+'/user/edit/'+item.id+`">
                         <i class="fa fa-pen"></i>
-                        </a>
+                        </a>`;
+                if(deletable){
+                template +=    `
                         <a onclick="doDelete(`+item.id+`,'`+item.name+`')" class="flex items-center text-danger">
                         <i class="fa fa-trash"></i>
                         </a>`;
+                }
               }
               template +=
                     `</div>

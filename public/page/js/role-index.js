@@ -69,6 +69,10 @@ function getData(move_to_page=null){
   .then(function (response) {
     console.log('[DATA] response..',response.data);
     if(response.data.status) {
+        let deletable = 0;
+        if($('[name="is_deletable"]').length && $('[name="is_deletable"]').val()){
+          deletable = 1;
+        }
         if(response.data.data.products && response.data.data.products.length > 0) {
           // i::data display-------------------------------------------------------------------------------START
             let template = ``;
@@ -92,10 +96,13 @@ function getData(move_to_page=null){
               }else{
                 template +=    `<a href="`+baseUrl+'/role/edit/'+item.id+`" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-slate-500 dark:border-darkmode-100/40 dark:text-slate-300 [&:hover:not(:disabled)]:bg-secondary/20 [&:hover:not(:disabled)]:dark:bg-darkmode-100/10 px-2 py-2">
                                     <i class="fa fa-pen"></i>
-                                </a>
+                                </a>`;
+                if(deletable){
+                template +=    `
                                 <button onclick="doDelete(`+item.id+`,'`+item.name+`')" data-tw-merge="" class="transition duration-200 border shadow-sm inline-flex items-center justify-center rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed border-secondary text-danger dark:border-danger mr-2 px-2 py-2">
                                     <i class="fa fa-trash"></i>
                                 </button>`;
+                }
               }
               template += `</div>
                       </div>

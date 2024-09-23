@@ -16,7 +16,8 @@ class DynamicInputController extends Controller
 
     public function index()
     {
-      return view('pages.dynamic-input.index');
+      $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/dynamic-inputs')['permit'], 'name','delete'); 
+      return view('pages.dynamic-input.index', $data);
     }
     public function form_add($type)
     {

@@ -18,7 +18,8 @@ class UserGroupController extends Controller
     
     public function index()
     {
-      return view('pages.user-group.index');
+      $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/user-groups')['permit'], 'name','delete'); 
+      return view('pages.user-group.index', $data);
     }
     public function form_add()
     {

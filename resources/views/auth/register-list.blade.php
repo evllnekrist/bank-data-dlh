@@ -26,6 +26,9 @@
            <center>
                 Menampilkan <span id="products_count_start"></span> - <span id="products_count_end"></span><br>dari <span id="products_count_total"></span> data<br>
                 <input name="_page" value="1" class="_filter" hidden>
+                @if(@$is_deletable)
+                <input name="is_deletable" value="{{json_encode($is_deletable)}}" hidden>
+                @endif
             </center>
         </div>
         <div class="mt-3 flex w-full items-center xl:mt-0 xl:w-auto">
@@ -131,5 +134,5 @@
 @section('addition_css')
 @endsection
 @section('addition_script')
-    <script src="{{ asset('page/js/register-index.js').'?v='.date('YmdH').'1' }}"></script>
+    <script src="{{ asset('page/js/register-index.js').'?v='.date('YmdH').'2' }}"></script>
 @endsection

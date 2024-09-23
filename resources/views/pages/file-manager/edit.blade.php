@@ -158,6 +158,11 @@
             </div>
         </div>
         {{-- DYNAMIC --------------------------- end ----}}
+        @if(!$selected->is_uneditable)
+            <div class="col-span-12 mb-10">
+                <i class="mx-auto text-slate-300">* hanya baca, tidak dapat diedit</i>
+            </div>
+        @else
         <div class="col-span-12 mb-10">
             <button type="button" id="btn-submit-edit"
             class="btn-submit my-5 w-full flex justify-center p-4 rounded-full tracking-wide font-semibold ring-4 ring-primary ring-opacity-20 
@@ -166,6 +171,7 @@
                 Simpan Perubahan
             </button>
         </div>
+        @endif
     </div>
 @endsection
 @section('addition_css')

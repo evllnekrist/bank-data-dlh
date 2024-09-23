@@ -110,5 +110,24 @@ class Controller extends BaseController
         } catch (Exception $e) {
           return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
         }
-      }
+    }
+
+  function findBySlug($menus, $var, $val) {
+    foreach ($menus as $menu) {
+        // Check if the slug matches
+        if (isset($menu[$var]) && $menu[$var] === $val) {
+            return $menu; // Return the matching item
+        }
+
+        // Recursively search in children if they exist
+        if (isset($menu['children']) && !empty($menu['children'])) {
+            $result = $this->findBySlug($menu['children'], $var, $val);
+            if ($result) {
+                return $result;
+            }
+        }
+    }
+
+    return null; // Return null if not found
+  }
 }

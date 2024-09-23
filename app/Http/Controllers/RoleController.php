@@ -20,7 +20,8 @@ class RoleController extends Controller
   
   public function index()
   {
-    return view('pages.role.index');
+    $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/roles')['permit'], 'name','delete'); 
+    return view('pages.role.index', $data);
   }
   public function form_add()
   {

@@ -26,6 +26,9 @@
                 <center>
                      Menampilkan <span id="products_count_start"></span> - <span id="products_count_end"></span><br>dari <span id="products_count_total"></span> data<br>
                      <input name="_page" value="1" class="_filter" hidden>
+                     @if(@$is_deletable)
+                     <input name="is_deletable" value="{{json_encode($is_deletable)}}" hidden>
+                     @endif
                  </center>
             </div>
             <div class="mt-3 w-full sm:ml-auto sm:mt-0 sm:w-auto md:ml-0">

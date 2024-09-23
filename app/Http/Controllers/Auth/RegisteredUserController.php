@@ -27,6 +27,7 @@ class RegisteredUserController extends Controller
         $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
         $data['roles'] = Role::orderBy('id','desc')->get();
         $data['active_status'] = Option::where('type','ACTIVE_STATUS')->get();
+        $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/users')['permit'], 'name','delete'); 
         return view('auth.register-list',$data);
     }
     // -------------------------------------- CALLED BY AJAX ---------------------------- start

@@ -22,6 +22,7 @@ class FileManagerController extends Controller
     public function index()
     {
       $data['keywords'] = Keyword::orderBy('subject','asc')->get();
+      $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/files')['permit'], 'name','delete'); 
       return view('pages.file-manager.index',$data);
     }
     public function form_add()
@@ -42,12 +43,13 @@ class FileManagerController extends Controller
       // die();
       $data['selected'] = File::find($id);
       if($data['selected']){
-        if($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1){
+        if($data['selected']->editorial_permission == 'public' || $data['selected']->type_of_publicity == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1){
           $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
           $data['keywords'] = Keyword::orderBy('subject','asc')->get();
           $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
           $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
           $data['publicity_types'] = Option::where('type','TYPE_OF_PUBLICITY')->get();
+          $data['is_uneditable'] = !($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1);
           return view('pages.file-manager.edit', $data);
         }else{
           return $this->show_error_401('Berkas');
