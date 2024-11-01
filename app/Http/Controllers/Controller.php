@@ -6,11 +6,87 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    
+
+    public function __construct()
+    {
+        // Check if the current route is without the 'auth' middleware
+        $route = Route::current();
+        $routeMiddleware = Route::currentRouteAction();
+        
+        // If 'auth' middleware is not present, set the session
+        if (!$this->routeHasAuthMiddleware($routeMiddleware)) {
+            // Set session data with 'role_permission'
+            Session::put('role_permission', [
+                "1" => [
+                    "name" => "Aktivitas",
+                    "display_type" => "divider-text",
+                    "icon" => null,
+                    "children" => [
+                        [
+                            "name" => "Dashboard",
+                            "display_type" => null,
+                            "icon" => "home",
+                            "slug" => "/dashboard",
+                            "permit" => [
+                                [
+                                    "id" => 1,
+                                    "menu_id" => 3,
+                                    "name" => "read",
+                                    "slug" => "/dashboard",
+                                    "is_enabled" => true,
+                                    "description" => "melihat dashboard sederhana"
+                                ]
+                            ],
+                            "children" => []
+                        ],
+                        [
+                            "name" => "Lihat Berkas Publik",
+                            "display_type" => null,
+                            "icon" => "hard-drive",
+                            "slug" => "/files",
+                            "permit" => [
+                                [
+                                    "id" => 3,
+                                    "menu_id" => 4,
+                                    "name" => "filter-list",
+                                    "is_enabled" => true,
+                                    "description" => "menggunakan filter khusus untuk pencarian spesifik"
+                                ],
+                                [
+                                    "id" => 5,
+                                    "menu_id" => 4,
+                                    "name" => "edit",
+                                    "is_enabled" => true,
+                                    "description" => "mengubah data yang sudah ada"
+                                ],
+                                [
+                                    "id" => 2,
+                                    "menu_id" => 4,
+                                    "name" => "read",
+                                    "slug" => "/files",
+                                    "is_enabled" => true,
+                                    "description" => "melihat daftar data"
+                                ]
+                            ],
+                            "children" => []
+                        ]
+                    ]
+                ]
+            ]);
+        }
+    }
+
+    // Helper function to check if a route has the 'auth' middleware
+    protected function routeHasAuthMiddleware($routeMiddleware)
+    {
+        return strpos($routeMiddleware, 'auth') !== false;
+    }
     public function show_error_404($object_name = 'Berkas')
     {
       $error_details = array(
@@ -81,12 +157,24 @@ class Controller extends BaseController
                     $data['products'] = $data['products']->orWhereRaw($query);
                 }
             }
-            if(isset($filter['permission']) && \Auth::user()->role_id != 1){
-              for ($i=0; $i < sizeof($filter['permission']); $i++) { 
-                $data['products'] = $data['products']->whereRaw("(".$filter['permission'][$i]." = 'public' OR (".$filter['permission'][$i]." = 'user_group' AND user_group_id = ".\Auth::user()->user_group_id."))");
-                if($i+1 < sizeof($filter['permission'])){
-                    $query .= " or ";
+            if(isset($filter['permission'])) {
+              if(\Auth::check()){
+                if(\Auth::user()->role_id == 1){}
+                else{
+                  for ($i=0; $i < sizeof($filter['permission']); $i++) { 
+                    $data['products'] = $data['products']->whereRaw("(".$filter['permission'][$i]." = 'public' OR (".$filter['permission'][$i]." = 'user_group' AND user_group_id = ".\Auth::user()->user_group_id."))");
+                    if($i+1 < sizeof($filter['permission'])){
+                        $query .= " or ";
+                    }
+                  }
                 }
+              }else{
+                for ($i=0; $i < sizeof($filter['permission']); $i++) { 
+                  $data['products'] = $data['products']->whereRaw("(".$filter['permission'][$i]." = 'public')");
+                  if($i+1 < sizeof($filter['permission'])){
+                    $query .= " or ";
+                  }
+                }   
               }
             }
             if(!empty($data['filter']['_dir'])){

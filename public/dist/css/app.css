@@ -5824,6 +5824,9 @@ select {
   --tw-text-opacity: 1;
   color: rgb(var(--color-theme-1) / var(--tw-text-opacity));
 }
+.text-logo{
+  color: #7ed957;
+}
 .text-warning {
   --tw-text-opacity: 1;
   color: rgb(var(--color-warning) / var(--tw-text-opacity));

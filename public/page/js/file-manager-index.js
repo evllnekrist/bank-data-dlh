@@ -101,8 +101,8 @@ function getData(move_to_page=null,keywords=''){
               }
               
             template +=
-              `<div class="intro-y col-span-2">
-                  <div class="file box zoom-in relative rounded-md px-3 pb-5 pt-8 sm:px-5">
+              `<div class="intro-y">
+                  <div class="file box zoom-in relative rounded-md px-2 pb-5 pt-8">
                       <div class="absolute left-0 top-0 ml-3 mt-3">
                           <input data-tw-merge="" type="checkbox" data-id="`+item.id+`" data-title="`+item.title+`" class="product-item transition-all duration-100 ease-in-out shadow-sm border-slate-200 cursor-pointer rounded 
                           focus:ring-4 focus:ring-offset-0 focus:ring-primary focus:ring-opacity-20 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 
@@ -135,7 +135,7 @@ function getData(move_to_page=null,keywords=''){
                     // `+item.owner_user_group.nickname+`
             template += `
                       </div>
-                      <a class="mt-4 block truncate text-center font-medium" title="`+item.title+`" href="`+baseUrl+'/file/edit/'+item.id+`">`+item.title+`</a>
+                      <a class="mt-4 block truncate text-center text-primary text-xs font-medium" title="`+item.title+`" href="`+baseUrl+'/file/edit/'+item.id+`">`+item.title+`</a>
                       <div class="mt-0.5 text-center text-xs text-slate-500">`+(item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)+`</div>
                       <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown absolute right-0 top-0 ml-auto mr-2 mt-3"><a data-tw-toggle="dropdown" aria-expanded="false" href="javascript:;" class="cursor-pointer block h-5 w-5"><i data-tw-merge="" data-lucide="more-vertical" class="stroke-1.5 w-5 h-5 text-slate-500"></i>
                           </a>

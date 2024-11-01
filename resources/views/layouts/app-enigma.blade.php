@@ -4,19 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="description" content="Bank Data for Katingan Kab: Easy to Find, Available and Authorized">
-        <meta name="keywords" content="katingan,bank data,bkad">
+        <meta name="description" content="Mandatling part of Bank Data for Katingan Kab: Easy to Find, Available and Authorized">
+        <meta name="keywords" content="katingan,mandatling,bank data,dlh">
         <meta name="author" content="Evelline Krist.">
-        <title>@yield('title') | Bank Data Kab.Katingan</title>
-        <link rel="icon" type="image/x-icon" href="{{asset('dist/images/logo-black.svg')}}">
+        <title>@yield('title') | Mandatling Kab.Katingan</title>
+        <link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="{{asset('dist/css/vendors/simplebar.css')}}">
         <link rel="stylesheet" href="{{asset('dist/css/vendors/tippy.css')}}">
         {{-- <link rel="stylesheet" href="{{asset('dist/css/vendors/font-awesome/all.min.css')}}"> --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{{asset('dist/css/components/mobile-menu.css')}}">
-        <link rel="stylesheet" href="{{asset('dist/css/themes/enigma/side-nav.css')}}">
-        <link rel="stylesheet" href="{{asset('dist/css/app.css')}}"> 
+        <link rel="stylesheet" href="{{asset('dist/css/themes/enigma/side-nav.css?v=241023')}}">
+        <link rel="stylesheet" href="{{asset('dist/css/app.css?v=241023')}}"> 
         <link rel="stylesheet" href="{{asset('page/css/app.css')}}"> 
         <!-- END: CSS Assets-->
         @yield('addition_css')

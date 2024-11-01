@@ -42,14 +42,19 @@ class FileManagerController extends Controller
       // dump($data);
       // die();
       $data['selected'] = File::find($id);
+      // echo 'OHOY';
+      // echo '<br> 1 '.($data['selected']->editorial_permission == 'public');
+      // echo '<br> 2 '.($data['selected']->user_group_id == @\Auth::user()->user_group_id);
+      // echo '<br> 3 '.(@\Auth::user()->role_id == 1);
+      // die();
       if($data['selected']){
-        if($data['selected']->editorial_permission == 'public' || $data['selected']->type_of_publicity == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1){
+        if($data['selected']->editorial_permission == 'public' || $data['selected']->type_of_publicity == 'public' || $data['selected']->user_group_id == @\Auth::user()->user_group_id || @\Auth::user()->role_id == 1){
           $data['user_groups'] = UserGroup::orderBy('id','desc')->get();
           $data['keywords'] = Keyword::orderBy('subject','asc')->get();
           $data['editorial_permissions'] = Option::where('type','EDITORIAL_PERMISSION')->get();
           $data['file_types'] = Option::where('type','TYPE_OF_FILE')->get();
           $data['publicity_types'] = Option::where('type','TYPE_OF_PUBLICITY')->get();
-          $data['is_uneditable'] = !($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == \Auth::user()->user_group_id || \Auth::user()->role_id == 1);
+          $data['is_uneditable'] = ($data['selected']->editorial_permission == 'public' || $data['selected']->user_group_id == @\Auth::user()->user_group_id || @\Auth::user()->role_id == 1)?false:true;
           return view('pages.file-manager.edit', $data);
         }else{
           return $this->show_error_401('Berkas');

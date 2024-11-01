@@ -26,17 +26,17 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'api'], function () {
     // Route::post('/survey/post-add', [StatisticController::class, 'post_add_survey']);
   
+    Route::post('/file/get', [FileManagerController::class, 'get_list']);
+    Route::post('/file/get-min', [FileManagerController::class, 'get_list_minimal']);
+    Route::post('/option/get', [OptionController::class, 'get_list']);
+    Route::post('/dynamic-input/get', [DynamicInputController::class, 'get_list']);
+
     Route::middleware('auth')->group(function () {
-        Route::post('/file/get', [FileManagerController::class, 'get_list']);
-        Route::post('/file/get-min', [FileManagerController::class, 'get_list_minimal']);
         Route::post('/file/post-add', [FileManagerController::class, 'post_add']);
         Route::post('/file/post-edit', [FileManagerController::class, 'post_edit']);
         Route::post('/file/post-delete/{id}', [FileManagerController::class, 'post_delete']);
         Route::post('/file/post-delete-bulk', [FileManagerController::class, 'post_delete_bulk']);
 
-        Route::post('/option/get', [OptionController::class, 'get_list']);
-        
-        Route::post('/dynamic-input/get', [DynamicInputController::class, 'get_list']);
         Route::post('/dynamic-input/post-add', [DynamicInputController::class, 'post_add']);
         Route::post('/dynamic-input/post-edit', [DynamicInputController::class, 'post_edit']);
         Route::post('/dynamic-input/post-delete/{id}', [DynamicInputController::class, 'post_delete']);
@@ -61,26 +61,19 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 // -------- PAGE ---- NO LOGIN
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('shared/{id}', [FileManagerController::class, 'page_shared'])->name('file-manager.shared');
 Route::get('phpmyinfo', function () {
     phpinfo(); 
 })->name('phpmyinfo');
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('files', [FileManagerController::class, 'index'])->name('file-manager');
+Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('file-manager.edit');
 
 // -------- PAGE ---- REQ LOGIN
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('pages.dashboard');
-    });
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-    })->name('dashboard');
     
-    Route::get('files', [FileManagerController::class, 'index'])->name('file-manager');
     Route::get('file/add', [FileManagerController::class, 'form_add'])->name('file-manager.add');
-    Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('file-manager.edit');
 
     Route::get('dynamic-inputs', [DynamicInputController::class, 'index'])->name('dynamic-input');
     Route::get('dynamic-input/add/{type}', [DynamicInputController::class, 'form_add'])->name('dynamic-input.add');

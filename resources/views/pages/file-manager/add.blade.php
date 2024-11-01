@@ -16,6 +16,7 @@
                         <div class="mt-6 flex-1 xl:mt-0">
                             <div class="grid grid-cols-12 gap-x-5 mb-3">
                                 <div class="col-span-12 mb-5">
+                                    <input id="is_uneditable" value="1" hidden>
                                     <div>
                                         <label class="of-required text-slate-400">
                                             Judul/Perihal
@@ -115,7 +116,7 @@
                                     </div>
                                 </div>
                                 <p class="text-sm text-slate-300">
-                                    <i>* tipe dokumen, gambar,<br>max 50MB</i>
+                                    <i>* tipe dokumen, gambar,<br>max 5MB</i>
                                 </p>
                             </div>
                         </div>
@@ -164,5 +165,5 @@
 @section('addition_script')
     <script src="{{ asset('dist/js/vendors/tom-select.js') }}"></script>
     <script src="{{ asset('dist/js/components/base/tom-select.js') }}"></script>
-    <script src="{{ asset('page/js/file-manager-cu.js').'?v='.date('YmdH').'1' }}"></script>
+    <script src="{{ asset('page/js/file-manager-cu.js').'?v='.date('YmdH').'2' }}"></script>
 @endsection

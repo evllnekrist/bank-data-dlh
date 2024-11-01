@@ -247,9 +247,9 @@ function shorten(text, maxLength, delimiter, overflow) {
 }
 
 function influencedColorScheme(){
-    let template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-mini.gif">`
+    let template = `<img style="width: 30vw" src="`+assetUrl+`img/app.gif">`
     if(isDark){
-      template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-dark-mini.gif">`
+      template = `<img style="width: 30vw" src="`+assetUrl+`img/app-eng-dark.gif">`
     }
     $('#gif-influenced-color-sceme').html(template)
 }

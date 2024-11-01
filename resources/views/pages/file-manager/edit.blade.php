@@ -17,6 +17,7 @@
                             <div class="grid grid-cols-12 gap-x-5 mb-3">
                                 <div class="col-span-12 mb-5">
                                     <input name="id" value="{{@$selected->id}}" hidden>
+                                    <input id="is_uneditable" value="{{$is_uneditable}}" hidden>
                                     <div>
                                         <label class="of-required text-slate-400">
                                             Judul/Perihal
@@ -26,14 +27,14 @@
                                         transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 
                                         focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 
                                         dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent 
-                                        group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10" rows="3">{{@$selected->title}}</textarea>                                        
+                                        group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10" rows="3" {{$is_uneditable?'readonly':''}}>{{@$selected->title}}</textarea>                                        
                                     </div>
                                     <div class="mt-1">
                                         <label class="of-required text-slate-400">
                                             Pemilik Berkas (Satuan Kerja)
                                         </label>
                                         <div class="mt-2">
-                                            <select required name="user_group_id" data-placeholder="Pilih salah satu..." class="tom-select w-full">
+                                            <select required name="user_group_id" data-placeholder="Pilih salah satu..." class="tom-select w-full" {{$is_uneditable?'disabled':''}}>
                                                 <option value=""></option>
                                                 @foreach($user_groups as $item)                                                
                                                     <option value="{{$item->id}}" {{@$selected->user_group_id == $item->id?'selected':''}}>{{$item->nickname}} - {{$item->fullname}}</option>
@@ -48,7 +49,7 @@
                                             Tipe Publisitas
                                         </label>
                                         <div class="mt-2">
-                                            <select required name="type_of_publicity" data-placeholder="Pilih salah satu..." class="tom-select w-full">
+                                            <select required name="type_of_publicity" data-placeholder="Pilih salah satu..." class="tom-select w-full" {{$is_uneditable?'disabled':''}}>
                                                 @foreach($publicity_types as $item)                                                
                                                     <option value="{{$item->value}}" {{@$selected->type_of_publicity == $item->value?'selected':''}}>{{$item->label}}</option>
                                                 @endforeach
@@ -60,7 +61,7 @@
                                             Tipe Berkas
                                         </label>
                                         <div class="mt-2">
-                                            <select required name="type_of_file" data-placeholder="Pilih salah satu..." class="tom-select w-full" onchange="getDynamicInputs()">
+                                            <select required name="type_of_file" data-placeholder="Pilih salah satu..." class="tom-select w-full" onchange="getDynamicInputs()" {{$is_uneditable?'disabled':''}}>
                                                 <option value=""></option>
                                                 @foreach($file_types as $item)                                                
                                                     <option value="{{$item->value}}" {{@$selected->type_of_file == $item->value?'selected':''}}>{{$item->label}}</option>
@@ -75,7 +76,7 @@
                                             Bisa Diedit Oleh
                                         </label>
                                         <div class="mt-2">
-                                            <select required name="editorial_permission" data-placeholder="Pilih salah satu..." class="tom-select w-full">
+                                            <select required name="editorial_permission" data-placeholder="Pilih salah satu..." class="tom-select w-full" {{$is_uneditable?'disabled':''}}>
                                                 @foreach($editorial_permissions as $item)                                                
                                                     <option value="{{$item->value}}" {{@$selected->editorial_permission == $item->value?'selected':''}}>{{$item->label}}</option>
                                                 @endforeach
@@ -90,7 +91,7 @@
                                             @php
                                                 $selected->keywords = explode(",",$selected->keywords);    
                                             @endphp
-                                            <select name="keywords[]" data-placeholder="Pilih salah satu atau lebih..." class="tom-select w-full" multiple="multiple">
+                                            <select name="keywords[]" data-placeholder="Pilih salah satu atau lebih..." class="tom-select w-full" multiple="multiple" {{$is_uneditable?'disabled':''}}>
                                                 <option value=""></option>
                                                 @foreach($keywords as $item)                                                
                                                     <option value="{{$item->subject}}" {{in_array($item->subject,$selected->keywords)?'selected':''}}>{{$item->subject}}</option>
@@ -114,18 +115,25 @@
                                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                 </svg>
-                                                <div class="flex flex-auto max-h-48 mb-5 mx-auto {{!@$selected->file_main?'hidden':''}}" id="input-file-preview-0">
-                                                </div>
-                                                <p class="pointer-none text-gray-500 text-xs"><i>Drag & Drop</i> disini atau <a class="text-theme-1 underline">pilih dari komputer</a></p>
-                                                <input name="file_main" data-value="{{asset(@$selected->file_main)}}" data-index-input-file="0" type="file" accept="{{implode(',',array_merge(Config::get('app.accept_mimes')['img'],Config::get('app.accept_mimes')['doc']))}}"
-                                                    class="input-file mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer">
+                                                @if(@$selected->file_main)
+                                                    <a class="text-xs" href="{{asset(@$selected->file_main)}}" target="_blank">klik <u class="text-primary font-medium">ini untuk buka file</u> lebih besar</a>
+                                                @endif
+                                                <div class="flex flex-auto max-h-48 mb-5 mx-auto {{!@$selected->file_main?'hidden':''}}" id="input-file-preview-0"></div>
+                                                @if(!$is_uneditable)
+                                                    <p class="pointer-none text-gray-500 text-xs"><i>Drag & Drop</i> disini atau <a class="text-theme-1 underline">pilih dari komputer</a></p>
+                                                @endif
+                                                <input name="file_main" data-value="{{asset(@$selected->file_main)}}" data-index-input-file="0" type="file" 
+                                                    accept="{{implode(',',array_merge(Config::get('app.accept_mimes')['img'],Config::get('app.accept_mimes')['doc']))}}"
+                                                    class="input-file mt-2 block w-full text-xs border border-gray-300 rounded-lg cursor-pointer {{$is_uneditable?'hidden':''}}">
                                             </div>
                                         </label>
                                     </div>
                                 </div>
+                                @if(!$is_uneditable)
                                 <p class="text-sm text-slate-300">
-                                    <i>* tipe dokumen, gambar,<br>max 50MB</i>
+                                    <i>* tipe dokumen, gambar,<br>max 5MB</i>
                                 </p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -158,7 +166,7 @@
             </div>
         </div>
         {{-- DYNAMIC --------------------------- end ----}}
-        @if(!$selected->is_uneditable)
+        @if($is_uneditable)
             <div class="col-span-12 mb-10">
                 <i class="mx-auto text-slate-300">* hanya baca, tidak dapat diedit</i>
             </div>
@@ -180,5 +188,5 @@
 @section('addition_script')
     <script src="{{ asset('dist/js/vendors/tom-select.js') }}"></script>
     <script src="{{ asset('dist/js/components/base/tom-select.js') }}"></script>
-    <script src="{{ asset('page/js/file-manager-cu.js').'?v='.date('YmdH').'1' }}"></script>
+    <script src="{{ asset('page/js/file-manager-cu.js').'?v='.date('YmdH').'2' }}"></script>
 @endsection

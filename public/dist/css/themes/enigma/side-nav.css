@@ -13,7 +13,7 @@
   position: relative;
 }
 .enigma .side-nav .side-menu {
-  height: 50px;
+  height: 40px;
   display: flex;
   align-items: center;
   padding-left: 1.25rem;
@@ -21,6 +21,7 @@
   margin-bottom: 0.25rem;
   position: relative;
   border-radius: 0.75rem;
+  font-size: smaller;
 }
 .enigma .side-nav .side-menu .side-menu__title {
   display: none;
