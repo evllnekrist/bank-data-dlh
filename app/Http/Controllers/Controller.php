@@ -21,65 +21,70 @@ class Controller extends BaseController
         
         // If 'auth' middleware is not present, set the session
         if (!$this->routeHasAuthMiddleware($routeMiddleware)) {
-            // Set session data with 'role_permission'
-            Session::put('role_permission', [
-                "1" => [
-                    "name" => "Aktivitas",
-                    "display_type" => "divider-text",
-                    "icon" => null,
-                    "children" => [
-                        [
-                            "name" => "Dashboard",
-                            "display_type" => null,
-                            "icon" => "home",
-                            "slug" => "/dashboard",
-                            "permit" => [
-                                [
-                                    "id" => 1,
-                                    "menu_id" => 3,
-                                    "name" => "read",
-                                    "slug" => "/dashboard",
-                                    "is_enabled" => true,
-                                    "description" => "melihat dashboard sederhana"
-                                ]
-                            ],
-                            "children" => []
-                        ],
-                        [
-                            "name" => "Lihat Berkas Publik",
-                            "display_type" => null,
-                            "icon" => "hard-drive",
-                            "slug" => "/files",
-                            "permit" => [
-                                [
-                                    "id" => 3,
-                                    "menu_id" => 4,
-                                    "name" => "filter-list",
-                                    "is_enabled" => true,
-                                    "description" => "menggunakan filter khusus untuk pencarian spesifik"
-                                ],
-                                [
-                                    "id" => 5,
-                                    "menu_id" => 4,
-                                    "name" => "edit",
-                                    "is_enabled" => true,
-                                    "description" => "mengubah data yang sudah ada"
-                                ],
-                                [
-                                    "id" => 2,
-                                    "menu_id" => 4,
-                                    "name" => "read",
-                                    "slug" => "/files",
-                                    "is_enabled" => true,
-                                    "description" => "melihat daftar data"
-                                ]
-                            ],
-                            "children" => []
-                        ]
-                    ]
-                ]
-            ]);
+          $this->setMinimalSession();
         }
+    }
+
+    public function setMinimalSession(){
+      // Set session data with 'role_permission'
+      Session::put('role_permission', [
+          "1" => [
+              "name" => "Aktivitas",
+              "display_type" => "divider-text",
+              "icon" => null,
+              "children" => [
+                  [
+                      "name" => "Dashboard",
+                      "display_type" => null,
+                      "icon" => "home",
+                      "slug" => "/dashboard",
+                      "permit" => [
+                          [
+                              "id" => 1,
+                              "menu_id" => 3,
+                              "name" => "read",
+                              "slug" => "/dashboard",
+                              "is_enabled" => true,
+                              "description" => "melihat dashboard sederhana"
+                          ]
+                      ],
+                      "children" => []
+                  ],
+                  [
+                      "name" => "Lihat Berkas Publik",
+                      "display_type" => null,
+                      "icon" => "hard-drive",
+                      "slug" => "/files-by-time",
+                      "permit" => [
+                          [
+                              "id" => 3,
+                              "menu_id" => 4,
+                              "name" => "filter-list",
+                              "is_enabled" => true,
+                              "description" => "menggunakan filter khusus untuk pencarian spesifik"
+                          ],
+                          [
+                              "id" => 5,
+                              "menu_id" => 4,
+                              "name" => "edit",
+                              "is_enabled" => true,
+                              "description" => "mengubah data yang sudah ada"
+                          ],
+                          [
+                              "id" => 2,
+                              "menu_id" => 4,
+                              "name" => "read",
+                              "slug" => "/files",
+                              "is_enabled" => true,
+                              "description" => "melihat daftar data"
+                          ]
+                      ],
+                      "children" => []
+                  ]
+              ]
+          ]
+      ]);
+
     }
 
     // Helper function to check if a route has the 'auth' middleware

@@ -28,6 +28,8 @@ Route::group(['prefix' => 'api'], function () {
   
     Route::post('/file/get', [FileManagerController::class, 'get_list']);
     Route::post('/file/get-min', [FileManagerController::class, 'get_list_minimal']);
+    Route::get('/file/get-by-time', [FileManagerController::class, 'get_list_by_time']);
+    Route::post('/file/get-by-time', [FileManagerController::class, 'get_list_by_time']);
     Route::post('/option/get', [OptionController::class, 'get_list']);
     Route::post('/dynamic-input/get', [DynamicInputController::class, 'get_list']);
 
@@ -68,6 +70,9 @@ Route::get('phpmyinfo', function () {
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::get('files', [FileManagerController::class, 'index'])->name('file-manager');
+Route::get('files-by-time', [FileManagerController::class, 'index_by_time'])->name('file-manager-by-time');
+Route::get('files-by-time/{type}', [FileManagerController::class, 'index_by_time']);
+Route::get('files-by-time/{type}/{year}', [FileManagerController::class, 'index_by_time']);
 Route::get('file/edit/{id}', [FileManagerController::class, 'form_edit'])->name('file-manager.edit');
 
 // -------- PAGE ---- REQ LOGIN

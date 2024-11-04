@@ -22,8 +22,34 @@ class FileManagerController extends Controller
     public function index()
     {
       $data['keywords'] = Keyword::orderBy('subject','asc')->get();
-      $data['is_deletable'] = $this->findBySlug($this->findBySlug(session('role_permission'), 'slug','/files')['permit'], 'name','delete'); 
+      $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
+      if(!$find){
+        $this->setMinimalSession();
+        $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
+      }
+      $data['is_deletable'] = $this->findBySlug($find['permit'], 'name','delete'); 
       return view('pages.file-manager.index',$data);
+    }
+    public function index_by_time($type_of_file='',$year='')
+    {
+      $data['keywords'] = Keyword::orderBy('subject','asc')->get();
+      $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
+      if(!$find){
+        $this->setMinimalSession();
+        $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
+      }
+      $data['is_deletable'] = $this->findBySlug($find['permit'], 'name','delete'); 
+      if($type_of_file){
+        $data['view_level'] = 'year';
+        $data['type_of_file'] = $type_of_file;
+        if($year){
+          $data['view_level'] = 'item';
+          $data['year'] = $year;
+        }
+      }else{
+        $data['view_level'] = 'type';
+      }
+      return view('pages.file-manager.index-by-time',$data);
     }
     public function form_add()
     {
@@ -77,6 +103,48 @@ class FileManagerController extends Controller
         $filter['search'] = ['title'];
         $request->request->add(['_dir' => array('id'=>'ASC'),'_limit' => 10]); 
         return $this->get_list_common($request, 'File', $filter, ['owner_user_group']);
+      }
+      public function get_list_by_time(Request $request)
+      {
+        $rules = ['view_level'  => 'required'];
+        switch($request->get('view_level')){
+          case 'item':
+            $rules['year'] = 'required';
+          case 'year':
+            $rules['type_of_file'] = 'required';
+            break;
+        }
+        $validator = Validator::make($request->all(), $rules); 
+        if ($validator->fails()) {
+          return array('status'=>false, 'message'=>$validator->messages()->first(), 'data'=>null);
+        }
+        $data = $request->all();
+
+        try {
+          switch($request->get('view_level')){
+            case 'type':
+              $data['products']         = Option::select(['value','value2','label','description'])->where('type','TYPE_OF_FILE')->where('value2','main')->get();
+              $data['products_actual']  = File::select('type_of_file',DB::raw('count(*) as count'))->groupBy('type_of_file')->get();
+              $transformedData = [];
+              foreach ($data['products_actual'] as $item) {
+                  $transformedData[$item['type_of_file']] = $item['count'];
+              }
+              $data['products_actual']  = $transformedData; 
+              break;
+            case 'year':
+              $data['products']         = File::select('year',DB::raw('count(*) as count'))->where('type_of_file',$data['type_of_file'])->groupBy('year')->get();
+              break;
+            case 'item':
+              $data['products']         = File::where('type_of_file',$data['type_of_file'])->where('year',$data['year'])->get();
+              break;
+            default:
+                return $this->get_list($request);  
+              break;
+          }
+          return json_encode(array('status'=>true, 'message'=>'Berhasil mengambil data', 'data'=>$data));
+        } catch (Exception $e) {
+          return json_encode(array('status'=>false, 'message'=>$e->getMessage(), 'data'=>null));
+        }
       }
       public function post_delete($id)
       {

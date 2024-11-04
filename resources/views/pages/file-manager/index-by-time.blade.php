@@ -2,6 +2,10 @@
 @section('title', 'Kelola Berkas')
 @section('content')
 <div class="mt-8 grid grid-cols-12 gap-6">
+    <input id="display-type" value="timeseries" hidden>
+    <input id="view-level" value="{{@$view_level}}" hidden>
+    <input id="type-of-file" value="{{@$type_of_file}}" hidden>
+    <input id="year" value="{{@$year}}" hidden>
     <div class="col-span-12 lg:col-span-3 2xl:col-span-2">
         @include('components.enigma.file-manager-filter-card-side')
     </div>
@@ -10,7 +14,7 @@
         <div class="intro-y flex flex-col-reverse items-center sm:flex-row">
             <div class="relative mr-auto mt-3 w-full sm:mt-0 sm:w-auto">
                 <i data-tw-merge="" data-lucide="search" class="stroke-1.5 absolute inset-y-0 left-0 z-10 my-auto ml-3 h-4 w-4 text-slate-500"></i>
-                <input name="_search" value="{{isset($_REQUEST['iso'])?$_REQUEST['iso']:''}}" data-tw-merge="" type="text" placeholder="Cari..." class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box px-10 sm:w-64">
+                <input name="_search" value="{{isset($_REQUEST['iso'])?$_REQUEST['iso']:''}}" data-tw-merge="" type="text" placeholder="Cari dari semua data ..." class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box px-10 sm:w-64">
             </div>
             <div class="flex w-full sm:w-auto">
                 <a href="{{route('file-manager.add')}}"  data-tw-merge="" class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-primary border-primary text-white dark:border-primary mr-2 shadow-md">Unggah Berkas Baru</a>
@@ -43,23 +47,22 @@
              </center>
         </div>
         <!-- BEGIN: Directory & Files -->
-        <div class="intro-y mt-5 grid grid-cols-4 gap-4" id="data-list">
-            <div class="col-span-12"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></div>
-        </div>
+        @if(@$type_of_file && @$year)
+            <div class="relative mr-auto mt-3 w-full sm:mt-0 sm:w-auto">
+                <i data-tw-merge="" data-lucide="search" class="stroke-1.5 absolute inset-y-0 left-0 z-10 my-auto ml-3 h-4 w-4 text-slate-500"></i>
+                <input name="_search" data-tw-merge="" type="text" placeholder="Cari dari kumpulan data ini ..." class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 !box px-10 sm:w-72">
+            </div>
+            <div class="mt-5 grid grid-cols-12 gap-6" id="data-list">
+                <div class="col-span-12"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></div>
+            </div>
+        @else
+            <div class="intro-y mt-5 grid grid-cols-4 gap-4" id="data-list">
+                <div class="col-span-12"><img src="{{asset('img/loading.gif')}}" class="mx-auto"></div>
+            </div>
+        @endif
         <!-- END: Directory & Files -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y mt-6 flex flex-wrap items-center sm:flex-row sm:flex-nowrap">
-            <nav class="w-full sm:mr-auto sm:w-auto">
-                <ul class="flex w-full mr-0 sm:mr-auto sm:w-auto" id="data-list-pagination"></ul>
-            </nav>
-            <select name="_limit" onchange="getData()" data-tw-merge="" class="_filter disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 group-[.form-inline]:flex-1 !box mt-3 w-20 sm:mt-0">    
-                <option value="8">8</option>
-                <option value="16">16</option>
-                <option value="40">40</option>
-                <option value="120">120</option>
-                <option value="240">240</option>
-            </select>
-        </div>
+            <!-- no pagination, unlimited -->
         <!-- END: Pagination -->
     </div>
 </div>
