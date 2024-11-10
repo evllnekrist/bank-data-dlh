@@ -28,6 +28,7 @@ class FileManagerController extends Controller
         $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
       }
       $data['is_deletable'] = $this->findBySlug($find['permit'], 'name','delete'); 
+      $data['display_type'] = 'mix';
       return view('pages.file-manager.index',$data);
     }
     public function index_by_time($type_of_file='',$year='')
@@ -39,6 +40,7 @@ class FileManagerController extends Controller
         $find =  $this->findBySlug(session('role_permission'), 'slug','/files-by-time');
       }
       $data['is_deletable'] = $this->findBySlug($find['permit'], 'name','delete'); 
+      $data['display_type'] = 'timeseries';
       if($type_of_file){
         $data['view_level'] = 'year';
         $data['type_of_file'] = $type_of_file;

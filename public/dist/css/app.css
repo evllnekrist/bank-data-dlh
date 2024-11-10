@@ -5322,6 +5322,17 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(254 240 138 / var(--tw-bg-opacity));
 }
+/* .bg-lime-50,.\[\&\.active\]\:bg-lime-50{background-color: rgb(247 254 231)};
+.bg-lime-100,.\[\&\.active\]\:bg-lime-100{background-color: rgb(236 252 203)};
+.bg-lime-200,.\[\&\.active\]\:bg-lime-200{background-color: rgb(217 249 157)};
+.bg-lime-300,.\[\&\.active\]\:bg-lime-300{background-color: rgb(190 242 100)};
+.bg-lime-400,.\[\&\.active\]\:bg-lime-400{background-color: rgb(163 230 53)};
+.bg-lime-500,.\[\&\.active\]\:bg-lime-500{background-color: rgb(132 204 22)}; */
+.bg-lime,.\[\&\.active\]\:bg-lime.active{background-color: rgb(101 163 13) !important};
+/* .bg-lime-700,.\[\&\.active\]\:bg-lime-700{background-color: rgb(77 124 15)};
+.bg-lime-800,.\[\&\.active\]\:bg-lime-800{background-color: rgb(63 98 18)};
+.bg-lime-900,.\[\&\.active\]\:bg-lime-900{background-color: rgb(54 83 20)};
+.bg-lime-950,.\[\&\.active\]\:bg-lime-950{background-color: rgb(26 46 5)}; */
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
 }

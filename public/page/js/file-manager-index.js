@@ -242,11 +242,13 @@ function getData(move_to_page=null,keywords=''){
                                 </div>`;
                         }else if(extensions['doc'].includes('.'+item.type_of_extension)){
                             template += `
-                                <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block bg-file-icon-file">
-                                    <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
-                                        `+item.type_of_extension.replace(/\./g, "").toUpperCase()+`
-                                    </div>
+                                <div  class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block"
+                                      style="background-image:url('`+baseUrl+`/img/file/cover/`+item.type_of_file+`.png')">
                                 </div>`;
+                                // bg-file-icon-file
+                                // <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
+                                //   `+item.type_of_extension.replace(/\./g, "").toUpperCase()+`
+                                // </div>
                         }else{
                             template += `    
                                 <div class="mx-auto w-3/5">
@@ -257,8 +259,8 @@ function getData(move_to_page=null,keywords=''){
                         // `+item.owner_user_group.nickname+`
                 template += `
                           </div>
-                          <a class="mt-4 block truncate text-center text-primary text-xs font-medium" title="`+item.title+`" href="`+baseUrl+'/file/edit/'+item.id+`">`+item.title+`</a>
-                          <div class="mt-0.5 text-center text-xs text-slate-500">`+(item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)+`</div>
+                          <a class="mt-4 block truncate text-center text-primary text-xs font-medium" title="`+item.title+`" href="`+baseUrl+'/file/edit/'+item.id+`">`+item.type_of_file.toUpperCase()+`</a>
+                          <div class="mt-0.5 text-center text-xs text-slate-500">`+item.title+`</div>
                           <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown absolute right-0 top-0 ml-auto mr-2 mt-3"><a data-tw-toggle="dropdown" aria-expanded="false" href="javascript:;" class="cursor-pointer block h-5 w-5"><i data-tw-merge="" data-lucide="more-vertical" class="stroke-1.5 w-5 h-5 text-slate-500"></i>
                               </a>
                               <div data-transition="" data-selector=".show" data-enter="transition-all ease-linear duration-150" data-enter-from="absolute !mt-5 invisible opacity-0 translate-y-1" data-enter-to="!mt-1 visible opacity-100 translate-y-0" data-leave="transition-all ease-linear duration-150" data-leave-from="!mt-1 visible opacity-100 translate-y-0" data-leave-to="absolute !mt-5 invisible opacity-0 translate-y-1" class="dropdown-menu absolute z-[9999] hidden">
@@ -272,7 +274,8 @@ function getData(move_to_page=null,keywords=''){
                               </div>
                           </div>
                       </div>
-                    </div>`;
+                    </div>`; 
+                //  (item.owner_user_group?item.owner_user_group.nickname:`<span class="text-white">_</span>`)
               });
               $(id_el_list).html(template);
             // i::data display---------------------------------------------------------------------------------END
