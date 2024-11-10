@@ -69,5 +69,5 @@
 @endsection
 @section('addition_script')
     <script src="{{ asset('dist/js/vendors/image-zoom.js') }}"></script>
-    <script src="{{ asset('page/js/file-manager-index.js').'?v='.date('YmdH').'1' }}"></script>
+    <script src="{{ asset('page/js/file-manager-index.js').'?v='.date('YmdH').'2' }}"></script>
 @endsection

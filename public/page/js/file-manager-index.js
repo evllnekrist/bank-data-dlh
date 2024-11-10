@@ -101,28 +101,48 @@ function getData(move_to_page=null,keywords=''){
           let template = ``;
           let imgToDisplay = [];
           if(display_type == 'timeseries'){
-            let count = 0;
+            let count = 0; let countTemp = 0; let countTotal = 0;
             switch (payload['view_level']) {
               case 'type':
+                countTotal = Object.values(response.data.data.products_actual).reduce((acc, value) => acc + value, 0);
                 (response.data.data.products).forEach((item) => {
-                  count = response.data.data.products_actual[item.value]?response.data.data.products_actual[item.value]:`kosong`;
+                  count = response.data.data.products_actual[item.value]?response.data.data.products_actual[item.value]:0;
+                  countTemp += count;
                   template +=
                   `<div class="intro-y">
                     <a title="`+item.description+`" href="`+baseUrl+'/files-by-time/'+item.value+`">
-                      <div class="file box zoom-in relative rounded-md px-2 pb-5 pt-8">
+                      <div class="file box file-box-fixed zoom-in relative rounded-md px-2 pb-5 pt-8">
                           <div class="mx-auto w-3/5">
-                                <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block `+(count!=`kosong`?`bg-file-icon-directory`:`bg-file-icon-empty-directory`)+`">
-                                    <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
-                                        `+count+`
-                                    </div>
+                                <div  class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block" 
+                                      style="background-image:url('`+baseUrl+`/img/file/cover/`+item.value+`.png')">
                                 </div>
                           </div>
-                          <div class="mt-4 block truncate text-center text-primary text-xs font-medium">`+item.value.replace(/\./g, "").toUpperCase()+`</div>
+                          <div class="mt-0.5 text-center text-xs text-slate-500">(`+count+` berkas)</div>
+                          <div class="mt-0.5 block truncate text-center text-primary text-xs font-medium">`+item.value.replace(/\./g, "").toUpperCase()+`</div>
                           <div class="mt-0.5 text-center text-xs text-slate-500">`+item.description+`</div>
                       </div>
                     </a>
                   </div>`;
                 });
+                count = countTotal - countTemp;
+                response.data.data.products.push({
+                  'value': 'others'
+                })
+                template +=
+                `<div class="intro-y">
+                  <a title="" href="`+baseUrl+`/files">
+                    <div class="file box file-box-fixed zoom-in relative rounded-md px-2 pb-5 pt-8">
+                        <div class="mx-auto w-3/5">
+                              <div  class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block 
+                                    `+(count!=0?`bg-file-icon-directory`:`bg-file-icon-empty-directory`)+`">
+                              </div>
+                        </div>
+                        <div class="mt-0.5 text-center text-xs text-slate-500">(`+count+` berkas)</div>
+                        <div class="mt-0.5 block truncate text-center text-primary text-xs font-medium">Lainnya</div>
+                        <div class="mt-0.5 text-center text-xs text-slate-500">Media, Surat, dsb</div>
+                    </div>
+                  </a>
+                </div>`;
                 break;
               case 'year':
                 (response.data.data.products).forEach((item) => {
@@ -132,13 +152,12 @@ function getData(move_to_page=null,keywords=''){
                     <a title="`+item.year+`" href="`+baseUrl+'/files-by-time/'+payload['type_of_file']+`/`+item.year+`">
                       <div class="file box zoom-in relative rounded-md px-2 pb-5 pt-8">
                           <div class="mx-auto w-3/5">
-                                <div class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block `+(count!=`kosong`?`bg-file-icon-directory`:`bg-file-icon-empty-directory`)+`">
-                                    <div class="absolute bottom-0 left-0 right-0 top-0 m-auto flex items-center justify-center text-white">
-                                        `+count+`
-                                    </div>
+                                <div  class="relative block bg-center bg-no-repeat bg-contain before:content-[''] before:pt-[100%] before:w-full before:block" 
+                                      style="background-image:url('`+baseUrl+`/img/file/cover/`+payload['type_of_file']+`.png')">
                                 </div>
                           </div>
-                          <div class="mt-4 block truncate text-center text-primary text-xs font-medium">`+item.year+`</div>
+                          <div class="mt-0.5 text-center text-xs text-slate-500">(`+count+` berkas)</div>
+                          <div class="mt-0.5 block truncate text-center text-primary text-xs font-medium">`+item.year+`</div>
                       </div>
                     </a>
                   </div>`;
@@ -146,7 +165,7 @@ function getData(move_to_page=null,keywords=''){
                 break;
               default:
                 (response.data.data.products).forEach((item) => {
-                  imgToDisplay = baseUrl+'/img/no-image-clean.png'
+                  imgToDisplay = baseUrl+`/img/file/cover/`+payload['type_of_file']+`.png`;
                   img = new Image();
                   img.src = item.img_main+"?_="+(new Date().getTime());
                   img.onload = function () {
@@ -163,11 +182,13 @@ function getData(move_to_page=null,keywords=''){
                               </div>
                               <div class="mt-3 text-center lg:ml-2 lg:mr-auto lg:mt-0 lg:text-left">
                                   <span class="font-medium">
-                                        `+item.type_of_file+` - `+item.year+`
-                                  </span>
-                                  <div class="mt-0.5 text-xs text-slate-500">
                                         `+item.title+`
-                                  </div>
+                                  </span>`;
+                                  // <div class="mt-0.5 text-xs text-slate-500">
+                                  //       `+item.type_of_file+` - `+item.year+`
+                                  // </div>
+                  template +=
+                  `
                               </div>
                               <div class="mt-4 flex lg:mt-0">`;
                     // if(deletable){
@@ -186,6 +207,7 @@ function getData(move_to_page=null,keywords=''){
                 break;
             }
             $(id_el_list).html(template);
+            $('#products_count_total').html(response.data.data.products.length);
           }else{
             // i::data display-------------------------------------------------------------------------------START
               (response.data.data.products).forEach((item) => {

@@ -41,7 +41,7 @@
         <!-- END: File Manager Filter -->
         <div class="mx-auto hidden text-slate-500 md:block">
             <center>
-                 Menampilkan <span id="products_count_start"></span> - <span id="products_count_end"></span> dari <span id="products_count_total"></span> data<br>
+                 Menampilkan <span id="products_count_total"></span> data<br>
                  <span id="products_search_info"></span>
                  <input name="_page" value="1" class="_filter" hidden>
              </center>
@@ -72,5 +72,5 @@
 @endsection
 @section('addition_script')
     <script src="{{ asset('dist/js/vendors/image-zoom.js') }}"></script>
-    <script src="{{ asset('page/js/file-manager-index.js').'?v='.date('YmdH').'1' }}"></script>
+    <script src="{{ asset('page/js/file-manager-index.js').'?v='.date('YmdH').'2' }}"></script>
 @endsection
