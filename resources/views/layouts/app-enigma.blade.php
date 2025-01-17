@@ -16,10 +16,23 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{{asset('dist/css/components/mobile-menu.css')}}">
         <link rel="stylesheet" href="{{asset('dist/css/themes/enigma/side-nav.css?v=241023')}}">
-        <link rel="stylesheet" href="{{asset('dist/css/app.css?v=24111005')}}"> 
-        <link rel="stylesheet" href="{{asset('page/css/app.css')}}"> 
+        <link rel="stylesheet" href="{{asset('dist/css/app.css?v=24111005')}}">
+        <link rel="stylesheet" href="{{asset('page/css/app.css')}}">
         <!-- END: CSS Assets-->
         @yield('addition_css')
+
+        <style>
+            .background-img {
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                border: 2px solid #ccc;
+            }
+        </style>
+
     </head>
     <body>
         @include('components.enigma.display-change-widget')
@@ -29,7 +42,7 @@
             <div class="flex overflow-hidden">
                 @include('components.enigma.nav-side')
                 <!-- BEGIN: Content -->
-                <div class="max-w-full md:max-w-none rounded-[30px] md:rounded-none px-4 md:px-[22px] min-w-0 min-h-screen bg-slate-100 flex-1 md:pt-20 pb-10 mt-5 md:mt-1 relative dark:bg-darkmode-700 before:content-[''] before:w-full before:h-px before:block">
+                <div id="content-wrap" class="max-w-full md:max-w-none rounded-[30px] md:rounded-none px-4 md:px-[22px] min-w-0 min-h-screen bg-slate-100 flex-1 md:pt-20 pb-10 mt-5 md:mt-1 relative dark:bg-darkmode-700 before:content-[''] before:w-full before:h-px before:block">
                     @yield('content')
                 </div>
                 <!-- END: Content -->
@@ -51,17 +64,41 @@
         <script src="{{asset('dist/js/vendors/tippy.js')}}"></script>
         <script src="{{asset('dist/js/vendors/transition.js')}}"></script>
         <script src="{{asset('dist/js/vendors/simplebar.js')}}"></script>
-        <script src="{{asset('dist/js/vendors/modal.js')}}"></script> 
+        <script src="{{asset('dist/js/vendors/modal.js')}}"></script>
         <script src="{{asset('dist/js/vendors/sweetalert2.all.min.js')}}"></script>
         <script src="{{asset('dist/js/components/base/theme-color.js')}}"></script>
         <script src="{{asset('dist/js/components/base/lucide.js')}}"></script>
         <script src="{{asset('dist/js/themes/enigma.js')}}"></script>
         <script src="{{asset('dist/js/components/mobile-menu.js')}}"></script>
         <script src="{{asset('dist/js/components/themes/enigma/top-bar.js')}}"></script>
-        <script src="{{asset('page/js/app.js')}}?v=240529"></script>
+        <script src="{{asset('page/js/app.js')}}?v=250117"></script>
         <!-- END: Vendor JS Assets-->
         <!-- BEGIN: Pages, layouts, components JS Assets-->
         @yield('addition_script')
+        <script>
+            $(document).ready(function () {
+                const path = window.location.pathname; // Get the current pathname
+                const allowedRoutes = [ // Define routes where the background should be applied
+                    "/",            // Base URL
+                    "/dashboard",   // Dashboard route
+                    "/logs"          // Log route
+                ];
+
+                if (allowedRoutes.includes(path)) { // Check if the current route is in the allowed routes
+                    const images = [ // Define the list of images
+                        '/img/kebun-raya-katingan-1.jpg',
+                        '/img/kebun-raya-katingan-2.jpg'
+                    ];
+
+                    const randomImage = images[Math.floor(Math.random() * images.length)]; // Pick a random image
+
+                    // Add the class and set the background image
+                    $("#content-wrap")
+                        .addClass('background-img')
+                        .css('background-image', `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url(${randomImage})`);
+                }
+            });
+        </script>
         <!-- END: Pages, layouts, components JS Assets-->
     </body>
 </html>

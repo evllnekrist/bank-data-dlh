@@ -178,7 +178,7 @@
                         @if(Auth::check())
                             <div class="font-medium">{{Auth::user()->name}}</div>
                             <div class="mt-0.5 text-xs">
-                                <span class="text-white/70 dark:text-slate-500">{{Auth::user()->user_group_attr->nickname}}</span> &#124; 
+                                <span class="text-white/70 dark:text-slate-500">{{Auth::user()->user_group_attr->nickname}}</span> &#124;
                                 <span class="text-warning">{{Auth::user()->role_attr->name}}</span>
                             </div>
                         @else
@@ -191,10 +191,10 @@
                     <a  href="{{route('profile.edit')}}"
                         class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item hover:bg-white/5"><i data-tw-merge="" data-lucide="user" class="stroke-1.5 mr-2 h-4 w-4"></i>
                         Profil</a>
-                    <a  href="{{route('register')}}" target="_blank" 
+                    <a  href="{{route('register')}}" target="_blank"
                         class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item hover:bg-white/5"><i data-tw-merge="" data-lucide="edit" class="stroke-1.5 mr-2 h-4 w-4"></i>
                         Tambah Akun Baru</a>
-                    <a  href="{{route('password.request')}}" target="_blank" 
+                    <a  href="{{route('password.request')}}" target="_blank"
                         class="cursor-pointer flex items-center p-2 transition duration-300 ease-in-out rounded-md hover:bg-slate-200/60 dark:bg-darkmode-600 dark:hover:bg-darkmode-400 dropdown-item hover:bg-white/5"><i data-tw-merge="" data-lucide="lock" class="stroke-1.5 mr-2 h-4 w-4"></i>
                         Reset Password</a>
                     <a  href="{{route('faq')}}"

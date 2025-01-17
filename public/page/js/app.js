@@ -13,7 +13,7 @@ let loadingElement = `<div class="mx-auto">memuat...</div>`;
 let imgToDisplay = ``, img = ``;
 const extensions = {
     'img' : ['.png','.jpg','.webp','.heic','.heif'],
-    'doc' : ['.pdf','.doc','.docx','.xls','.xlsx','.csv','.ppt','.pptx'] 
+    'doc' : ['.pdf','.doc','.docx','.xls','.xlsx','.csv','.ppt','.pptx']
 }; // ,'.'
 
 function nospace(event,changeWith=""){
@@ -99,9 +99,9 @@ function inputFile(event){
         }else if(event.target.files[i]['type'] == 'application/pdf'){
             $('#input-file-preview-'+iii).removeClass('w-4/5');
             template += `
-            <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+url+`" 
-                frameborder="1" 
-                scrolling="auto" 
+            <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+url+`"
+                frameborder="1"
+                scrolling="auto"
                 height="400px">
             </iframe>`;
         }else{
@@ -138,9 +138,9 @@ function initiateFileFromInput(){
             }else if(type_of_extension == 'pdf'){
                 $('#input-file-preview-'+iii).removeClass('w-4/5');
                 template += `
-                <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+$(this).data('value')+`" 
-                    frameborder="1" 
-                    scrolling="auto" 
+                <iframe style="border:1px solid #666CCC;min-width: 500px;" title="displaying PDF" src="`+$(this).data('value')+`"
+                    frameborder="1"
+                    scrolling="auto"
                     height="400px">
                 </iframe>`;
             }else{
@@ -153,7 +153,7 @@ function initiateFileFromInput(){
                         </div>
                     </div>
                 </div>`;
-            }        
+            }
             $('#input-file-preview-'+iii).html(template);
         }
     });
@@ -210,7 +210,7 @@ function hideLoading(appendTo){
 
 function changeDir(field){
     let el = $('#th_'+field);
-    
+
     switch (el.data('dir')) {
       case 'asc': // currently ASC to be DESC
         el.data('dir','desc');
@@ -247,10 +247,11 @@ function shorten(text, maxLength, delimiter, overflow) {
 }
 
 function influencedColorScheme(){
-    let template = `<img style="width: 30vw" src="`+assetUrl+`img/app.gif">`
-    if(isDark){
-      template = `<img style="width: 30vw" src="`+assetUrl+`img/app-eng-dark.gif">`
-    }
+    let template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-transp-medium-green.gif">`;
+    // let template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-transp-medium-eng-dark.gif">`;
+    // if(isDark){
+    //   template = `<img style="width: 30vw" src="`+assetUrl+`img/logo-transp-medium-eng-dark.gif">`;
+    // }
     $('#gif-influenced-color-sceme').html(template)
 }
 
@@ -258,7 +259,7 @@ $('#global-file-search').on('keyup', function(event) {
     const id_search_list    = '#global-file-search-result';
     const class_search_info = '.global-file-search-result-more';
     let str = event.target.value;
-    
+
     $(class_search_info).hide();
     if(str.length < 3){
         $(id_search_list).html('<center><i>Pencarian minimal dari 3 karakter</i></center>');
@@ -288,7 +289,7 @@ $('#global-file-search').on('keyup', function(event) {
               }else{
                 $(id_search_list).html('<h3 class="mt-5">Tidak ada data yang sesuai</h3>');
               }
-                
+
           }else{
             Swal.fire({
               icon: 'warning',
@@ -317,6 +318,5 @@ function cleanUrl(str){
 }
 
 $(function (){
-    
+
 });
-  
